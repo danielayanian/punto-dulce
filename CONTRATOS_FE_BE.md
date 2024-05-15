@@ -220,3 +220,87 @@ POST /api/v1/checkout?address=Dirección+de+envío
     "error": "Carrito no encontrado"
   }
   ```
+
+### 8. Registro de Usuario (Sign Up)
+**Endpoint: POST /api/v1/auth/signup**
+
+**Solicitud:**
+```
+POST /api/v1/auth/signup
+```
+**Cuerpo de la solicitud:**
+```json
+{
+  "email": "usuario@example.com",
+  "name": "usuario",
+  "password": "passwordSegura",
+  "confirmPassword": "passwordSegura"
+}
+```
+
+**Respuesta:**
+- **201 Created** (registro exitoso)
+
+- **400 Bad Request** (parámetros inválidos)
+  ```json
+  {
+    "error": "Parámetros inválidos"
+  }
+  ```
+- **409 Conflict** (email o username ya existen)
+  ```json
+  {
+    "error": "El email o nombre de usuario ya existe"
+  }
+  ```
+
+### 9. Inicio de Sesión (Sign In)
+**Endpoint: POST /api/v1/auth/signin**
+
+**Solicitud:**
+```
+POST /api/v1/auth/signin
+```
+**Cuerpo de la solicitud:**
+```json
+{
+  "email": "usuario@example.com",
+  "password": "passwordSegura"
+}
+```
+
+**Respuesta:**
+- **204 OK** (inicio de sesión exitoso, se establece una cookie HTTPS)
+  
+  **Encabezados de la respuesta:**
+  ```
+  Set-Cookie: token=<JWT>; HttpOnly; Secure; SameSite=Strict
+  ```
+- **400 Bad Request** (parámetros inválidos)
+  ```json
+  {
+    "error": "Parámetros inválidos"
+  }
+  ```
+- **401 Unauthorized** (credenciales incorrectas)
+  ```json
+  {
+    "error": "Credenciales incorrectas"
+  }
+  ```
+
+### 10. Cerrar Sesión (Log Out)
+**Endpoint: POST /api/v1/auth/logout**
+
+**Solicitud:**
+```
+POST /api/v1/auth/logout
+```
+
+**Respuesta:**
+- **204 OK** (cierre de sesión exitoso, la cookie se elimina)
+
+  **Encabezados de la respuesta:**
+  ```
+  Set-Cookie: token=; HttpOnly; Secure; SameSite=Strict; Max-Age=0
+  ```
