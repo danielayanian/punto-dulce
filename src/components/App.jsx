@@ -1,6 +1,9 @@
 
 // Fichero src/components/App.jsx
 
+import { Route, Routes } from "react-router-dom";
+import ProductList from "./ProductList"
+
 
 
 const App = () => {
@@ -9,6 +12,9 @@ const App = () => {
   return (
     <div>
       <h1>Punto Dulce</h1>
+      <Routes>
+        <Route path ="/" element={<ProductList/>}/>
+      </Routes>
 
       
     </div>
