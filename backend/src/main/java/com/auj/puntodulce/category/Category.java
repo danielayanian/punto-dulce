@@ -1,29 +1,35 @@
-package com.auj.puntodulce.models;
+package com.auj.puntodulce.category;
 
+import com.auj.puntodulce.product.Product;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name="category")
+@Table(name="categories")
 @Entity
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(length = 36)
+    @UuidGenerator
+    @Column(length = 36, updatable = false, nullable = false)
     private String id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     @OneToMany(mappedBy = "category")
     @ToString.Exclude
     private List<Product> productList;
 
+    public Category(String name) {
+        this.name = name;
+    }
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;

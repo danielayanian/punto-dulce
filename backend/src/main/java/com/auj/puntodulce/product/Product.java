@@ -1,37 +1,51 @@
-package com.auj.puntodulce.models;
+package com.auj.puntodulce.product;
 
+import com.auj.puntodulce.category.Category;
+import com.auj.puntodulce.models.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name="product")
+@AllArgsConstructor
+@Table(name="products")
 public class Product {
-	
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(length = 36)
+    @UuidGenerator
+    @Column(length = 36, updatable = false, nullable = false)
     private String id;
     @Column(nullable = false)
-    private String name;
+    private String description;
     @Column(nullable = false)
-    private long stock;
+    private int stock;
     @Column(nullable = false)
-    private float price;
+    private BigDecimal price;
     @Column(name = "price_updated_at",nullable = false)
     private Date priceUpdatedAt;
+    @Column(nullable = false)
+    private BigDecimal cost;
+    @Column(nullable = false)
+    private Date expirationDate;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    @JsonIgnore
     @ManyToMany(mappedBy = "products")
+    @ToString.Exclude
     private List<Order> orders;
 
     @Override
