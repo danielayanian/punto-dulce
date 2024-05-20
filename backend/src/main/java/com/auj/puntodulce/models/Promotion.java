@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import com.auj.puntodulce.product.Product;
 import org.hibernate.proxy.HibernateProxy;
 
 import jakarta.persistence.Column;
@@ -25,7 +26,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name="promotion")
+@Table(name="promotions")
 public class Promotion {
 
 	@Id
@@ -34,7 +35,7 @@ public class Promotion {
     private String id;
 	
 	@ManyToMany()
-    @JoinTable(name = "product_promotion", joinColumns = @JoinColumn(name = "promotion_id"), inverseJoinColumns = @JoinColumn(name= "product_id"))
+    @JoinTable(name = "products_promotions", joinColumns = @JoinColumn(name = "promotion_id"), inverseJoinColumns = @JoinColumn(name= "product_id"))
     private List<Product> products;
 	
 	@Column(name = "start_date",nullable = false)
