@@ -1,6 +1,7 @@
 package com.auj.puntodulce.models;
 
 import com.auj.puntodulce.enums.Status;
+import com.auj.puntodulce.product.Product;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -14,7 +15,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name="order")
+@Table(name="orders")
 public class Order {
 	
     @Id
@@ -26,7 +27,7 @@ public class Order {
     private float totalPrice;
     private Status status;
     @ManyToMany()
-    @JoinTable(name = "product_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name= "product_id"))
+    @JoinTable(name = "products_orders", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name= "product_id"))
 	@ToString.Exclude
 	private List<Product> products;
 
