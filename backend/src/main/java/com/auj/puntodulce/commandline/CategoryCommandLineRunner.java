@@ -10,7 +10,7 @@ import org.springframework.core.annotation.Order;
 @Configuration
 public class CategoryCommandLineRunner {
     @Bean
-    @Order(1)  // Se ejecuta primero
+    @Order(1)
     CommandLineRunner initCategories(CategoryRepository categoryRepository) {
         return args -> {
             categoryRepository.save(new Category("Chocolate"));
