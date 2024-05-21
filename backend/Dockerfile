@@ -7,10 +7,8 @@ RUN java -Djarmode=layertools -jar target/puntodulce-0.0.1-SNAPSHOT.jar extract
 
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-#COPY --from=build /app/target/puntodulce-0.0.1-SNAPSHOT.jar /app/puntodulce.jar
 COPY --from=builder app/dependencies/ ./
 COPY --from=builder app/spring-boot-loader/ ./
 COPY --from=builder app/snapshot-dependencies/ ./
 COPY --from=builder app/application/ ./
-#ENTRYPOINT ["java", "-jar", "/app/puntodulce.jar"]
 ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
