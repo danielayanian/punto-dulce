@@ -13,10 +13,12 @@ public class CategoryCommandLineRunner {
     @Order(1)
     CommandLineRunner initCategories(CategoryRepository categoryRepository) {
         return args -> {
-            categoryRepository.save(new Category("Chocolate"));
-            categoryRepository.save(new Category("Chicles"));
-            categoryRepository.save(new Category("Pastillas"));
-            categoryRepository.save(new Category("Caramelos"));
+            String[] categories = {"Chocolate", "Chicles", "Pastillas", "Caramelos"};
+            for (String categoryName : categories) {
+                categoryRepository.findByName(categoryName).orElseGet(() -> {
+                    return categoryRepository.save(new Category(categoryName));
+                });
+            }
         };
     }
 }

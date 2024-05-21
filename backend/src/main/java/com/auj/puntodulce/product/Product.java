@@ -5,10 +5,13 @@ import com.auj.puntodulce.models.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.math.BigDecimal;
+import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -24,9 +27,9 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @UuidGenerator
-    @Column(length = 36, updatable = false, nullable = false)
-    private String id;
+    @Column(name = "id")
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID id;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
@@ -47,6 +50,13 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     @ToString.Exclude
     private List<Order> orders;
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
+    }
 
     @Override
     public final boolean equals(Object o) {
