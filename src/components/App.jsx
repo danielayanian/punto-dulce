@@ -1,69 +1,23 @@
-<<<<<<< HEAD
 
 // Fichero src/components/App.jsx
 
 import { Route, Routes } from "react-router-dom";
 import ProductList from "./ProductList"
-import Navbar from './NavBar';
 import Carousel from './Carousel';
+import NavBar from './NavBar';
 import CategoryIcons from './CategoryIcons';
 
 
 
-const App = () => {
-  
-
-  return (
-    <div>
-      <Navbar />
-      <Carousel/>
-      <CategoryIcons />
-      <Routes>
-        <Route path ="/" element={<ProductList/>}/>
-      </Routes>
-
-      
-    </div>
-  );
-};
-
-export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-
-// Fichero src/components/App.jsx
-
-import { Route, Routes } from "react-router-dom";
-import ProductList from "./ProductList"
-
-
 
 const App = () => {
   
 
   return (
     <div>
-      <h1>Punto Dulce</h1>
+   <NavBar/>
+   <Carousel/>
+   <CategoryIcons/>
       <Routes>
         <Route path ="/" element={<ProductList/>}/>
       </Routes>
@@ -132,4 +86,3 @@ export default App;
 // };
 
 // export default App;
->>>>>>> gabi

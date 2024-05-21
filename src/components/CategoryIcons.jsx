@@ -1,6 +1,5 @@
 // Fichero src/components/CategoryIcons.jsx
 
-import React from "react";
 import "..//scss/layouts/CategoryIcons.scss";
 
 
