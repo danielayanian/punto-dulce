@@ -6,7 +6,7 @@ import ProductList from "./ProductList"
 import Carousel from './Carousel';
 import NavBar from './NavBar';
 import CategoryIcons from './CategoryIcons';
-
+import Footer from './Footer';
 
 
 
@@ -21,7 +21,7 @@ const App = () => {
       <Routes>
         <Route path ="/" element={<ProductList/>}/>
       </Routes>
-
+<Footer/>
       
     </div>
   );
