@@ -7,6 +7,7 @@ import Carousel from './Carousel';
 import NavBar from './NavBar';
 import CategoryIcons from './CategoryIcons';
 import Footer from './Footer';
+import Whatsapp from './Whatsapp';
 
 
 
@@ -21,6 +22,7 @@ const App = () => {
       <Routes>
         <Route path ="/" element={<ProductList/>}/>
       </Routes>
+      <Whatsapp/>
 <Footer/>
       
     </div>

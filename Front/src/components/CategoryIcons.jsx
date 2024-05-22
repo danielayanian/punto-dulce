@@ -1,17 +1,16 @@
 // Fichero src/components/CategoryIcons.jsx
 
-import "..//scss/layouts/CategoryIcons.scss";
-
+import '../scss/layouts/CategoryIcons.scss';
 
 const CategoryIcons = () => {
   // Define las categorías con sus respectivas imágenes y nombres
   const categories = [
-    { name: "Chocolates", image: "chocolates.jpg" },
-    { name: "Alfajores", image: "alfajores.jpg" },
-    { name: "Bombones", image: "bombones.jpg" },
-    { name: "Chupetines y Chicles", image: "chupetines.jpg" },
-    { name: "Caramelos y Gomitas", image: "caramelos.jpg" },
-    { name: "Galletitas y Barritas", image: "galletitas.jpg" },
+    { name: 'Chocolates', image: 'chocolates.jpg' },
+    { name: 'Alfajores', image: 'alfajores.jpg' },
+    { name: 'Bombones', image: 'bombones.jpg' },
+    { name: 'Chupetines y Chicles', image: 'chupetines.jpg' },
+    { name: 'Caramelos y Gomitas', image: 'caramelos.jpg' },
+    { name: 'Galletitas y Barritas', image: 'galletitas.jpg' },
   ];
 
   return (

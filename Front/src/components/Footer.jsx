@@ -5,6 +5,7 @@ import '../scss/layouts/Footer.scss';
 function Footer() {
     return (
         <footer className="footer">
+            
             <div className="left-section">
                 <div className="logo">
                     <img  alt="Logo" />
