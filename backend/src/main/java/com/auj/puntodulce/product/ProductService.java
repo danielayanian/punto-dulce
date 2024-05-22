@@ -1,8 +1,10 @@
 package com.auj.puntodulce.product;
 
+import com.auj.puntodulce.exception.ProductNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -16,5 +18,10 @@ public class ProductService {
         return productDataAccessService.getAllProducts();
     }
 
-
+    public Product getProduct(UUID uuid){
+        return productDataAccessService.selectProductById(uuid)
+                .orElseThrow(()-> new ProductNotFound(
+                        "Product with id [%s] not found".formatted(uuid)
+                ));
+    }
 }
