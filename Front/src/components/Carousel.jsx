@@ -26,6 +26,10 @@ const Carousel = () => {
       </div>
       <div>
         <img src="galletas.jpg" alt="Image 3" />
+      </div>   <div>
+        <img src="gum.jpg" alt="Image 3" />
+      </div>   <div>
+        <img src="bombon.jpg" alt="Image 3" />
       </div>
       {/* Agrega más imágenes según sea necesario */}
     </Slider>

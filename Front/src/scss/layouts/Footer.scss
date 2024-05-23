@@ -1,47 +1,118 @@
+/* Variables para colores y tamaños */
+$background-color: #000;
+$text-color: #fff;
+$primary-color: gold;
+$padding: 20px;
+$gap: 25px;
+$border-radius: 10px;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$photo-size: 80px;
+
+/* Estilos para dispositivos móviles */
 .footer {
-    background-color: #000;
-    color: #fff;
-    padding: 20px;
+    background-color: $background-color;
+    color: $text-color;
+    padding: $padding;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Alinear elementos arriba */
+    flex-direction: column;
+    align-items: center;
     width: 100vw;
-    
-}
-
-.left-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 100px;
-}
-
-.right-section {
-    width: 60%; 
-    display: flex;
-    flex-direction: column;
-}
-
-.columns {
-    display: flex;
- 
-    justify-content: space-evenly;
-
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-      gap: 100px;
-
-}
-
-
-.copyrigth {
-    width: 100%;
     text-align: center;
-    padding-top: 20px; /* Espacio superior */
-    border-top: #fff solid 2px;
-    padding-right: 80px;
+
+    .left-section,
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: $gap;
+    }
+
+    .columns {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: $gap;
+        margin-top: 20px;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $gap;
+
+        .column {
+            width: 100%;
+
+            .line {
+                display: none; /* Elimina la línea en la versión móvil */
+            }
+
+            ul {
+                list-style: none; /* Elimina los puntos del listado */
+                padding: 0; /* Elimina el padding del listado */
+                margin: 0; /* Elimina el margen del listado */
+            }
+        }
+
+        .location,
+        .phone {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .icon {
+                font-size: 15px;
+            }
+        }
+
+        .contact-title {
+            font-size: 15px; /* Tamaño de fuente más grande para 'Atención' y 'Contacto' */
+        }
+    }
+
+    .copyrigth {
+        width: 100%;
+        padding-top: 20px;
+        border-top: 2px solid $text-color;
+    }
+}
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 768px) {
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 40px;
+
+        .left-section {
+            align-items: flex-start;
+            gap: 100px;
+        }
+
+        .right-section {
+            width: 60%;
+            align-items: flex-start;
+        }
+
+        .columns {
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: flex-start;
+        }
+
+        .contact-info {
+            flex-direction: row;
+            justify-content: space-around;
+            gap: 100px;
+        }
+
+        .copyrigth {
+            text-align: center;
+            padding-right: 80px;
+        }
+    }
 }

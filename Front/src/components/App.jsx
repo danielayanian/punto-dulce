@@ -8,6 +8,9 @@ import NavBar from './NavBar';
 import CategoryIcons from './CategoryIcons';
 import Footer from './Footer';
 import Whatsapp from './Whatsapp';
+import Sales from './Sales';
+import '../scss/App.scss';
+import Reviews from './Reviews';
 
 
 
@@ -19,9 +22,11 @@ const App = () => {
    <NavBar/>
    <Carousel/>
    <CategoryIcons/>
+   <Sales/>
       <Routes>
         <Route path ="/" element={<ProductList/>}/>
       </Routes>
+      <Reviews/>
       <Whatsapp/>
 <Footer/>
       
