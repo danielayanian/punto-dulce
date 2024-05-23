@@ -8,7 +8,7 @@ const callToApi = () => {
       return{
         id:product.id,
         codigo: product.codigo,
-        descripcion:product.descripcion,
+        descripcion:product.description,
         categoria:product.categoria,
         marca:product.marca,
         imagen:product.imagen,
