@@ -1,10 +1,9 @@
-
 ### 1. Listar Productos
 **Endpoint: GET /api/v1/products**
 
 **Solicitud:**
 ```
-GET /api/v1/products?categoria=chocolates
+GET /api/v1/products?category=chocolates
 ```
 
 **Respuesta:**
@@ -13,13 +12,10 @@ GET /api/v1/products?categoria=chocolates
   [
       {
         "id": "123e4567-e89b-12d3-a456-426614174000",
-        "codigo": "8000500125038",
-        "descripcion": "Chocolate Kinder Barrita individual T1 x 24",
-        "categoria": "Chocolate",
-        "marca": "Kinder-Ferrero Rocher- Tic Tac",
-        "imagen": "url_imagen_producto",
-        "precio": 10180.00,
-        "proveedor": "Piantoni"
+        "name": "Chocolate Kinder",
+        "description": "Chocolate Kinder Barrita individual T1 x 24",
+        "image": "url_imagen_producto",
+        "price": 10180.00,
       },
       ...
     ]
@@ -44,13 +40,14 @@ GET /api/v1/products/123e4567-e89b-12d3-a456-426614174000
   ```json
   {
     "id": "123e4567-e89b-12d3-a456-426614174000",
-    "codigo": "8000500125038",
-    "descripcion": "Chocolate Kinder Barrita individual T1 x 24",
-    "categoria": "Chocolate",
-    "marca": "Kinder-Ferrero Rocher- Tic Tac",
-    "imagen": "url_imagen_producto",
-    "precio": 10180.00,
-    "proveedor": "Piantoni"
+    "code": "8000500125038",
+    "name": "Chocolate Kinder Barrita",
+    "description": "Chocolate Kinder Barrita individual T1 x 24",
+    "category": "Chocolate",
+    "brand": "Kinder-Ferrero Rocher- Tic Tac",
+    "image": "url_imagen_producto",
+    "price": 10180.00,
+    "supplier": "Piantoni"
   }
   ```
 - **404 Not Found** (producto no encontrado)
@@ -75,8 +72,8 @@ POST /api/v1/cart?id=123e4567-e89b-12d3-a456-426614174000&cantidad=1
       "items": [
         {
           "id": "123e4567-e89b-12d3-a456-426614174000",
-          "cantidad": 1,
-          "precio": 10180.00,
+          "quantity": 1,
+          "price": 10180.00,
           "total": 10180.00
         }
       ],
@@ -112,9 +109,11 @@ GET /api/v1/cart
     "items": [
       {
         "id": "123e4567-e89b-12d3-a456-426614174000",
-        "descripcion": "Chocolate Kinder Barrita individual T1 x 24",
-        "cantidad": 1,
-        "precio": 10180.00,
+        "name": "Chocolate Kinder Barrita",
+        "description": "Chocolate Kinder Barrita individual T1 x 24",
+        "code": "8000500125038",
+        "quantity": 1,
+        "price": 10180.00,
         "total": 10180.00
       }
     ],
@@ -144,10 +143,11 @@ PUT /api/v1/cart?id=123e4567-e89b-12d3-a456-426614174000&cantidad=2
       "items": [
         {
           "id": "123e4567-e89b-12d3-a456-426614174000",
-          "codigo": "8000500125038",
-          "descripcion": "Chocolate Kinder Barrita individual T1 x 24",
-          "cantidad": 2,
-          "precio": 10180.00,
+          "name": "Chocolate Kinder Barrita",
+        "description": "Chocolate Kinder Barrita individual T1 x 24",
+        "code": "8000500125038",
+          "quantity": 2,
+          "price": 10180.00,
           "total": 20360.00
         }
       ],
@@ -293,9 +293,7 @@ POST /api/v1/auth/signin
 **Endpoint: POST /api/v1/auth/logout**
 
 **Solicitud:**
-```
-POST /api/v1/auth/logout
-```
+``POST /api/v1/auth/logout``
 
 **Respuesta:**
 - **204 OK** (cierre de sesión exitoso, la cookie se elimina)
