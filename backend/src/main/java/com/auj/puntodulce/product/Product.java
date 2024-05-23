@@ -31,15 +31,23 @@ public class Product {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
     @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private String image;
+    @JsonIgnore
     @Column(nullable = false)
     private int stock;
     @Column(nullable = false)
     private BigDecimal price;
+    @JsonIgnore
     @Column(name = "price_updated_at",nullable = false)
     private Date priceUpdatedAt;
+    @JsonIgnore
     @Column(nullable = false)
     private BigDecimal cost;
+    @JsonIgnore
     @Column(nullable = false)
     private Date expirationDate;
     @JsonIgnore
