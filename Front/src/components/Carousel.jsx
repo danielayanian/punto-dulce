@@ -1,8 +1,9 @@
-// Fichero src/components/Carousel.jsx
+
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../scss/layouts/Carousel.scss"
 
 const Carousel = () => {
   const settings = {
@@ -16,15 +17,15 @@ const Carousel = () => {
   };
 
   return (
-    <Slider {...settings}>
+    <Slider {...settings} className="carousel-container" >
       <div>
-        <img src="image1.jpg" alt="Image 1" />
+        <img src="alfajores.jpg" alt="Image 1" />
       </div>
       <div>
-        <img src="image2.jpg" alt="Image 2" />
+        <img src="choco.jpg" alt="Image 2" />
       </div>
       <div>
-        <img src="image3.jpg" alt="Image 3" />
+        <img src="galletas.jpg" alt="Image 3" />
       </div>
       {/* Agrega más imágenes según sea necesario */}
     </Slider>

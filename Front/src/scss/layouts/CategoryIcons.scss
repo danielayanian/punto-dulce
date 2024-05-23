@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 80px;
   }
   
   .category-icon {
@@ -15,7 +15,8 @@
   }
   
   .category-icon img {
-    width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+    width: 100px;
+    height: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
     border-radius: 50%; /* Para crear círculos */
   }
   

@@ -1,6 +1,6 @@
         
 
-import { FaWhatsapp } from 'react-icons/fa'; // Importa los otros iconos
+import { FaWhatsapp } from 'react-icons/fa'; 
 
 
 function Whatsapp () {
