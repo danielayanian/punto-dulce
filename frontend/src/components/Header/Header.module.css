@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5%;
+  background-color: black;
+}
+.logo {
+  color: white;
+}
+.icon {
+  text-decoration: none;
+  color: white;
+  padding-right: 25%;
+}
+.iconWraper {
+  display: flex;
+  flex-direction: row;
+}
