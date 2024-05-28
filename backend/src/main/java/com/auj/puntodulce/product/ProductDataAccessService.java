@@ -19,6 +19,13 @@ public class ProductDataAccessService implements ProductDao{
         return repository.findAll();
     }
 
+    public List<Product> getProductsByCategory(String category) {
+        if (category == null || category.isBlank()) {
+            return getAllProducts();
+        }
+        return repository.findByCategoryNameIgnoreCase(category);
+    }
+
     @Override
     public Optional<Product> selectProductById(UUID uuid) {
         return repository.findById(uuid);

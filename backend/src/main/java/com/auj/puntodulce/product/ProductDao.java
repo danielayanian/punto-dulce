@@ -7,5 +7,7 @@ import java.util.UUID;
 public interface ProductDao {
 
     List<Product> getAllProducts();
+
+    List<Product> getProductsByCategory(String category);
     Optional<Product> selectProductById(UUID uuid);
 }
