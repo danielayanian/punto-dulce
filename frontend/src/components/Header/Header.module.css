@@ -3,15 +3,18 @@
   justify-content: space-between;
   align-items: center;
   padding: 5%;
-  background-color: black;
+  background-color: #F77F00;
 }
 .logo {
-  color: white;
+  color: #762005;
+  font-weight: bolder;
+  font-size: 1.5rem;
 }
 .icon {
   text-decoration: none;
-  color: white;
+  color:  #762005;
   padding-right: 25%;
+  font-size: 1.5rem;
 }
 .iconWraper {
   display: flex;

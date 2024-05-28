@@ -1,43 +1,21 @@
-// import UserCard from "./UserCard/UserCard";
-
 import UserCard from "./UserCard/UserCard.jsx";
+import styles from "../Opinions/Opinions.module.css";
 
-// const opinionData = [
-//   {
-//     imageUrl: "user1.jpg",
-//     userName: "Juan Pérez",
-//     userOpinion: "¡Excelente producto Superó todas mis expectativas.",
-//     rating: 5,
-//   },
-//   {
-//     imageUrl: "user2.jpg",
-//     userName: "María García",
-//     userOpinion:
-//       "Delicioso, lástima no tener cerca una tienda física, compraría mucho más a menudo.",
-//     rating: 4,
-//   },
-// ];
-
-const userData = {
-    imageUrl: "ruta/a/imagen.jpg", // Reemplaza esto con la ruta real a la imagen del usuario
-    userName: "Nombre del Usuario", // Reemplaza esto con el nombre real del usuario
-    userOpinion: "Esta es una opinión del usuario.", // Reemplaza esto con la opinión real del usuario
-    rating: 4, // Reemplaza esto con la calificación real del usuario
-  };
 export const Opinions = () => {
- 
+  const userData = [
+    { id: 1, name: 'Usuario 1', avatar: '../../../public/img/user.png', opinion: 'Excelente servicio y buena predisposicion.', rating: 5},
+    { id: 2, name: 'Usuario 2', avatar: '../../../public/img/user.png', opinion: 'La atencion es impecable' , rating: 3},
+   
+  ];
   return (
-    // <div className="container">
-    //   <h3>OPINIONES</h3>
-    //   {opinionData.map((opinion, index) => (
-    //     <UserCard key={index} {...opinion} />
-    //   ))}
-    // </div>
     <>
-    <h2>Card</h2>
-    <UserCard {...userData} />
+       <div>
+        <h2 className={styles.title} >OPINANA NUESTROS CLIENTES</h2>
+    {userData.map(user => (
+      <UserCard key={user.id} user={user} opinion={user.opinion} rating={user.rating}/>
+    ))}
+  </div>
     </>
-
   );
 };
 

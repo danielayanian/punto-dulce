@@ -3,11 +3,11 @@ import styles from './Categories.module.css'
 const Categories = ({ categories  }) => {
  
 const thisCategories = [
-  { id: 1, categoryName: 'Alfajores', imageUrl: '../../../public/img/alfajores.png' },
-  { id: 2, categoryName: 'Bombones', imageUrl: '../../../public/img/bombones.png' },
-  { id: 2, categoryName: 'Chocolate', imageUrl: '../../../public/img/chocolate.png' },
-  { id: 2, categoryName: 'Chupetines', imageUrl: '../../../public/img/chupetines.png' },
-  { id: 2, categoryName: 'Galletas', imageUrl: '../../../public/img/galletas.png' },
+  { id: 1, categoryName: 'Alfajores', imageUrl: '../../../public/img/i-alfajor.png' },
+  { id: 2, categoryName: 'Bombones', imageUrl: '../../../public/img/i-bombones.png' },
+  { id: 2, categoryName: 'Chocolate', imageUrl: '../../../public/img/i-chocolates.png' },
+  { id: 2, categoryName: 'Chupetines', imageUrl: '../../../public/img/i-chupetines.png' },
+  { id: 2, categoryName: 'Galletas', imageUrl: '../../../public/img/i-galletas.png' },
 ];
 
   return (

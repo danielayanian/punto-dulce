@@ -1,24 +1,25 @@
-
-import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { FaStar } from '@fortawesome/free-solid-svg-icons';
-
-const UserCard = () => {
+import styles from "../UserCard/UserCard.module.css";
+const UserCard = ({ user, opinion, rating }) => {
+  const renderStars = () => {
+    let stars = [];
+    for (let i = 0; i < rating; i++) {
+      stars.push(<span className={styles.star}>&#9733;</span>);
+    }
+    return stars;
+  };
   return (
-    // <div className="opinion-card">
-    //   <div className="user-photo-container">
-    //     <img src={imageUrl} alt={`${userName}'s photo`} className="user-photo" />
-    //   </div>
-    //   <div className="user-name">{userName}</div>
-    //   <div className="user-opinion">{userOpinion}</div>
-    //   <div className="user-rating">
-    //     {[...Array(rating)].map((_, i) => (
-    //       <FontAwesomeIcon key={i} icon={FaStar} className="star filled" />
-    //     ))}
-    //   </div>
-    // </div>
-    //{ imageUrl, userName, userOpinion, rating }
-    <h2>Subcard</h2>
+    <>
+      <div className={styles.container}>
+        <img
+          src={user.avatar}
+          alt={`Avatar de ${user.name}`}
+          className={styles.icon}
+        />
+        <h2 className={styles.userName}>{user.name}</h2>
+        <p className={styles.opinionSection}>{opinion}</p>
+        <div>{renderStars()}</div>
+      </div>
+    </>
   );
 };
 
