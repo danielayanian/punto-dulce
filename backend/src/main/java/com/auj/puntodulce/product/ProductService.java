@@ -5,17 +5,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
     private final ProductDataAccessService productDataAccessService;
+    private final ProductDTOMapper productDTOMapper;
 
-    public ProductService(ProductDataAccessService productDataAccessService) {
+    public ProductService(ProductDataAccessService productDataAccessService, ProductDTOMapper productDTOMapper) {
         this.productDataAccessService = productDataAccessService;
+        this.productDTOMapper = productDTOMapper;
     }
 
-    public List<Product> getAllProducts(){
-        return productDataAccessService.getAllProducts();
+    public List<ProductDTO> getProducts(String category){
+        return productDataAccessService.getProductsByCategory(category)
+                .stream()
+                .map(productDTOMapper)
+                .collect(Collectors.toList());
     }
 
     public Product getProduct(UUID uuid){

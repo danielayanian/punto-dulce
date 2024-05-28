@@ -1,11 +1,14 @@
 package com.auj.puntodulce.category;
 
 import com.auj.puntodulce.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.sql.Types;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -18,11 +21,13 @@ import java.util.UUID;
 @Entity
 public class Category {
     @Id
-    @UuidGenerator
-    @Column(length = 36, updatable = false, nullable = false)
-    private String id;
+    @Column(name = "id")
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID id;
     @Column(nullable = false, unique = true)
     private String name;
+    private String image;
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     @ToString.Exclude
     private List<Product> productList;
@@ -39,6 +44,13 @@ public class Category {
         if (thisEffectiveClass != oEffectiveClass) return false;
         Category category = (Category) o;
         return getId() != null && Objects.equals(getId(), category.getId());
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
     }
 
     @Override
