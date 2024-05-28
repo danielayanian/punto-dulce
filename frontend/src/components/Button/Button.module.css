@@ -12,7 +12,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  gap:1rem;
+  width: fit-content
 }
-.icon {
-  padding: 0 1rem 0 0;
-}
+

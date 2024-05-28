@@ -14,7 +14,7 @@
 }
 .bar {
   padding: 4%;
-  width: 70vw;
+  width: 80vw;
   margin-left: 5%;
   border: #f77f00 2px solid;
   border-radius: 0.5rem;
@@ -32,7 +32,7 @@
 }
 .searchIcon {
   position: absolute;
-  right: 32%;
+  right: 25%;
   color: #f77f00;
   width: 1.3rem;
   height: 1.3rem;
