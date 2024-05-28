@@ -7,9 +7,11 @@ import Carousel from "./components/Carousel/Carousel";
 import Header from "./components/Header/Header";
 import Categories from "./components/Categories";
 import Footer from "./components/Footer";
+import Cart from "./pages/Cart";
 
 
 function App() {
+
   return (
     <>
       <Router>
@@ -18,6 +20,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/info" element={<ProductInfo />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/cart" element={<Cart/>} />
         </Routes>
         <Footer/>
       </Router>

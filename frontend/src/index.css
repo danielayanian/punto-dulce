@@ -7,6 +7,7 @@ body {
   font-style: normal;
   background-color: #FEEBC1;
   color: #762005;
+  box-sizing: content-box;
 }
 
 
