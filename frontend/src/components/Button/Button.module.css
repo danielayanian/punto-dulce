@@ -1,0 +1,15 @@
+.buttonStyle {
+  margin: 1rem;
+  border: orange solid 2px;
+  border-radius: 0.5rem;
+  box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  padding: 0.5rem 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.icon {
+  padding: 0 1rem 0 0;
+}

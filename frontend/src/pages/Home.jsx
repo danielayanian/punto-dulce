@@ -1,5 +1,6 @@
 import Carousel from "../components/Carousel/Carousel";
 import Categories from "../components/Categories";
+import { GiftCard } from "../components/GiftCard/GiftCard";
 import Opinions from "../components/Opinions";
 
 
@@ -19,9 +20,8 @@ export const Home = () => {
 
       <Opinions/>
   
-      <p>REGALA CON NUESTRA GIFT CARD</p>
-
-      <div>IMAGEN GIFT CARD</div>
+    <GiftCard/>
+      
 
       <div>ALGUNA DE NUESTRAS MARCAS</div>
     </>
