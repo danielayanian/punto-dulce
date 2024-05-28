@@ -1,5 +1,5 @@
 .container {
-  background-color: #9797974a;
+  background-color: #FCCD57;
   margin: 3rem 2rem ;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -26,5 +26,5 @@
   text-align: center;
 }
 .star{
-  color:rgb(180, 160, 43);
+  color:#F76800;
 }
