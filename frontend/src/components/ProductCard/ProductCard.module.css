@@ -1,0 +1,56 @@
+.container {
+  margin: 0rem 1rem 2rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  border: transparent solid 1px;
+  position: relative;
+}
+.image {
+  width: 100%;
+}
+
+.prices {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 1rem;
+}
+.chevronButton {
+  border: none;
+  color: #762005;
+}
+.nameStyle {
+  color: #f77f00;
+  padding-left: 1rem;
+}
+.description {
+  padding-left: 1rem;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.bottomButton {
+  padding: 0.7rem 1.3rem;
+}
+.delivery {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fccd57;
+  margin: 1rem;
+  margin-bottom: 1rem;
+}
+.truckIcon {
+  width: 6%;
+  height: 6%;
+  color: #762005;
+}
+
