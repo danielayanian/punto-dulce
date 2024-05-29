@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
 
 function Product({ products }) {
-
-
-
   return (
     <>
       <div className={styles.top}>
@@ -16,8 +13,17 @@ function Product({ products }) {
         {products.map((product) => (
           <div key={product.id} className={styles.productContainer}>
             <div className={styles.productInfo}>
-              <img src={product.imageUrl} alt={product.categoryName} className={styles.productImage} />
-              <div className={styles.productName}>{product.categoryName}</div>
+              <div className={styles.topTitle}>
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className={styles.productImage}
+                />
+                <div className={styles.productName}>{product.name}</div>
+              </div>
+              <div className={styles.productDescription}>
+                {product.description}
+              </div>
             </div>
             <div className={styles.productDetails}>
               <div className={styles.detailRow}>
@@ -29,15 +35,21 @@ function Product({ products }) {
                 <span className={styles.detailValue}>${product.price}</span>
               </div>
               <div className={styles.detailRow}>
-                <span className={styles.detailTitle}>Total Minoristas:</span>
-                <span className={styles.detailValue}>${product.price * product.quantity}</span>
+                <span className={styles.detailTitle}>Precio Total Minorista:</span>
+                <span className={styles.detailValue}>
+                  ${product.price * product.quantity}
+                </span>
               </div>
             </div>
           </div>
         ))}
         <div className={styles.buttonContainer}>
-          <Link to="/home" className={styles.button} >Regresar</Link> 
-          <Link to="/paymentDetails" className={styles.button}>Siguiente</Link> 
+          <Link to="/home" className={styles.button}>
+            Regresar
+          </Link>
+          <Link to="/paymentDetails" className={styles.button}>
+            Siguiente
+          </Link>
         </div>
       </div>
     </>
