@@ -47,7 +47,7 @@ function ProductCart({ products }) {
           <Link to="/home" className={styles.button}>
             Regresar
           </Link>
-          <Link to="/paymentDetails" className={styles.button}>
+          <Link to="/paymentDetails"  className={styles.button}>
             Siguiente
           </Link>
         </div>

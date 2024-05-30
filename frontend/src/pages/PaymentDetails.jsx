@@ -1,9 +1,7 @@
-// Cart.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ProductCart from '../components/Product/ProductCart';
+import PaymentForm from '../components/Product/PaymentForm';
 
-const Cart = () => {
+function PaymentDetails() {
   const products = [
     { 
       id: 1, 
@@ -47,7 +45,7 @@ const Cart = () => {
     },
   ];
 
-  return <ProductCart products={products} />;
-};
+  return <PaymentForm products={products} />;
+}
 
-export default Cart;
+export default PaymentDetails;
