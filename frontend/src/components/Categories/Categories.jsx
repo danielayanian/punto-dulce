@@ -10,6 +10,7 @@ const thisCategories = [
   { id: 2, categoryName: 'Galletas', imageUrl: '../../../public/img/i-galletas.png' },
 ];
 
+
   return (
     <div className={styles.container}>
       {thisCategories.map((category) => (
