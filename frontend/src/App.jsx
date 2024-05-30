@@ -3,11 +3,11 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProductInfo from "./pages/ProductInfo";
 import "./App.css";
-import Carousel from "./components/Carousel/Carousel";
 import Header from "./components/Header/Header";
-import Categories from "./components/Categories";
 import Footer from "./components/Footer";
 import Cart from "./pages/Cart";
+import { Wsp } from "./components/WhatsApp/Wsp";
+
 
 
 function App() {
@@ -16,7 +16,11 @@ function App() {
     <>
       <Router>
         <Header />
+
         
+
+        <Wsp/>
+
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/info" element={<ProductInfo />} />
