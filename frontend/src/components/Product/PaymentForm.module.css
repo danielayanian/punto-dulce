@@ -1,5 +1,6 @@
 .container {
     padding: 20px;
+    box-sizing: border-box;
   }
   
   .topRightButton {
@@ -14,7 +15,7 @@
     text-decoration: none;
     border-radius: 5px;
   }
-  
+
   .top {
     display: flex;
     justify-content: space-between;
@@ -43,10 +44,10 @@
     align-items: center;
   }
   
-  .productImage {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+ img {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
   }
   
   .productName {
@@ -66,7 +67,14 @@
     display: flex;
     justify-content: space-between;
   }
-  
+  input {
+    border-radius: 40px;
+    background:none;
+    border-color: 2px black solid;
+    padding: 7px;
+    margin: 5px;
+   
+  }
   .detailTitle {
     font-weight: bold;
   }
@@ -94,7 +102,16 @@
     width: 150px;
     margin-top: 10px;
   }
-  
+  .yellowLink{   
+    background-color: rgb(255, 202, 26);
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+margin-left: 10px;}
+  p{
+    font-size: 12px; 
+    margin: 0 0 0 20px;
+  }
   .shortInput {
     width: 70px;
   }
@@ -117,12 +134,14 @@
     width: 100%;
   }
   
-  .inputs {
+  .hideInputs {
     display: none;
     flex-direction: column;
     width: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
+    background:none ;
+   
+  
+   
     padding: 10px;
     margin-top: 10px;
   }
