@@ -47,7 +47,7 @@ const Cart = () => {
   ];
   
 
-  return <Product products={products} />;
+  return <ProductCart products={products} />;
 };
 
 export default Cart;

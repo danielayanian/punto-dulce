@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
 
-function Product({ products }) {
+function ProductCart({ products }) {
   return (
     <>
       <div className={styles.top}>
@@ -56,4 +56,4 @@ function Product({ products }) {
   );
 }
 
-export default Product;
+export default ProductCart;
