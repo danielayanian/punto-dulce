@@ -18,7 +18,7 @@ export const GiftCard = () => {
           especial!
         </p>
 
-        <Button text={"Regala"} icon={Link} />
+        <Button text={"Regala"} icon={Link} className={styles.giftButton} />
       </div>
       <img src={giftcard} alt={"gifcard"} />
     </>

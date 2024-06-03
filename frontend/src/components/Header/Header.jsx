@@ -11,7 +11,7 @@ const Header = () => {
       <div className={styles.logo}>Logo</div>
 
       <nav className={styles.iconWraper}>
-        <Link to="/" className={styles.icon} >
+        <Link to="/cart" className={styles.icon} >
           <FontAwesomeIcon icon={faCartShopping} /> 
         </Link>
         <Link to="/profile" className={styles.icon}>
