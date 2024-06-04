@@ -33,4 +33,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
 }
