@@ -3,11 +3,17 @@ import styles from './Categories.module.css'
 const Categories = ({ categories  }) => {
  
 const thisCategories = [
-  { id: 1, categoryName: 'Alfajores', imageUrl: '../../../public/img/i-alfajor.png' },
-  { id: 2, categoryName: 'Bombones', imageUrl: '../../../public/img/i-bombones.png' },
-  { id: 2, categoryName: 'Chocolate', imageUrl: '../../../public/img/i-chocolates.png' },
-  { id: 2, categoryName: 'Chupetines', imageUrl: '../../../public/img/i-chupetines.png' },
-  { id: 2, categoryName: 'Galletas', imageUrl: '../../../public/img/i-galletas.png' },
+  { id: 1, categoryName: 'ALFAJORES', imageUrl: '../../../public/img/i-alfajor.svg' },
+  { id: 2, categoryName: 'BOCADITOS Y BOMBONES', imageUrl: '../../../public/img/i-bombones.svg' },
+  { id: 2, categoryName: 'CHOCOLATE', imageUrl: '../../../public/img/i-chocolates.svg' },
+  { id: 2, categoryName: 'CHUPETINES Y CHICLES', imageUrl: '../../../public/img/i-chupetines.svg' },
+  { id: 2, categoryName: 'GALLETITAS Y BARRITAS C.', imageUrl: '../../../public/img/i-galletas.svg' },
+  { id: 2, categoryName: 'DULCE DE LECHE Y MIEL', imageUrl: '../../../public/img/i-dulceYmiel.svg' },
+  { id: 2, categoryName: 'CARAMELOS Y GOMITAS', imageUrl: '../../../public/img/i-caramelos.svg' },
+  { id: 2, categoryName: 'TURRONES Y MANTECOL', imageUrl: '../../../public/img/i-turrones.svg' },
+  { id: 2, categoryName: 'BEBIDAS', imageUrl: '../../../public/img/i-bebidas.svg' },
+  { id: 2, categoryName: 'DIET', imageUrl: '../../../public/img/i-diet.svg' },
+  { id: 2, categoryName: 'VARIOS', imageUrl: '../../../public/img/i-varios.svg' },
 ];
 
 
