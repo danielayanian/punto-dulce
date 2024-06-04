@@ -17,11 +17,12 @@ public class CartDataAccessService {
         this.cartRepository = cartRepository;
     }
 
+    public Optional<Cart> findById(UUID cartId) {
+        return cartRepository.findById(cartId);
+    }
+
     public Cart findCartByIdOrCreate(UUID cartId) {
-        if (cartId == null) {
-            return new Cart();
-        }
-        return cartRepository.findById(cartId).orElseGet(Cart::new);
+        return cartId == null ? new Cart() : findById(cartId).orElse(new Cart());
     }
 
     public Cart saveCart(Cart cart) {
