@@ -1,0 +1,231 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #EFF5FE;
+}
+
+.logo {
+  margin-top: 15%;
+  width: 70%;
+  
+  }
+
+.title {
+    color: #6B185E;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.5px;
+}
+
+form{
+  width: 100%;
+}
+
+.inputGroup {
+  padding: 3%;
+}
+
+.inputGroup label {
+    color: #6B185E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2;
+}
+
+.inputGroup label::after {
+    content: ' *';
+    color: #FF0A0A;
+    font-size: 16px;
+    font-weight: 400;
+   
+}
+
+.inputGroup input {
+  color: #A6BCDF;
+  font-size: 16px;
+  height: 52px;
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #6B185E;
+  background: #EFF5FE;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+}
+.inputGroup input:hover{
+  background-color:#AB519580;
+}
+
+.inputGroup input:focus,
+.inputGroup input:not(:placeholder-shown) {
+  background: #6B185E;
+  color: #EFF5FE; 
+  border: 1.5 solid #EFF5FE ;
+}
+
+.inputGroup input::placeholder {
+  color: #6B185E;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.inputGroup input:focus::placeholder {
+  color: #EFF5FE; 
+}
+
+.passwordToggle,
+.passwordToggle svg {
+  color: #6B185E;
+}
+
+
+.inputGroup input:focus ~ .passwordToggle svg,
+.inputGroup input:active ~ .passwordToggle svg {
+  color: #EFF5FE; 
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordWrapper input {
+  flex: 1;
+  padding-right: 40px; 
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.errorInput {
+  border: 1.5px solid  red !important;
+}
+
+.helperMessage {
+  display: block;
+  margin-top: 5px;
+  color: red;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom:7%;
+  margin-left: 5%;
+}
+
+.checkboxGroup input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #6B185E;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    margin-right: 10px;
+
+}
+.checkboxGroup input:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.checkboxGroup input:checked {
+    background-color: #6B185E;
+    border-color: #6B185E;
+}
+
+.checkboxGroup label {
+    color: #6B185E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px; 
+    letter-spacing: 0.4px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #171733;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px; 
+    letter-spacing: 0.4px;
+     margin-bottom: 5px;
+    
+}
+.underline{
+  border-bottom: 1px solid black;
+
+}
+
+.access{
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  border: 1.5px solid #6B185E;
+  color: #6B185E !important;
+  border-radius: 7px;
+  padding: 4%;
+   font-size: 16px;
+   width: 90%;
+   margin: 5%;
+   display: flex;
+   justify-content: center;
+   cursor: pointer;
+   background-color: #EFF5FE;
+   gap: 3%;
+  
+}
+.access:hover{
+    background-color:#AB519580;
+}
+
+.acces:focus {
+  background: #6B185E;
+  color: #EFF5FE !important;
+  border-color: #6B185E;
+}
+
+.returnLink{
+  color: #1E293B;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
