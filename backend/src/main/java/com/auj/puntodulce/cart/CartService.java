@@ -1,5 +1,6 @@
 package com.auj.puntodulce.cart;
 
+import com.auj.puntodulce.exception.CartNotFoundException;
 import com.auj.puntodulce.exception.ProductNotFound;
 import com.auj.puntodulce.product.Product;
 import com.auj.puntodulce.product.ProductDataAccessService;
@@ -30,5 +31,11 @@ public class CartService {
         CartDTO cartDTO = cartDTOMapper.apply(cart);
 
         return new CartResponse(cart.getId(), cartDTO);
+    }
+
+    public CartDTO getCart(UUID cartId){
+        Cart cart = cartDataAccessService.findById(cartId)
+                .orElseThrow(() -> new CartNotFoundException("Cart not found"));
+        return cartDTOMapper.apply(cart);
     }
 }
