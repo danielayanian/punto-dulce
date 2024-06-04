@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.module.css';
 import MobileMenu from "../MobileMenu/MobileMenu"; 
-import logo from '../../../public/img/logo.png'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,8 +14,9 @@ const Header = () => {
   return (
     <header className={styles.container}>
       
-      <img className={styles.logo} src={logo} alt='logo'/>
+      <div className={styles.logo}>Logo</div>
 
+      
       <nav className={styles.iconWraper}>
         <Link to="/cart" className={styles.icon} >
           <FontAwesomeIcon icon={faCartShopping} /> 
