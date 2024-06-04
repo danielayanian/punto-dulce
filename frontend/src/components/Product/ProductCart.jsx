@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
 
-function ProductCart({ products }) {
+function Product({ products }) {
   return (
     <>
       <div className={styles.top}>
@@ -47,7 +47,7 @@ function ProductCart({ products }) {
           <Link to="/home" className={styles.button}>
             Regresar
           </Link>
-          <Link to="/paymentDetails"  className={styles.button}>
+          <Link to="/paymentDetails" className={styles.button}>
             Siguiente
           </Link>
         </div>
@@ -56,4 +56,4 @@ function ProductCart({ products }) {
   );
 }
 
-export default ProductCart;
+export default Product;

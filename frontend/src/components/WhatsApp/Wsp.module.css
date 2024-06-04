@@ -1,0 +1,16 @@
+.container {
+  position: fixed;
+  width: 1rem;
+  height: 1rem;
+  bottom: 20%;
+  right: 20%;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
+
+.wspStyle {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+}
