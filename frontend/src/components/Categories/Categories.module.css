@@ -1,25 +1,36 @@
 .container {
   padding-top: 3rem;
-  height: 5rem;
+  height: max-content;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  display: flex;
+  overflow-x: auto;
+
+  touch-action: pan-x; /* Permite deslizamiento horizontal en dispositivos táctiles */
+  scrollbar-width: thin;
 }
 
-.imgcontainer {
+.imgcontainer  {
   padding: 0;
-  margin: 0;
-
+  margin: 0.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  align-items: center;
+  
+
 }
 .image {
   height: 3rem;
   width: 3rem;
   border-radius: 100%;
   margin-bottom: 0.5rem;
+  border: #AB5195 solid 3px;
+  border-radius: 100%; flex-shrink: 0;
 }
 .text {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }

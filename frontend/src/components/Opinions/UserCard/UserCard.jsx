@@ -1,4 +1,5 @@
 import styles from "../UserCard/UserCard.module.css";
+
 const UserCard = ({ user, opinion, rating }) => {
   const renderStars = () => {
     let stars = [];
@@ -15,9 +16,11 @@ const UserCard = ({ user, opinion, rating }) => {
           alt={`Avatar de ${user.name}`}
           className={styles.icon}
         />
-        <h2 className={styles.userName}>{user.name}</h2>
-        <p className={styles.opinionSection}>{opinion}</p>
-        <div>{renderStars()}</div>
+        <div className={styles.containerSmall}>
+          <h2 className={styles.userName}>{user.name}</h2>
+          <p className={styles.opinionSection}>{opinion}</p>
+          <div>{renderStars()}</div>
+        </div>
       </div>
     </>
   );
