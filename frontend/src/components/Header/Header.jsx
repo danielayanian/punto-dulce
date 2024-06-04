@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.module.css';
+import logo from '../../../public/img/logo.png'
 
 
 const Header = () => {
   return (
     <header className={styles.container}>
       
-      <div className={styles.logo}>Logo</div>
+      <img className={styles.logo} src={logo} alt='logo'/>
 
       <nav className={styles.iconWraper}>
         <Link to="/cart" className={styles.icon} >
