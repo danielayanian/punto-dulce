@@ -1,6 +1,6 @@
 import Button from "../Button/Button";
-import giftcard from "../../../public/img/giftCard.png";
-import Link from "../../../public/img/link-button.png";
+import giftcard from "../../../public/img/giftcard.png";
+import Gift from "../../../public/img/gift.svg";
 
 import styles from "./GiftCard.module.css";
 
@@ -18,7 +18,7 @@ export const GiftCard = () => {
           especial!
         </p>
 
-        <Button text={"Regala"} icon={Link} className={styles.giftButton} />
+        <Button text={"Regala"} icon={Gift} className={styles.giftButton} />
       </div>
       <img src={giftcard} alt={"gifcard"} />
     </>

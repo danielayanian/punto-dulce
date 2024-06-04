@@ -1,4 +1,4 @@
-import filter from "../../../public/img/Filter.png";
+import filter from "../../../public/img/Filter.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import bg from "../../../public/img/img-product.png";
@@ -19,8 +19,10 @@ export const SearchBar = () => {
           <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
         </div>
 
-        <Button icon={filter} className={styles.filterButton} />
+        <Button text=""icon={filter} className={styles.filterButton} />
+        
       </div>
+      
     </>
   );
 };
