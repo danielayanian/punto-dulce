@@ -58,11 +58,11 @@ GET /api/v1/products/123e4567-e89b-12d3-a456-426614174000
   ```
 
 ### 3. Agregar Producto al Carrito
-**Endpoint: POST /api/v1/cart**
+**Endpoint: POST /api/v1/cart/{productId}**
 
 **Solicitud:**
 ```
-POST /api/v1/cart?id=123e4567-e89b-12d3-a456-426614174000&cantidad=1
+POST /api/v1/cart/123e4567-e89b-12d3-a456-426614174000&quantity=1
 ```
 
 **Respuesta:**
@@ -129,11 +129,11 @@ GET /api/v1/cart
   ```
 
 ### 5. Actualizar Cantidad en el Carrito
-**Endpoint: PUT /api/v1/cart**
+**Endpoint: PUT /api/v1/cart/{productId}**
 
 **Solicitud:**
 ```
-PUT /api/v1/cart?id=123e4567-e89b-12d3-a456-426614174000&cantidad=2
+PUT /api/v1/cart/123e4567-e89b-12d3-a456-426614174000&quantity=2
 ```
 
 **Respuesta:**
@@ -143,9 +143,6 @@ PUT /api/v1/cart?id=123e4567-e89b-12d3-a456-426614174000&cantidad=2
       "items": [
         {
           "id": "123e4567-e89b-12d3-a456-426614174000",
-          "name": "Chocolate Kinder Barrita",
-        "description": "Chocolate Kinder Barrita individual T1 x 24",
-        "code": "8000500125038",
           "quantity": 2,
           "price": 10180.00,
           "total": 20360.00

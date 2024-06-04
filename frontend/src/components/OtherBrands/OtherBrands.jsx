@@ -5,7 +5,7 @@ const OtherBrands = () => {
     {
       id: 1,
       name: "flynpaf",
-      imageUrl: "../../../public/img/flypaf.png",
+      imageUrl: "../../../public/img/flynpaf.png",
     },
     {
       id: 2,
