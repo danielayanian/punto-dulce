@@ -1,23 +1,25 @@
 import styles from './Categories.module.css'
 import useGetCategories from '../../Hooks/useGetCategories.jsx'
 
-const Categories = ({ categories  }) => {
+const Categories = () => {
   
   const { isLoading, error, data } = useGetCategories()
+  console.log('Error:', error)
+  console.log('Data:', data)
 
-const thisCategories = [
-  { id: 1, name: 'ALFAJORES', image: '../../../public/img/i-alfajor.svg' },
-  { id: 2, name: 'BOCADITOS Y BOMBONES', image: '../../../public/img/i-bombones.svg' },
-  { id: 3, name: 'CHOCOLATE', image: '../../../public/img/i-chocolates.svg' },
-  { id: 4, name: 'CHUPETINES Y CHICLES', image: '../../../public/img/i-chupetines.svg' },
-  { id: 5, name: 'GALLETITAS Y BARRITAS C.', image: '../../../public/img/i-galletas.svg' },
-  { id: 6, name: 'DULCE DE LECHE Y MIEL', image: '../../../public/img/i-dulceYmiel.svg' },
-  { id: 7, name: 'CARAMELOS Y GOMITAS', image: '../../../public/img/i-caramelos.svg' },
-  { id: 8, name: 'TURRONES Y MANTECOL', image: '../../../public/img/i-turrones.svg' },
-  { id: 9, name: 'BEBIDAS', image: '../../../public/img/i-bebidas.svg' },
-  { id: 10, name: 'DIET', image: '../../../public/img/i-diet.svg' },
-  { id: 11, name: 'VARIOS', image: '../../../public/img/i-varios.svg' },
-];
+  const categoryImg = {
+    Alfajores: '../../../public/img/i-alfajor.svg',
+    'Bocaditos y Bombones': '../../../public/img/i-bombones.svg',
+    Chocolate: '../../../public/img/i-chocolates.svg',
+    'Chupetines y Chicles': '../../../public/img/i-chupetines.svg',
+    'Galletitas y Barritas': '../../../public/img/i-galletas.svg',
+    'Dulce de Leche y Miel': '../../../public/img/i-dulceYmiel.svg',
+    'Caramelos y Gomitas': '../../../public/img/i-caramelos.svg',
+    'Turrones y Mantecol': '../../../public/img/i-turrones.svg',
+    Bebidas: '../../../public/img/i-bebidas.svg',
+    Diet: '../../../public/img/i-diet.svg',
+    Varios: '../../../public/img/i-varios.svg',
+  };
 
 // if(isLoading) return Spninner. agregar spinner
 if(error) return <p>Ha habido un error ..</p> 
@@ -25,7 +27,7 @@ if(error) return <p>Ha habido un error ..</p>
     <div className={styles.container}>
       {data?.map((category) => (
         <div key={category.id} className={styles.imgcontainer}>
-          <img src={category.image} alt={category.name} className={styles.image} />
+          <img src={categoryImg[category.name]} alt={category.name} className={styles.image} />
           <h2 className={styles.text}>{category.name}</h2>
         </div>
       ))}
