@@ -1,7 +1,7 @@
 import Button from "../components/Button/Button";
 import { ProductCard } from "../components/ProductCard/ProductCard";
 import { SearchBar } from "../components/SearchBar/SearchBar";
-import chevronLeft from "../../public/img/chevron-left.png";
+import chevronLeft from "../../public/img/chevron-left.svg";
 import styles from "../components/ProductCard/ProductCard.module.css";
 
 export const ProductInfo = () => {

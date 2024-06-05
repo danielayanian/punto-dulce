@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
+import Left from '../../../public/img/chevron-left.svg'
+import Right from '../../../public/img/chevron-right.svg'
 
 function Product({ products }) {
   return (
@@ -27,7 +29,7 @@ function Product({ products }) {
             </div>
             <div className={styles.productDetails}>
               <div className={styles.detailRow}>
-                <span className={styles.detailTitle}>Cont:</span>
+                <span className={styles.detailTitle}>Cant:</span>
                 <span className={styles.detailValue}>{product.quantity}</span>
               </div>
               <div className={styles.detailRow}>
@@ -44,13 +46,16 @@ function Product({ products }) {
           </div>
         ))}
         <div className={styles.buttonContainer}>
-          <Link to="/home" className={styles.button}>
+          <Link to="/home" className={`${styles.button} ${styles.buttonRight}`}>
             Regresar
+            <img src={Left}/>
           </Link>
-          <Link to="/paymentDetails" className={styles.button}>
+          <Link to="/paymentDetails" className={`${styles.button} ${styles.buttonLeft}`}>
             Siguiente
+            <img src={Right}/>
           </Link>
         </div>
+    
       </div>
     </>
   );
