@@ -1,9 +1,15 @@
 .container {
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5%;
   background-color: #EFF5FE;
+  box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+position: relative;
+
 }
 .logo {
  width: 40%;

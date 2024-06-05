@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  position: relative; 
 
 }
 .title {
@@ -16,9 +16,9 @@
   padding: 4%;
   width: 80vw;
   margin-left: 5%;
-  border: #f77f00 2px solid;
+  border: #6B185E 2px solid;
   border-radius: 0.5rem;
-  background-color: #feebc1;
+  background-color: #EFF5FE;
 }
 
 .barIcon {
@@ -33,9 +33,9 @@
 .searchIcon {
   position: absolute;
   right: 25%;
-  color: #f77f00;
-  width: 1.3rem;
-  height: 1.3rem;
+  color: #6B185E;
+  width: 1rem;
+  height: 1rem;
 }
 .barIconFilter {
   display: flex;
@@ -46,6 +46,5 @@
   bottom: 8rem;
 }
 .filterButton {
-  padding: 0.5rem;
-  background-color: #feebc1;
+  background-color: #EFF5FE;
 }
