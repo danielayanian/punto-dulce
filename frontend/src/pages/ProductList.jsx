@@ -3,8 +3,10 @@ import { ProductCard } from "../components/ProductCard/ProductCard";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import chevronLeft from "../../public/img/chevron-left.svg";
 import styles from "../components/ProductCard/ProductCard.module.css";
+import useGetProducts from "../Hooks/useGetProducts";
 
-export const ProductInfo = () => {
+export const ProductList = () => {
+  const { isLoading, error, data } = useGetProducts()
   const productObject = [
     {
       id: 1,
@@ -17,9 +19,9 @@ export const ProductInfo = () => {
       image: "../../public/img/banner-img.png",
       banner: "PRODUCTO EN DESCUENTO",
       category: "Chocolates",
-    },
-   
+    }
   ];
+  
   return (
     <>
       <SearchBar />
@@ -35,4 +37,4 @@ export const ProductInfo = () => {
   );
 };
 
-export default ProductInfo;
+export default ProductList;

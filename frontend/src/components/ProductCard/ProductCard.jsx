@@ -3,11 +3,11 @@ import ButtonSum from "../Button/ButtonSum.jsx";
 import styles from "./ProductCard.module.css";
 import linkDark from "../../../public/img/link-dark.svg";
 import linkWhite from "../../../public/img/link-white.svg";
+import Right from "../../../public/img/chevron-right.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Right from "../../../public/img/chevron-right.svg";
 
 export const ProductCard = ({ product }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -15,6 +15,7 @@ export const ProductCard = ({ product }) => {
   const handleOptionChange = (value) => {
     setSelectedOption(value);
   };
+
   return (
     <>
       <div className={styles.container}>
