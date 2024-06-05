@@ -61,6 +61,11 @@ public class Cart {
         recalculateTotals();
     }
 
+    public void removeItem(UUID productId) {
+        items.removeIf(item -> item.getProduct().getId().equals(productId));
+        recalculateTotals();
+    }
+
     private void recalculateTotals() {
         totalItems = items.stream().mapToInt(CartItem::getQuantity).sum();
         totalPrice = items.stream()

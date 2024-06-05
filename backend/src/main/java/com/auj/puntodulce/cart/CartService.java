@@ -6,7 +6,6 @@ import com.auj.puntodulce.product.Product;
 import com.auj.puntodulce.product.ProductDataAccessService;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Service
@@ -36,6 +35,14 @@ public class CartService {
     public CartDTO getCart(UUID cartId){
         Cart cart = cartDataAccessService.findById(cartId)
                 .orElseThrow(() -> new CartNotFoundException("Cart not found"));
+        return cartDTOMapper.apply(cart);
+    }
+
+    public CartDTO removeItemFromCart(UUID cartId, UUID productId) {
+        Cart cart = cartDataAccessService.findById(cartId)
+                .orElseThrow(() -> new CartNotFoundException("Cart not found"));
+        cart.removeItem(productId);
+        cart = cartDataAccessService.saveCart(cart);
         return cartDTOMapper.apply(cart);
     }
 }
