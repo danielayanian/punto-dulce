@@ -24,7 +24,10 @@ public class CartDataAccessService {
     public Cart findCartByIdOrCreate(UUID cartId) {
         return cartId == null ? new Cart() : findById(cartId).orElse(new Cart());
     }
-
+    public void clearCartItems(Cart cart){
+        cart.removeAllItems();
+        saveCart(cart);
+    }
     public Cart saveCart(Cart cart) {
         return cartRepository.save(cart);
     }
