@@ -1,9 +1,13 @@
+import React, { useState, useEffect } from "react";
+import MenuAdmi from "../components/MenuAdmi/MenuAdmi";
 
-//Login
-import React, { useEffect } from "react";
-import Input from '../components/LoginInput/LoginInput';
+const Admi = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
-export const LoginInput = () => {
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+
   useEffect(() => {
     const headers = document.querySelectorAll('header');
     const footers = document.querySelectorAll('footer');
@@ -18,10 +22,10 @@ export const LoginInput = () => {
   }, []);
 
   return (
-    <div>
-   <Input/>
-   </div>
+    <>
+      <MenuAdmi isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+    </>
   );
 };
 
-export default LoginInput;
+export default Admi;
