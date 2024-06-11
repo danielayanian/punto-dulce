@@ -1,8 +1,14 @@
-import React from 'react';
-import PaymentForm from '../components/Product/PaymentForm';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import PayFirstTime from '../components/Product/PayFirstTime';
+import PayRegistered from '../components/Product/PayRegistered';
 
 function PaymentDetails() {
-  const products = [
+  const [registeredUser, setRegisteredUser] = useState(true); // Estado que indica si el usuario está registrado
+  const [products, setProducts] = useState([]); // Estado para almacenar los productos
+
+  // Lista de productos (simulación de datos)
+  const productList = [
     { 
       id: 1, 
       name: 'Choco Delicia', 
@@ -45,7 +51,30 @@ function PaymentDetails() {
     },
   ];
 
-  return <PaymentForm products={products} />;
+  useEffect(() => {
+    // Simulación de verificación de usuario registrado 
+    const isUserRegistered = true; 
+    setRegisteredUser(isUserRegistered);
+
+    // Establecer la lista de productos
+    setProducts(productList);
+  }, []);
+
+  // Función para renderizar el componente correcto según el estado de registro del usuario
+  const renderPaymentComponent = () => {
+    if (registeredUser) {
+      return <PayRegistered products={products} />;
+    } else {
+      return <PayFirstTime products={products} />;
+    }
+  };
+
+  return (
+    <div>
+      {/* Si el usuario está registrado, renderiza PayRegistered, de lo contrario, PayFirstTime */}
+      {renderPaymentComponent()}
+    </div>
+  );
 }
 
 export default PaymentDetails;
