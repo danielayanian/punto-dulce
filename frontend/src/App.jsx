@@ -10,6 +10,9 @@ import Register from "./components/Register/Register";
 import Cart from "./pages/Cart";
 import { Wsp } from "./components/WhatsApp/Wsp";
 import Admi from "./pages/Admi";
+import PaymentForm from './pages/PaymentDetails';
+
+
 
 function App() {
   return (
@@ -18,6 +21,8 @@ function App() {
         <Header />
         <Wsp />
 
+
+
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/info" element={<ProductInfo />} />
@@ -25,7 +30,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/admin/*" element={<Admi />} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="/paymentDetails" element={<PaymentForm  />} />
         </Routes>
         <Footer />
       </Router>

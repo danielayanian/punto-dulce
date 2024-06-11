@@ -1,6 +1,10 @@
 import Button from "../Button/Button";
 import giftcard from "../../../public/img/giftcard.png";
+
+import Link from "../../../public/img/link-button.png";
+
 import Gift from "../../../public/img/gift.svg";
+
 
 import styles from "./GiftCard.module.css";
 
