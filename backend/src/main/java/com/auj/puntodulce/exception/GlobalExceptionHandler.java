@@ -22,4 +22,22 @@ public class GlobalExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(CustomerDetailsNotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ErrorMessage> handleCustomerDetailsNotFound(RuntimeException ex) {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(InvalidCartException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorMessage> handleInvalidCartException(RuntimeException ex) {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(InvalidRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorMessage> handleInvalidRequestException(RuntimeException ex) {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
 }

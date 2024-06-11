@@ -24,7 +24,7 @@ public class Cart {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<CartItem> items = new ArrayList<>();
 
@@ -54,14 +54,23 @@ public class Cart {
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
             cartItem.setTotal(cartItem.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
         } else {
-            CartItem cartItem = new CartItem(UUID.randomUUID(), this, product, quantity, product.getPrice(), product.getPrice().multiply(BigDecimal.valueOf(quantity)));
+            CartItem cartItem = new CartItem(UUID.randomUUID(), this,null, product, quantity, product.getPrice(), product.getPrice().multiply(BigDecimal.valueOf(quantity)));
             items.add(cartItem);
         }
 
         recalculateTotals();
     }
 
-    private void recalculateTotals() {
+    public void removeItem(UUID productId) {
+        items.removeIf(item -> item.getProduct().getId().equals(productId));
+        recalculateTotals();
+    }
+    public void removeAllItems(){
+        items.clear();
+        recalculateTotals();
+    }
+
+    public void recalculateTotals() {
         totalItems = items.stream().mapToInt(CartItem::getQuantity).sum();
         totalPrice = items.stream()
                 .map(CartItem::getTotal)
