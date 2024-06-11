@@ -24,19 +24,15 @@ Parameters:
   MYSQLRootPassword:
     Description: Root password for MySQL
     Type: String
-    Default: root
   MYSQLDatabase:
     Description: MySQL database name
     Type: String
-    Default: puntodulce
   MYSQLUser:
     Description: MySQL user name
     Type: String
-    Default: user
   MYSQLPassword:
     Description: MySQL user password
     Type: String
-    Default: user
 
 Resources:
   MyEC2Instance:
@@ -56,6 +52,14 @@ Resources:
           service docker start
           systemctl enable docker
           usermod -a -G docker ec2-user
+          
+          # Configurar memoria swap
+          fallocate -l 1G /swapfile
+          chmod 600 /swapfile
+          mkswap /swapfile
+          swapon /swapfile
+          echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+          
           curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           chmod +x /usr/local/bin/docker-compose
           git clone https://${GitHubToken}@${GitHubRepo} /home/ec2-user/app
@@ -72,15 +76,11 @@ Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable SSH, MySQL, and HTTP access
+      GroupDescription: Enable SSH and HTTP access
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
-          FromPort: 3306
-          ToPort: 3306
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 8080

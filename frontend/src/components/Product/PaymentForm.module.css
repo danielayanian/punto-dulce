@@ -1,0 +1,181 @@
+.container {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .topRightButton {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .button {
+    background-color: #939597;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .cartContainer {
+    margin-top: 20px;
+  }
+  
+  .productContainer {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .topTitle {
+    display: flex;
+    align-items: center;
+  }
+  
+ img {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+  }
+  
+  .productName {
+    font-weight: bold;
+  }
+  
+  .productDescription {
+    margin-top: 5px;
+  }
+  
+  .productDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .detailRow {
+    display: flex;
+    justify-content: space-between;
+  }
+  input {
+    border-radius: 40px;
+    background:none;
+    border-color: 2px black solid;
+    padding: 7px;
+    margin: 5px;
+   
+  }
+  .detailTitle {
+    font-weight: bold;
+  }
+  
+  .detailValue {
+    margin-left: 10px;
+  }
+  
+  .paymentForm {
+    margin-top: 30px;
+  }
+  
+  .paymentOptions {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .paymentOption {
+    margin-bottom: 20px;
+  }
+  
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin-top: 10px;
+  }
+  .yellowLink{   
+    background-color: rgb(255, 202, 26);
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+margin-left: 10px;}
+  p{
+    font-size: 12px; 
+    margin: 0 0 0 20px;
+  }
+  .shortInput {
+    width: 70px;
+  }
+  
+  .shippingForm {
+    margin-top: 30px;
+  }
+  
+  .customerData, .receiverData {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+  
+  .dataHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .hideInputs {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background:none ;
+   
+  
+   
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .visible {
+    display: flex;
+  }
+  
+  .editLink {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+  }
+  
+  .confirmation {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .confirmationDetails {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .confirmationProduct {
+    display: flex;
+    border-bottom: 1px solid ;
+  }
+  
