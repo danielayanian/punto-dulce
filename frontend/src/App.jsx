@@ -9,29 +9,25 @@ import Login from "./pages/Login";
 import Register from "./components/Register/Register";
 import Cart from "./pages/Cart";
 import { Wsp } from "./components/WhatsApp/Wsp";
-
-
+import Admi from "./pages/Admi";
 
 function App() {
-
   return (
     <>
       <Router>
         <Header />
-
-        
-
-        <Wsp/>
+        <Wsp />
 
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/info" element={<ProductInfo />} />
           <Route path="/*" element={<NotFound />} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart/>} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/admin/*" element={<Admi />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </>
   );

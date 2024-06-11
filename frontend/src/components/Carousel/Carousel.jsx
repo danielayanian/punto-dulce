@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from './Carousel.module.css'; 
 
+
 const settings = {
   dots: true,
   infinite: true,
