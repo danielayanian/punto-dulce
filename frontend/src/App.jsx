@@ -8,8 +8,7 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./components/Register/Register";
 import Cart from "./pages/Cart";
-import { Wsp } from "./components/WhatsApp/Wsp";
-
+import PaymentForm from './pages/PaymentDetails';
 
 
 function App() {
@@ -18,11 +17,7 @@ function App() {
     <>
       <Router>
         <Header />
-
         
-
-        <Wsp/>
-
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/info" element={<ProductInfo />} />
@@ -30,6 +25,8 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart/>} />
+          <Route path="/paymentDetails" element={<PaymentForm  />} />
+
         </Routes>
         <Footer/>
       </Router>

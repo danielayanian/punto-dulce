@@ -1,6 +1,7 @@
-import React from 'react';
-import ProductCart from '../components/Product/ProductCart';
 
+import React from 'react';
+
+import ProductCart from '../components/Product/ProductCart';
 
 const Cart = () => {
   const products = [
@@ -45,7 +46,6 @@ const Cart = () => {
       quantity: 4 
     },
   ];
-  
 
   return <ProductCart products={products} />;
 };
