@@ -23,7 +23,6 @@ public class ProductController {
     @Operation(summary = "Returns a collection of products", description = "Returns a collection of products. Optionally filters by category. Products that match all filters are fetched.", tags = {"products"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved list"),
-            @ApiResponse(responseCode = "400", description = "Invalid category supplied"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping

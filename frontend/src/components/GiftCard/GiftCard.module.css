@@ -7,9 +7,13 @@
 }
 .title {
   text-align: center;
+  margin: 0rem;
 }
 .text {
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
   font-weight: bold;
+}
+.giftButton{
+  padding: 0.5rem 2rem;
 }

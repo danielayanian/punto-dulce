@@ -1,19 +1,17 @@
 .top {
-  border-bottom: 3px solid #989898;
+  border-bottom: 1px solid #AB5195;
   display: flex;
   justify-content: space-between;
   margin: 30px 20px 10px 20px;
   font-weight: bold;
-  color: black;
-
+  color: #AB5195;
   padding: 5px;
-
   box-sizing: border-box;
 }
 .cartContainer {
   width: 100%;
   padding: 20px;
-  color: black;
+  color: #AB5195;
   box-shadow: 0 4px 8px rgba(208, 194, 194, 0.1);
   box-sizing: border-box;
 }
@@ -44,6 +42,9 @@
   object-fit: cover;
   margin-bottom: 10px;
   margin-right: 30px;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  border: #AB5195 solid 2px;
 }
 
 .productName {
@@ -57,7 +58,7 @@
 .detailRow {
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid #989898;
+  border-bottom: 1px solid #AB5195;
   margin: 5px 0;
   padding: 5px;
 }
@@ -89,20 +90,30 @@
 .buttonContainer {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+
 }
 
 .button {
-  padding: 10px 20px;
-  background-color: #989898;
-  color: black;
-  border: none;
+  padding: 0.5rem;
+  background-color:transparent;
+  color:#6B185E;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none;
   font-weight: bold;
 }
 
-.button:hover {
-  background-color: #1d0aec;
+.buttonRight {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+}
+.buttonLeft {
+  border: #6B185E solid 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }

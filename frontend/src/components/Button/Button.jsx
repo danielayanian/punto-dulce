@@ -1,12 +1,19 @@
 import styles from './Button.module.css'
 
-function Button({ text, icon }) {
+
+function IconButton({ icon, children, className, styleIcon }) {
     return (
-        <button type="submit" className={styles.buttonStyle}>
-            <img src={icon} alt="Icon" className={styles.icon}/>
-            {text}
+        <div className={`${styles.content} ${className}`}>
+            {icon && <img src={icon} alt="Icon" className={styles.icon} />}
+            {children}
+        </div>
+    );
+}
+
+export default function Button({ text, icon, styleIcon, className }) {
+    return (
+        <button type="submit" className={`${styles.buttonStyle} ${className || ''}`}>
+            <IconButton icon={icon} styleIcon={styleIcon}>{text}</IconButton>
         </button>
     );
 }
-  
-  export default Button;

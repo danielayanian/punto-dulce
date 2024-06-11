@@ -3,12 +3,13 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProductInfo from "./pages/ProductInfo";
 import "./App.css";
-import Carousel from "./components/Carousel/Carousel";
 import Header from "./components/Header/Header";
-import Categories from "./components/Categories";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
+import Register from "./components/Register/Register";
 import Cart from "./pages/Cart";
-import PaymentForm from './pages/PaymentDetails';
+import { Wsp } from "./components/WhatsApp/Wsp";
+
 
 
 function App() {
@@ -17,14 +18,18 @@ function App() {
     <>
       <Router>
         <Header />
+
         
+
+        <Wsp/>
+
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/info" element={<ProductInfo />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart/>} />
-          <Route path="/paymentDetails" element={<PaymentForm  />} />
-
         </Routes>
         <Footer/>
       </Router>

@@ -1,51 +1,51 @@
-// Cart.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ProductCart from '../components/Product/ProductCart';
+
 
 const Cart = () => {
   const products = [
     { 
       id: 1, 
       name: 'Choco Delicia', 
-      description: 'Un delicioso alfajor con relleno de dulce de leche y cobertura de chocolate.',
-      imageUrl: '/img/i-alfajor.png', 
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias odio ex dicta, asperiores non quas exercitationem laudantium odit dolor sequi quis vitae? Minus iure, veniam quae beatae pariatur ipsa',
+      imageUrl: '/img/alfajores.png', 
       price: 10, 
       quantity: 2 
     },
     { 
       id: 2, 
       name: 'Bon Bombón', 
-      description: 'Exquisitos bombones de chocolate rellenos de crema de avellanas.', 
-      imageUrl: '/img/i-bombones.png', 
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias odio ex dicta, asperiores non quas exercitationem laudantium odit dolor sequi quis vitae? Minus iure, veniam quae beatae pariatur ipsam', 
+      imageUrl: '/img/bombones.png', 
       price: 15, 
       quantity: 1 
     },
     { 
       id: 3, 
-      name: 'Choco Fusión', 
-      description: 'Tableta de chocolate con leche y trozos de almendra.', 
-      imageUrl: '/img/i-chocolates.png', 
+      name: 'Chocolate Negrito', 
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias odio ex dicta, asperiores non quas exercitationem laudantium odit dolor sequi quis vitae? Minus iure, veniam quae beatae pariatur ipsam', 
+      imageUrl: '/img/chocolate.png', 
       price: 12, 
       quantity: 3 
     },
     { 
       id: 4, 
-      name: 'Chupa Choco', 
-      description: 'Chupetines de chocolate con centro de caramelo.', 
-      imageUrl: '/img/i-chupetines.png', 
+      name: 'Bombon Chupito', 
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias odio ex dicta, asperiores non quas exercitationem laudantium odit dolor sequi quis vitae? Minus iure, veniam quae beatae pariatur ipsam', 
+      imageUrl: '/img/bombones.png', 
       price: 8, 
       quantity: 5 
     },
     { 
       id: 5, 
       name: 'Galle Choco', 
-      description: 'Galletas rellenas de crema de chocolate.', 
-      imageUrl: '/img/i-galletas.png', 
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias odio ex dicta, asperiores non quas exercitationem laudantium odit dolor sequi quis vitae? Minus iure, veniam quae beatae pariatur ipsam', 
+      imageUrl: '/img/galletas.png', 
       price: 6, 
       quantity: 4 
     },
   ];
+  
 
   return <ProductCart products={products} />;
 };
