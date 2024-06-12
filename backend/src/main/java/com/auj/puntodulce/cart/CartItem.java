@@ -41,16 +41,17 @@ public class CartItem {
     private int quantity;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private BigDecimal totalPriceMinor;
 
     @Column(nullable = false)
-    private BigDecimal total;
+    private BigDecimal totalPriceMayor;
 
     @PrePersist
     protected void onCreate() {
         if (this.id == null) {
             this.id = UUID.randomUUID();
         }
-        this.total = this.price.multiply(BigDecimal.valueOf(this.quantity));
+        this.totalPriceMinor = this.product.getPriceMinor().multiply(BigDecimal.valueOf(this.quantity));
+        this.totalPriceMayor = this.product.getPriceMayor().multiply(BigDecimal.valueOf(this.quantity));
     }
 }

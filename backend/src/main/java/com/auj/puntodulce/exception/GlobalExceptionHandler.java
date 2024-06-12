@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @RestControllerAdvice @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorMessage> handleIllegalArgumentException(IllegalArgumentException  ex) {
+        ErrorMessage errorMessage = new ErrorMessage("Invalid request\", \"Please check your request parameters.");
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(CartNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorMessage> handleCartNotFoundException(RuntimeException ex) {
