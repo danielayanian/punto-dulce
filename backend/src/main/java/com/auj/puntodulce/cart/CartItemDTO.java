@@ -1,11 +1,14 @@
 package com.auj.puntodulce.cart;
 
+import com.auj.puntodulce.product.ProductDTO;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
 public record CartItemDTO(
-        UUID productId,
+        ProductDTO product,
         int quantity,
-        BigDecimal price,
-        BigDecimal total) {
+        BigDecimal totalPriceMinor,
+        BigDecimal totalPriceMayor
+) {
 }

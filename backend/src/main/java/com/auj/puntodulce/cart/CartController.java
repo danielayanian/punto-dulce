@@ -26,10 +26,13 @@ public class CartController {
             @ApiResponse(responseCode = "200", description = "Successfully added item to cart"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @PostMapping("{productId}")
-    public CartDTO postCart(@PathVariable UUID productId, @RequestParam int quantity, HttpServletRequest request, HttpServletResponse response) {
+    @PutMapping("{productId}")
+    public CartDTO putCart(@PathVariable UUID productId, @RequestParam int quantity, HttpServletRequest request, HttpServletResponse response) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be a positive number");
+        }
         UUID cartId = getCartIdFromCookies(request);
-        CartResponse cartResponse = cartService.addItemToCart(cartId, productId, quantity);
+        CartResponse cartResponse = cartService.addOrUpdateItemToCart(cartId, productId, quantity);
         if (cartId == null || !cartId.equals(cartResponse.cartId())) {
             Cookie cookie = new Cookie("cartId", cartResponse.cartId().toString());
             cookie.setHttpOnly(true);
