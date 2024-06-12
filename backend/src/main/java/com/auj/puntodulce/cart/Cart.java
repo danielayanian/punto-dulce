@@ -45,6 +45,9 @@ public class Cart {
         if(this.totalPriceMinor == null){
             this.totalPriceMinor = BigDecimal.ZERO;
         }
+        if(this.totalPriceMayor == null){
+            this.totalPriceMayor = BigDecimal.ZERO;
+        }
     }
 
     public void addOrUpdateItem(Product product, int quantity) {
