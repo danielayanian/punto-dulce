@@ -8,6 +8,7 @@ public record ProductDTO(
         String name,
         String description,
         String image,
-        BigDecimal price
+        BigDecimal priceMinor,
+        BigDecimal priceMayor
 ) {
 }

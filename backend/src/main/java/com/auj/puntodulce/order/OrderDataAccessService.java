@@ -29,7 +29,7 @@ public class OrderDataAccessService {
         order.setCustomerDetails(customerDetails);
         order.setCreatedAt(new Date());
         order.setStatus(Status.PENDING);
-        order.setTotalPrice(cart.getTotalPrice());
+        order.setTotalPrice(cart.getTotalPriceMinor());
 
         orderRepository.save(order);
         List<CartItem> cartItems = cart.getItems();

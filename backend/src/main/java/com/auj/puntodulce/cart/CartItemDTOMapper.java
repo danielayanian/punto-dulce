@@ -1,5 +1,6 @@
 package com.auj.puntodulce.cart;
 
+import com.auj.puntodulce.product.ProductDTOMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
@@ -9,10 +10,10 @@ public class CartItemDTOMapper implements Function<CartItem, CartItemDTO> {
     @Override
     public CartItemDTO apply(CartItem cartItem) {
         return new CartItemDTO(
-                cartItem.getProduct().getId(),
+                new ProductDTOMapper().apply(cartItem.getProduct()),
                 cartItem.getQuantity(),
-                cartItem.getPrice(),
-                cartItem.getTotal()
+                cartItem.getTotalPriceMinor(),
+                cartItem.getTotalPriceMayor()
         );
     }
 }
