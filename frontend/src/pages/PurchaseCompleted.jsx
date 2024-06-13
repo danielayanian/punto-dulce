@@ -1,8 +1,11 @@
-import React from 'react'
+import CompletedCart from '../components/Product/CompletedCart'
 
 function PurchaseCompleted() {
   return (
-    <div>PurchaseCompleted</div>
+   <>
+   <CompletedCart/>
+   
+   </>
   )
 }
 

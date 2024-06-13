@@ -5,7 +5,16 @@ import Left from '../../../public/img/chevron-left.svg';
 import Right from '../../../public/img/chevron-right.svg';
 
 function PayWholesaler({ products }) {
-
+  // Objeto con datos del usuario
+  // const initialReceiverData = {
+  //   fullName: 'Juan Pérez',
+  //   phone: '+1234567890',
+  //   address: 'Av. Ficticia',
+  //   number: '123',
+  //   floor: '4',
+  //   apartment: 'A',
+  //   neighborhood: 'Barrio Ficticio',
+  // };
 
   const initialUserData = {
     fullName: 'María García',
@@ -501,7 +510,7 @@ function PayWholesaler({ products }) {
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
-              <Link to="/" className={`${styles.button} ${styles.buttonLeft}`}>
+              <Link to="/purchase-completed" className={`${styles.button} ${styles.buttonLeft}`}>
                 Terminar <img src={Right} alt="Right arrow" />
               </Link>
             </div>

@@ -468,7 +468,7 @@ function PayRegistered({ products }) {
             </div>
             <div>
               <h3>Domicilio de Facturación</h3>
-              <ul>
+              <ul  className={styles.listShipping}>
                 <li>{initialUserData.fullName}</li>
                 <li>
                   {initialUserData.street}
@@ -490,8 +490,8 @@ function PayRegistered({ products }) {
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
-              <Link to="/" className={`${styles.button} ${styles.buttonLeft}`}>
-                Pagar <img src={Right} alt="Right arrow" />
+              <Link to="/purchase-completed" className={`${styles.button} ${styles.buttonLeft}`}>
+                Terminar <img src={Right} alt="Right arrow" />
               </Link>
             </div>
           </div>

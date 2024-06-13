@@ -1,0 +1,19 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    text-align: center;
+    margin:40px; 
+ }
+  
+  .iconoCirculoTic {
+    color: #00874f; 
+    font-size: 48px;
+  }
+  h2{
+    color:  #00874f;
+    font-size: 18px;
+  font-weight: 700;}
+
+  
