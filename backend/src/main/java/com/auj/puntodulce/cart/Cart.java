@@ -32,15 +32,21 @@ public class Cart {
     private int totalItems;
 
     @Column(nullable = false)
-    private BigDecimal totalPrice;
+    private BigDecimal totalPriceMinor;
+
+    @Column(nullable = false)
+    private BigDecimal totalPriceMayor;
 
     @PrePersist
     protected void onCreate() {
         if (this.id == null) {
             this.id = UUID.randomUUID();
         }
-        if(this.totalPrice == null){
-            this.totalPrice = BigDecimal.ZERO;
+        if(this.totalPriceMinor == null){
+            this.totalPriceMinor = BigDecimal.ZERO;
+        }
+        if(this.totalPriceMayor == null){
+            this.totalPriceMayor = BigDecimal.ZERO;
         }
     }
 
@@ -51,10 +57,14 @@ public class Cart {
 
         if (existingCartItem.isPresent()) {
             CartItem cartItem = existingCartItem.get();
-            cartItem.setQuantity(cartItem.getQuantity() + quantity);
-            cartItem.setTotal(cartItem.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+            if(quantity == 0){
+                removeItem(product.getId());
+            }
+            cartItem.setQuantity(quantity);
+            cartItem.setTotalPriceMinor(cartItem.getTotalPriceMinor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+            cartItem.setTotalPriceMayor(cartItem.getTotalPriceMayor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
         } else {
-            CartItem cartItem = new CartItem(UUID.randomUUID(), this,null, product, quantity, product.getPrice(), product.getPrice().multiply(BigDecimal.valueOf(quantity)));
+            CartItem cartItem = new CartItem(UUID.randomUUID(), this,null, product, quantity, product.getPriceMinor().multiply(BigDecimal.valueOf(quantity)), product.getPriceMayor().multiply(BigDecimal.valueOf(quantity)));
             items.add(cartItem);
         }
 
@@ -72,8 +82,11 @@ public class Cart {
 
     public void recalculateTotals() {
         totalItems = items.stream().mapToInt(CartItem::getQuantity).sum();
-        totalPrice = items.stream()
-                .map(CartItem::getTotal)
+        totalPriceMinor = items.stream()
+                .map(CartItem::getTotalPriceMinor)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        totalPriceMayor = items.stream()
+                .map(CartItem::getTotalPriceMayor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

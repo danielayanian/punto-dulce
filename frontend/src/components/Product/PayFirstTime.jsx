@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
+import Left from '../../../public/img/chevron-left.svg';
+import Right from '../../../public/img/chevron-right.svg';
 
 function PaymentForm({ products }) {
   const [editingCustomerData, setEditingCustomerData] = useState(false);
   const [editingReceiverData, setEditingReceiverData] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState('');
+  const [selectedDelivery, setSelectedDelivery] = useState('');
 
   const toggleCustomerData = () => {
     setEditingCustomerData(!editingCustomerData);
@@ -20,15 +24,24 @@ function PaymentForm({ products }) {
     }
   };
 
-  return (
-    <div className={styles.container}>
-      {/* Button to return to product cart */}
-      <div className={styles.topRightButton}>
-        <Link to="/home" className={styles.button}>
-          Regresar
-        </Link>
-      </div>
+  const handlePaymentChange = (e) => {
+    setSelectedPayment(e.target.value);
+  };
 
+  const handleDeliveryChange = (e) => {
+    setSelectedDelivery(e.target.value);
+  };
+
+  return (
+    <div className='container'>
+      <div className={styles.buttonContainer}>
+        <div className={styles.topRightButton}>
+          <Link to="/cart" className={`${styles.button} ${styles.buttonRight}`}>
+            Regresar <img src={Left} alt="Left Chevron" />
+          </Link>
+        </div>
+      </div>
+      <h2 className='title'>PRODUCTO</h2>
       <div className={styles.cartContainer}>
         {products.map((product) => (
           <div key={product.id} className={styles.productContainer}>
@@ -55,70 +68,125 @@ function PaymentForm({ products }) {
                 <span className={styles.detailValue}>${product.price}</span>
               </div>
               <div className={styles.detailRow}>
-                <span className={styles.detailTitle}>
-                  Precio Total Minorista:
-                </span>
+                <span className={styles.detailTitle}>Precio Total Minorista:</span>
                 <span className={styles.detailValue}>
                   ${product.price * product.quantity}
                 </span>
               </div>
-            </div>
+            </div> {/* Aquí falta cerrar un div */}
           </div>
         ))}
       </div>
-      {/* Payment form */}
+
       <div className={styles.paymentForm}>
         <div className={styles.paymentOptions}>
           <h3>Formas de Pago</h3>
-
-          <div>
-            <input type="checkbox" id="debitCard" name="debitCard" />
-            <label htmlFor="debitCard">Tarjetas de débito </label>
-
-            <div className={styles.inputs}>
-              <input type="text" placeholder="Número de tarjeta" />
-              <div className={styles.expiry}>
-                <input type="text" placeholder="MM/AA              CVC" />
+          <div className={styles.paymentOption}>
+            <input
+              type="radio"
+              id="debitCard"
+              name="paymentMethod"
+              value="debitCard"
+              checked={selectedPayment === 'debitCard'}
+              onChange={handlePaymentChange}
+            />
+            <label htmlFor="debitCard">Tarjetas de débito</label>
+            {selectedPayment === 'debitCard' && (
+              <div className={styles.inputs}>
+                <input type="text" placeholder="Número de tarjeta" />
+                <div className={styles.expiryAndCvc}>
+                  <input type="text" placeholder="MM/AA" className={styles.shortInput} />
+                  <input type="text" placeholder="CVC" className={styles.shortInput} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
-          <div>
-            <input type="checkbox" id="dniAccount" name="dniAccount" />
+          <div className={styles.paymentOption}>
+            <input
+              type="radio"
+              id="dniAccount"
+              name="paymentMethod"
+              value="dniAccount"
+              checked={selectedPayment === 'dniAccount'}
+              onChange={handlePaymentChange}
+            />
             <label htmlFor="dniAccount">Mi cuenta DNI</label>
+            {selectedPayment === 'dniAccount' && (
+              <div className={styles.qrImage}>
+                <img src="ruta_a_tu_qr_image.png" alt="QR Code" />
+              </div>
+            )}
           </div>
-          <span>QR image</span>
-          <div>
-            <input type="checkbox" id="cash" name="cash" />
+          <div className={styles.paymentOption}>
+            <input
+              type="radio"
+              id="cash"
+              name="paymentMethod"
+              value="cash"
+              checked={selectedPayment === 'cash'}
+              onChange={handlePaymentChange}
+            />
             <label htmlFor="cash">Efectivo</label>
           </div>
-          <div>
-            <input type="checkbox" id="mercadopago" name="mercadopago" />
-            <label htmlFor="mercadopago">
-              Mercado de Pago
+          <div className={styles.paymentOption}>
+            <input
+              type="radio"
+              id="mercadopago"
+              name="paymentMethod"
+              value="mercadopago"
+              checked={selectedPayment === 'mercadopago'}
+              onChange={handlePaymentChange}
+            />
+            <label htmlFor="mercadopago">Mercado de Pago</label>
+            {selectedPayment === 'mercadopago' && (
               <div>
                 <a className={styles.yellowLink} href="mercadoPagoLink">
                   Ir a Mercado de Pago
                 </a>
               </div>
-            </label>
+            )}
           </div>
-          <div>
-            <input type="checkbox" id="transfer" name="transfer" />
+          <div className={styles.paymentOption}>
+            <input
+              type="radio"
+              id="transfer"
+              name="paymentMethod"
+              value="transfer"
+              checked={selectedPayment === 'transfer'}
+              onChange={handlePaymentChange}
+            />
             <label htmlFor="transfer">Transferencia</label>
+            {selectedPayment === 'transfer' && (
+              <p className={styles.wsp}>Los Datos se envían por Whatsapp</p>
+            )}
           </div>
-          <p className={styles.wsp}>Los Datos se envían por Whatsapp</p>
         </div>
-        <h3>Formas de Entregas</h3>
+
+        <h3>Formas de Entrega</h3>
         <div>
-          <div>
-            <input type="checkbox" id="homeDelivery" name="homeDelivery" />
+          <div className={styles.paymentOption}>
+            <input
+              type="radio"
+              id="homeDelivery"
+              name="deliveryMethod"
+              value="homeDelivery"
+              checked={selectedDelivery === 'homeDelivery'}
+              onChange={handleDeliveryChange}
+            />
             <label htmlFor="homeDelivery">Envío a Domicilio</label>
           </div>
-          <p>Envío sin cargo</p>{' '}
+          <p>Envío sin cargo</p>
         </div>
         <div>
-          <div>
-            <input type="checkbox" id="deposit" />
+          <div className={styles.paymentOption}>
+            <input
+              type="radio"
+              id="deposit"
+              name="deliveryMethod"
+              value="deposit"
+              checked={selectedDelivery === 'deposit'}
+              onChange={handleDeliveryChange}
+            />
             <label htmlFor="deposit">Retirar por Depósito</label>
           </div>
           <p>Dirección de deposito</p>
@@ -187,7 +255,6 @@ function PaymentForm({ products }) {
           <div className={styles.receiverData}>
             <div className={styles.dataHeader}>
               <label htmlFor="receiverData">
-                {' '}
                 <input
                   type="checkbox"
                   id="receiverData"
@@ -202,30 +269,30 @@ function PaymentForm({ products }) {
               </span>
             </div>
             {editingReceiverData && (
-              <div className={`${styles.inputs} ${styles.visible}`}>
+              <div className={`${styles.hideInputs} ${styles.visible}`}>
                 <input
                   type="text"
                   id="receiverName"
                   name="receiverName"
-                  placeholder="Nombre"
+                  placeholder="Nombre Completo"
                 />
                 <input
                   type="text"
-                  id="receiverLastName"
-                  name="receiverLastName"
-                  placeholder="Apellido"
-                />
-                <input
-                  type="text"
-                  id="receiverCell"
-                  name="receiverCell"
-                  placeholder="Celular/WhatsApp"
+                  id="receiverAddress"
+                  name="receiverAddress"
+                  placeholder="Domicilio Celular"
                 />
                 <input
                   type="text"
                   id="receiverStreet"
                   name="receiverStreet"
                   placeholder="Calle"
+                />
+                <input
+                  type="text"
+                  id="receiverStreetNumber"
+                  name="receiverStreetNumber"
+                  placeholder="Número"
                 />
                 <input
                   type="text"
@@ -237,7 +304,7 @@ function PaymentForm({ products }) {
                   type="text"
                   id="receiverApartment"
                   name="receiverApartment"
-                  placeholder="Departamento"
+                  placeholder="Dpto"
                 />
                 <input
                   type="text"
@@ -248,42 +315,6 @@ function PaymentForm({ products }) {
               </div>
             )}
           </div>
-          <h3>Observaciones / Comentarios</h3>
-          <textarea placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
-        </div>
-        {/* Confirm details */}
-        <div className={styles.confirmation}>
-          <h3>Confirmar datos</h3>
-          <div className={styles.confirmationDetails}>
-            {products.map((product) => (
-              <div key={product.id} className={styles.confirmationProduct}>
-                <img src={product.imageUrl} alt={product.name} />
-                <div>
-                  <div className={styles.confirmationProductName}>
-                    {product.name}
-                  </div>
-                  <div className={styles.confirmationProductDescription}>
-                    {product.description}
-                  </div>
-                  <div className={styles.confirmationProductPrice}>
-                    <span>Precio Final Minorista:</span>
-                    <span>${product.price * product.quantity}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <h3>Cómo seguir el pedido</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          {/* Informaciones del pedido */}
-          <h3>Informaciones del pedido</h3>
-          <h4>E-mail</h4>
-          <p>xxx@xxx</p>
-          <h4>Domicilio de Facturación y Entrega</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <h4>Forma de Entrega</h4>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
       </div>
     </div>
@@ -291,3 +322,4 @@ function PaymentForm({ products }) {
 }
 
 export default PaymentForm;
+

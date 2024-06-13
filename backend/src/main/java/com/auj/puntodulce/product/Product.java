@@ -38,7 +38,9 @@ public class Product {
     @Column(nullable = false)
     private int stock;
     @Column(nullable = false)
-    private BigDecimal price;
+    private BigDecimal priceMinor;
+    @Column(nullable = false)
+    private BigDecimal priceMayor;
     @JsonIgnore
     @Column(name = "price_updated_at",nullable = false)
     private Date priceUpdatedAt;
