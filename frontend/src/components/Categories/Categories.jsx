@@ -1,5 +1,6 @@
 import styles from './Categories.module.css'
 import useGetCategories from '../../Hooks/useGetCategories.jsx'
+import {Link} from 'react-router-dom'
 
 const Categories = () => {
   
@@ -27,9 +28,12 @@ if(error) return <p>Ha habido un error ..</p>
     <div className={styles.container}>
       {data?.map((category) => (
         <div key={category.id} className={styles.imgcontainer}>
+          <Link to={`product-list/${category.name}`} className={styles.link}>
           <img src={categoryImg[category.name]} alt={category.name} className={styles.image} />
           <h2 className={styles.text}>{category.name}</h2>
+          </Link>
         </div>
+
       ))}
     </div>
   );

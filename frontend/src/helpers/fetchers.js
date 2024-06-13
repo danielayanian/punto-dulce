@@ -8,9 +8,9 @@ const errorMessageStatus = {
   500: 'Error 500 - Error bbdd',
 }
 
-export const getTopics = async (slug) => {
-  const url = slug ? `${urls.getTopics}?slug=${slug}` : urls.getTopics
-  const response = await fetch(url)
+export const getCart = async () => {
+  // const url = slug ? `${urls.getCart}?slug=${slug}` : urls.getCart
+  const response = await fetch(urls.getCart)
   if (!response.ok) {
     throw new Error(`Error fetching topics: ${response.statusText}`)
   }

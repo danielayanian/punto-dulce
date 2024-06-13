@@ -1,33 +1,33 @@
-
 .buttonContainer {
   display: flex;
   flex-direction: row;
   width: fit-content;
-  border: #6B185E solid 2px;
-  gap: 2rem;
+  border: #6b185e solid 2px;
+
   border-radius: 0.5rem;
   box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
   -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
   -moz-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
   position: absolute;
-  top: 21%;
-  right: 30%;
-  background-color: #EFF5FE;
-
+  bottom: 5%;
+  left: 25%;
+  background-color: #eff5fe;
 }
-.icon{
+
+.icon {
   margin: 0.5rem;
 }
+
 .content {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
+
 .buttonStyle {
   margin: 0.5rem;
-  border: #6B185E solid 2px;
+  border: #6b185e solid 2px;
   background-color: transparent;
-  color: #6B185E;
+  color: #6b185e;
   font-weight: 600;
   border-radius: 0.5rem;
   display: flex;
@@ -39,9 +39,32 @@
   -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
   -moz-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
 }
-.buttonRight{
+
+.buttonRight {
   background-color: rgba(171, 81, 149, 0.5);
 }
-.buttonLeft{
-  background-color: #6B185E;
+
+.buttonLeft {
+  background-color: #6b185e;
+}
+
+
+.styleInput{
+  width: 2rem;
+  border: transparent;
+  border-bottom: #6b185e solid 2px;
+  background-color: transparent;
+  margin: 0.5rem;
+  text-align: center;
+}
+.styleInput:focus {
+  all: unset;
+  width: 2rem;
+  border: transparent;
+  background-color: transparent;
+  margin: 0.5rem;
+  text-align: center;
+  border-bottom: #6b185e solid 2px;
+  color: #6b185e;
+  font-weight: bold;
 }

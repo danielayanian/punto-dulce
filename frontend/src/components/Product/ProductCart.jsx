@@ -46,7 +46,7 @@ function Product({ products }) {
           </div>
         ))}
         <div className={styles.buttonContainer}>
-          <Link to="/home" className={`${styles.button} ${styles.buttonRight}`}>
+          <Link to="/" className={`${styles.button} ${styles.buttonRight}`}>
             Regresar
             <img src={Left}/>
           </Link>

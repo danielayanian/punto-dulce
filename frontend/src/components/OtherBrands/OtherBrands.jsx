@@ -3,7 +3,7 @@ import styles from './OtherBrands.module.css'
 const OtherBrands = () => {
   const brands = [
     {
-      id: 1,
+      id: 1, // Assuming each brand has a unique ID
       name: "flynpaf",
       imageUrl: "../../../public/img/flynpaf.png",
     },
@@ -34,8 +34,7 @@ const OtherBrands = () => {
       <h3 className={styles.title}>ALGUNA DE NUESTRAS MARCAS</h3>
       <div className={styles.brandStyle}>
         {brands.map((brand) => (
-          <div>
-            <div key={brand.id}></div>
+          <div key={brand.id}>
             <img src={brand.imageUrl} alt={brand.name}></img>
           </div>
         ))}
