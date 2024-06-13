@@ -5,24 +5,28 @@ import Left from '../../../public/img/chevron-left.svg';
 import Right from '../../../public/img/chevron-right.svg';
 
 function PaymentForm({ products }) {
-  const [editingCustomerData, setEditingCustomerData] = useState(false);
-  const [editingReceiverData, setEditingReceiverData] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState('');
   const [selectedDelivery, setSelectedDelivery] = useState('');
-
-  const toggleCustomerData = () => {
-    setEditingCustomerData(!editingCustomerData);
-    if (editingReceiverData) {
-      setEditingReceiverData(false);
-    }
-  };
-
-  const toggleReceiverData = () => {
-    setEditingReceiverData(!editingReceiverData);
-    if (editingCustomerData) {
-      setEditingCustomerData(false);
-    }
-  };
+  const [showCustomerData, setShowCustomerData] = useState(true);
+  const [showReceiverData, setShowReceiverData] = useState(false);
+  const [customerData, setCustomerData] = useState({
+    fullName: '',
+    street: '',
+    streetNumber: '',
+    floor: '',
+    apartment: '',
+    neighborhood: '',
+    phone: ''
+  });
+  const [receiverData, setReceiverData] = useState({
+    fullName: '',
+    street: '',
+    streetNumber: '',
+    floor: '',
+    apartment: '',
+    neighborhood: '',
+    phone: ''
+  });
 
   const handlePaymentChange = (e) => {
     setSelectedPayment(e.target.value);
@@ -30,6 +34,32 @@ function PaymentForm({ products }) {
 
   const handleDeliveryChange = (e) => {
     setSelectedDelivery(e.target.value);
+  };
+
+  const handleCustomerDataChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleReceiverDataChange = (e) => {
+    const { name, value } = e.target;
+    setReceiverData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const toggleShowCustomerData = () => {
+    setShowCustomerData(true);
+    setShowReceiverData(false);
+  };
+
+  const toggleShowReceiverData = () => {
+    setShowCustomerData(false);
+    setShowReceiverData(true);
   };
 
   return (
@@ -73,7 +103,7 @@ function PaymentForm({ products }) {
                   ${product.price * product.quantity}
                 </span>
               </div>
-            </div> {/* Aquí falta cerrar un div */}
+            </div>
           </div>
         ))}
       </div>
@@ -201,53 +231,70 @@ function PaymentForm({ products }) {
                   type="checkbox"
                   id="customerData"
                   name="customerData"
-                  checked={editingCustomerData}
-                  onChange={toggleCustomerData}
+                  checked={showCustomerData}
+                  onChange={toggleShowCustomerData}
                 />
                 Datos de Cliente
               </label>
-              <span className={styles.editLink} onClick={toggleCustomerData}>
-                {editingCustomerData ? 'Guardar' : 'Editar'}
-              </span>
             </div>
-            {editingCustomerData && (
-              <div className={`${styles.hideInputs} ${styles.visible}`}>
+            {showCustomerData && (
+              <div className={styles.inputs}>
                 <input
                   type="text"
                   id="fullName"
                   name="fullName"
                   placeholder="Nombre Completo"
+                  value={customerData.fullName}
+                  onChange={handleCustomerDataChange}
                 />
-                <input
-                  type="text"
-                  id="cellAddress"
-                  name="cellAddress"
-                  placeholder="Domicilio Celular"
-                />
+                
                 <input
                   type="text"
                   id="street"
                   name="street"
                   placeholder="Calle"
+                  value={customerData.street}
+                  onChange={handleCustomerDataChange}
                 />
                 <input
                   type="text"
                   id="streetNumber"
                   name="streetNumber"
                   placeholder="Número"
+                  value={customerData.streetNumber}
+                  onChange={handleCustomerDataChange}
                 />
-                <input type="text" id="floor" name="floor" placeholder="Piso" />
+                <input
+                  type="text"
+                  id="floor"
+                  name="floor"
+                  placeholder="Piso"
+                  value={customerData.floor}
+                  onChange={handleCustomerDataChange}
+                />
                 <input
                   type="text"
                   id="apartment"
                   name="apartment"
                   placeholder="Dpto"
+                  value={customerData.apartment}
+                  onChange={handleCustomerDataChange}
                 />
                 <input
                   type="text"
                   id="neighborhood"
                   name="neighborhood"
                   placeholder="Barrio"
+                  value={customerData.neighborhood}
+                  onChange={handleCustomerDataChange}
+                />
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  placeholder="Teléfono"
+                  value={customerData.phone}
+                  onChange={handleCustomerDataChange}
                 />
               </div>
             )}
@@ -259,62 +306,137 @@ function PaymentForm({ products }) {
                   type="checkbox"
                   id="receiverData"
                   name="receiverData"
-                  checked={editingReceiverData}
-                  onChange={toggleReceiverData}
+                  checked={showReceiverData}
+                  onChange={toggleShowReceiverData}
                 />
-                Recibe otra persona
+                Datos de Receptor
               </label>
-              <span className={styles.editLink} onClick={toggleReceiverData}>
-                {editingReceiverData ? 'Guardar' : 'Editar'}
-              </span>
             </div>
-            {editingReceiverData && (
-              <div className={`${styles.hideInputs} ${styles.visible}`}>
+            {!showReceiverData && <p>Completar datos</p>}
+            {showReceiverData && (
+              <div className={styles.inputs}>
                 <input
                   type="text"
-                  id="receiverName"
-                  name="receiverName"
+                  id="receiverFullName"
+                  name="fullName"
                   placeholder="Nombre Completo"
+                  value={receiverData.fullName}
+                  onChange={handleReceiverDataChange}
                 />
-                <input
-                  type="text"
-                  id="receiverAddress"
-                  name="receiverAddress"
-                  placeholder="Domicilio Celular"
-                />
+              
                 <input
                   type="text"
                   id="receiverStreet"
-                  name="receiverStreet"
+                  name="street"
                   placeholder="Calle"
+                  value={receiverData.street}
+                  onChange={handleReceiverDataChange}
                 />
                 <input
                   type="text"
                   id="receiverStreetNumber"
-                  name="receiverStreetNumber"
+                  name="streetNumber"
                   placeholder="Número"
+                  value={receiverData.streetNumber}
+                  onChange={handleReceiverDataChange}
                 />
                 <input
                   type="text"
                   id="receiverFloor"
-                  name="receiverFloor"
+                  name="floor"
                   placeholder="Piso"
+                  value={receiverData.floor}
+                  onChange={handleReceiverDataChange}
                 />
                 <input
                   type="text"
                   id="receiverApartment"
-                  name="receiverApartment"
+                  name="apartment"
                   placeholder="Dpto"
+                  value={receiverData.apartment}
+                  onChange={handleReceiverDataChange}
                 />
                 <input
                   type="text"
                   id="receiverNeighborhood"
-                  name="receiverNeighborhood"
+                  name="neighborhood"
                   placeholder="Barrio"
+                  value={receiverData.neighborhood}
+                  onChange={handleReceiverDataChange}
+                />
+                <input
+                  type="text"
+                  id="receiverPhone"
+                  name="phone"
+                  placeholder="Teléfono"
+                  value={receiverData.phone}
+                  onChange={handleReceiverDataChange}
                 />
               </div>
             )}
           </div>
+        </div>
+      </div>
+
+      <div className="CommentBox">
+        <h3>Observaciones / Comentarios</h3>
+        <textarea placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
+      </div>
+      <div className={styles.confirmation}>
+        <h3>Confirmar datos</h3>
+        <div className={styles.confirmationDetails}>
+          {products.map((product) => (
+            <div key={product.id} className={styles.confirmationProduct}>
+              <span>{product.name}</span>
+              <span>{product.quantity}</span>
+              <span>${product.price * product.quantity}</span>
+            </div>
+          ))}
+          <div>
+            <h3>Como seguir pedido</h3>
+            <p>
+              En la sección "Mi cuenta" puedes ver el seguimiento de la compra
+            </p>
+          </div>
+        </div>
+        <div>
+          <h3>Informaciones del pedido</h3>
+          <span>EMAIL</span>
+          <p>ejemplo@ejemplo.com</p>
+        </div>
+        { // Render the billing address section only if customerData has any non-empty fields
+          Object.values(customerData).some(field => field !== '') ? (
+            <div>
+              <h3>Domicilio de Facturación</h3>
+              <ul className={styles.listShipping}>
+                <li>{customerData.fullName}</li>
+                <li>
+                  {customerData.street} {customerData.streetNumber} {customerData.apartment} {customerData.floor}
+                </li>
+                <li>{customerData.neighborhood}</li>
+                <li>{customerData.phone}</li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <h3>Domicilio de Facturación</h3>
+              <p>Rellenar datos</p>
+            </div>
+          )
+        }
+        <div>
+          <h3>Forma de Entrega</h3>
+          <p>
+            {selectedDelivery === '' ? '' : selectedDelivery === 'homeDelivery' ? 'Envío a Domicilio' : 'Retirar por Depósito'}
+          </p>
+        </div>
+        <div className={styles.buttonContainer}>
+          <Link to="/cart" className={`${styles.button} ${styles.buttonRight}`}>
+            Regresar <img src={Left} alt="Left arrow" />
+          </Link>
+          <Link to="/" className={`${styles.button} ${styles.buttonLeft}`}>
+            Terminar <img src={Right} alt="Right arrow" />
+          </Link>
         </div>
       </div>
     </div>
@@ -322,4 +444,3 @@ function PaymentForm({ products }) {
 }
 
 export default PaymentForm;
-

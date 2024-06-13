@@ -4,17 +4,17 @@ import styles from './PaymentForm.module.css';
 import Left from '../../../public/img/chevron-left.svg';
 import Right from '../../../public/img/chevron-right.svg';
 
-function PayRegistered({ products }) {
+function PayWholesaler({ products }) {
   // Objeto con datos del usuario
-  const initialReceiverData = {
-    fullName: 'Juan Pérez',
-    phone: '+1234567890',
-    street: 'Av. Ficticia',
-    number: '123',
-    floor: '4',
-    apartment: 'A',
-    neighborhood: 'Barrio Ficticio',
-  };
+  // const initialReceiverData = {
+  //   fullName: 'Juan Pérez',
+  //   phone: '+1234567890',
+  //   address: 'Av. Ficticia',
+  //   number: '123',
+  //   floor: '4',
+  //   apartment: 'A',
+  //   neighborhood: 'Barrio Ficticio',
+  // };
 
   const initialUserData = {
     fullName: 'María García',
@@ -24,7 +24,10 @@ function PayRegistered({ products }) {
     floor: '2',
     apartment: 'B',
     neighborhood: 'Otro Barrio Ficticio',
-    phone:'+1234567890',
+    phone: '+1234567890',
+    Condition: 'Responsable Inscripto',
+    Company: 'ABC Distribuciones S.A',
+    CUIT: '30-12345678-9',
   };
 
   // Estado para los datos del usuario
@@ -32,25 +35,24 @@ function PayRegistered({ products }) {
   const [isEditingUserData, setIsEditingUserData] = useState(''); // Inicialmente seleccionado
   const [selectedPayment, setSelectedPayment] = useState('');
   const [selectedDelivery, setSelectedDelivery] = useState('');
-  const [receiverData, setReceiverData] = useState(initialReceiverData);
+  const [receiverData, setReceiverData] = useState([]);
   const [isCustomerDataChecked, setIsCustomerDataChecked] = useState(true);
   const [isReceiverDataChecked, setIsReceiverDataChecked] = useState(false);
-  const [isEditingReceiverData, setIsEditingReceiverData] = useState(false);
 
   //   const handleReceiverDataChange = () => {
   //     setIsReceiverDataChecked(!isReceiverDataChecked);
   //   };
 
-  const handleCheckboxEditReceiverData = () => {
-    setIsEditingReceiverData(!isEditingReceiverData);
-  };
+  // const handleCheckboxEditReceiverData = () => {
+  //   setIsEditingReceiverData(!isEditingReceiverData);
+  // };
 
   const handleEditUserData = () => {
     setIsEditingUserData(!isEditingUserData);
   };
-  const handleEditReceiverData = () => {
-    setIsEditingReceiverData(!isEditingReceiverData);
-  };
+  // const handleEditReceiverData = () => {
+  //   setIsEditingReceiverData(!isEditingReceiverData);
+  // };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -261,7 +263,7 @@ function PayRegistered({ products }) {
                     onChange={handleCustomerDataChange}
                     checked={isCustomerDataChecked}
                   />
-                  Datos de Cliente
+                  Datos Mayorista
                 </label>
                 <span className={styles.editLink} onClick={handleEditUserData}>
                   {isEditingUserData ? 'Guardar' : 'Editar'}
@@ -270,17 +272,23 @@ function PayRegistered({ products }) {
               {!isEditingUserData && (
                 <div className={styles.userDataList}>
                   <ul>
-                    <li>Nombre: {userData.fullName}</li>
-                    <li>Domicilio: {userData.Adress}</li>
-                    <li>Calle: {userData.street}</li>
-                    <li>Número: {userData.streetNumber}</li>
-                    <li>Piso: {userData.floor}</li>
-                    <li>Dpto: {userData.apartment}</li>
+                    <li>Nombre Completo: {userData.fullName}</li>
+                    <li>
+                      Domicilio: {userData.address}
+                      {userData.streetNumber}
+                    </li>
+                    <li>
+                      Piso y Depto: {userData.floor}
+                      {userData.apartment}
+                    </li>
                     <li>Barrio: {userData.neighborhood}</li>
+                    <li>Celular:{userData.phone} </li>
+                    <li>Cond.Frente al IVA:{userData.Condition} </li>
+                    <li>Razón Social:{userData.Company}</li>
+                    <li>CUIT:{userData.CUIT}</li>
                   </ul>
                 </div>
               )}
-              {/* Inputs para editar los datos */}
               {isEditingUserData && (
                 <div className={styles.inputsContainer}>
                   <input
@@ -297,14 +305,6 @@ function PayRegistered({ products }) {
                     name="Adress"
                     placeholder="Domicilio Celular"
                     value={userData.Adress}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="street"
-                    name="street"
-                    placeholder="Calle"
-                    value={userData.street}
                     onChange={handleInputChange}
                   />
                   <input
@@ -339,6 +339,38 @@ function PayRegistered({ products }) {
                     value={userData.neighborhood}
                     onChange={handleInputChange}
                   />
+                  <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="Celular"
+                    value={userData.phone}
+                    onChange={handleInputChange}
+                  />
+                  <input
+                    type="text"
+                    id="Condition"
+                    name="Condition"
+                    placeholder="Cond.Frente al IVA"
+                    value={userData.Condition}
+                    onChange={handleInputChange}
+                  />
+                  <input
+                    type="text"
+                    id="Company"
+                    name="Company"
+                    placeholder="Razón Social"
+                    value={userData.Condition}
+                    onChange={handleInputChange}
+                  />{' '}
+                  <input
+                    type="text"
+                    id="CUIT"
+                    name="CUIT"
+                    placeholder="CUIT"
+                    value={userData.CUIT}
+                    onChange={handleInputChange}
+                  />
                 </div>
               )}
             </div>
@@ -356,28 +388,11 @@ function PayRegistered({ products }) {
                   />
                   Recibe otra persona
                 </label>
-                <span
-                  className={styles.editLink}
-                  onClick={handleCheckboxEditReceiverData}
-                >
-                  {isEditingReceiverData ? 'Guardar' : 'Editar'}
-                </span>
               </div>
-              {!isEditingReceiverData && (
-                <div className={styles.userDataList}>
-                  <ul>
-                    <li>Nombre: {receiverData.fullName}</li>
-                    <li>Celular: {receiverData.phone}</li>
-                    <li>Calle: {receiverData.street}</li>
-                    <li>Número: {receiverData.number}</li>
-                    <li>Piso: {receiverData.floor}</li>
-                    <li>Dpto: {receiverData.apartment}</li>
-                    <li>Barrio: {receiverData.neighborhood}</li>
-                  </ul>
-                </div>
-              )}
-              {isEditingReceiverData && (
+              {!isReceiverDataChecked && <p>Completar datos</p>}
+              {isReceiverDataChecked && (
                 <div className={styles.inputsContainer}>
+                  <label htmlFor="">Nombre</label>
                   <input
                     type="text"
                     id="receiverName"
@@ -386,46 +401,8 @@ function PayRegistered({ products }) {
                     value={receiverData.fullName}
                     onChange={handleInputChange}
                   />
-                  <input
-                    type="text"
-                    id="receiverphone"
-                    name="phone"
-                    placeholder="Celular"
-                    value={receiverData.phone}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverStreet"
-                    name="street"
-                    placeholder="Calle"
-                    value={receiverData.street}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverNumber"
-                    name="number"
-                    placeholder="Número"
-                    value={receiverData.number}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverFloor"
-                    name="floor"
-                    placeholder="Piso"
-                    value={receiverData.floor}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverApartment"
-                    name="apartment"
-                    placeholder="Dpto"
-                    value={receiverData.apartment}
-                    onChange={handleInputChange}
-                  />
+
+                  <label htmlFor="neigthborhood">Barrio</label>
                   <input
                     type="text"
                     id="receiverNeighborhood"
@@ -434,12 +411,47 @@ function PayRegistered({ products }) {
                     value={receiverData.neighborhood}
                     onChange={handleInputChange}
                   />
+                  <label htmlFor="phone">Celular</label>
+                  <input
+                    type="text"
+                    id="receiverphone"
+                    name="phone"
+                    placeholder="Celular"
+                    value={receiverData.phone}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="">Cond.Frente al IVA</label>
+                  <input
+                    type="text"
+                    id="Condition"
+                    name="Condition"
+                    placeholder="Cond.Frente al IVA"
+                    value={receiverData.condition}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="Company">Razón Social</label>
+                  <input
+                    type="text"
+                    id="Company"
+                    name="Company"
+                    placeholder="Razón Social"
+                    value={receiverData.Condition}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="CUIT">CUIT</label>
+                  <input
+                    type="text"
+                    id="CUIT"
+                    name="CUIT"
+                    placeholder="CUIT"
+                    value={receiverData.CUIT}
+                    onChange={handleInputChange}
+                  />
                 </div>
               )}
             </div>
-          </div>{' '}
+          </div>
           <div className="CommentBox">
-            {' '}
             <h3>Observaciones / Comentarios</h3>
             <textarea placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
           </div>
@@ -464,7 +476,7 @@ function PayRegistered({ products }) {
             <div>
               <h3>Informaciones del pedido</h3>
               <span>EMAIL</span>
-              <p>ejemplo@ejemplo.cpm</p>
+              <p>ejemplo@ejemplo.com</p>
             </div>
             <div>
               <h3>Domicilio de Facturación</h3>
@@ -472,16 +484,24 @@ function PayRegistered({ products }) {
                 <li>{initialUserData.fullName}</li>
                 <li>
                   {initialUserData.street}
-                  {initialUserData.streetNumber}       {initialUserData.apartment}
+                  {initialUserData.streetNumber} {initialUserData.apartment}
                   {initialUserData.floor}
                 </li>
-           
+
                 <li>{initialUserData.neighborhood}</li>
                 <li>{initialUserData.phone}</li>
               </ul>
             </div>
-            <div><h3>Froma de Entrega</h3>
-            <p> {selectedDelivery === '' ? '' : (selectedDelivery === 'homeDelivery' ? 'Envío a Domicilio' : 'Retirar por Depósito')}</p>
+            <div>
+              <h3>Froma de Entrega</h3>
+              <p>
+                {' '}
+                {selectedDelivery === ''
+                  ? ''
+                  : selectedDelivery === 'homeDelivery'
+                  ? 'Envío a Domicilio'
+                  : 'Retirar por Depósito'}
+              </p>
             </div>
             <div className={styles.buttonContainer}>
               <Link
@@ -501,4 +521,4 @@ function PayRegistered({ products }) {
   );
 }
 
-export default PayRegistered;
+export default PayWholesaler;
