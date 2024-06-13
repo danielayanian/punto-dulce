@@ -73,7 +73,7 @@ function PaymentForm({ products }) {
                   ${product.price * product.quantity}
                 </span>
               </div>
-            </div> {/* Aquí falta cerrar un div */}
+            </div> 
           </div>
         ))}
       </div>
