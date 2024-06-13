@@ -4,26 +4,49 @@ import { SearchBar } from "../components/SearchBar/SearchBar";
 import chevronLeft from "../../public/img/chevron-left.svg";
 import styles from "../components/ProductCard/ProductCard.module.css";
 import useGetProducts from "../Hooks/useGetProducts";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const ProductList = () => {
   const { slug } = useParams();
-  console.log(slug);
-  const { isLoading, error, data } = useGetProducts(slug ?? '')
+  const { isLoading, error, data } = useGetProducts(slug ?? "");
 
+  let navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
 
-  if(error) return <p>Ha habido un error ..</p> 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+
+  const handleSearchTermChange = (term) => {
+    setSearchTerm(term);
+  };
+
+  const handleSearchSubmit = () => {
+    setIsSearching(true);
+    // Aquí puedes agregar la lógica para filtrar los productos basados en searchTerm
+    // Por ejemplo, podrías hacer una solicitud a la API o filtrar localmente la lista de productos
+  };
+  if (error) return <p>Ha habido un error ..</p>;
   return (
     <>
-      <SearchBar />
+      <SearchBar
+        onSearchTermChange={handleSearchTermChange}
+        onSearchSubmit={handleSearchSubmit}
+      />
       <Button
         text={"Regresar"}
         icon={chevronLeft}
         className={styles.chevronButton}
+        onClick={goBack}
       />
-      {data && data.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      {data &&
+        data
+          .filter((product) =>
+            product.name.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .map((product) => <ProductCard key={product.id} product={product} />)}
     </>
   );
 };
