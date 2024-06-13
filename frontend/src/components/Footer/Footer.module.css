@@ -1,0 +1,30 @@
+.container{
+    background-color: #D4E6FF;
+    color: #4F4C4C ;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+}
+.sectionContainer{
+padding-bottom: 1rem;
+line-height: 0rem;
+margin-top: 1.5rem;
+}
+.section{
+    padding-bottom: 1rem;
+   
+}
+.logo{
+    width: 40%;
+    Margin-top: 3rem;
+}
+.adds{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.copyRight{
+    color: #6B185E;
+    font-weight: bold;
+}

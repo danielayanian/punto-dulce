@@ -1,0 +1,153 @@
+/* src/components/MenuAdmi.module.css */
+.menuContent {
+  background-color: #6B185E;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  z-index: 1001;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo {
+  width: 35%;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.searchIcon {
+  color: #EFF5FE;
+  margin-right: 10px;
+}
+
+.menuIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #EFF5FE;
+  font-size: 17px;
+}
+
+.menuIcon:focus {
+  background-color: #6B185E;
+  outline: none;
+}
+
+.menuIcon:active {
+  color: #A6BCDF;
+}
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f0f4ff;
+  transition: max-height 0.3s ease-in-out;
+  z-index: 1000;
+  background: #EFF5FE;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.open {
+  max-height: 100vh;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 30px;
+  margin-bottom: 10%;
+}
+
+.iconMenu {
+  cursor: pointer;
+  border-radius: 999px;
+  border: 1px solid #6B185E;
+  padding: 3%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.iconMenu:active {
+  color: #A6BCDF;
+  background-color: #6B185E;
+}
+
+.menu li {
+  display: flex;
+  flex-direction: column;
+  gap: 8%;
+  padding: 15px;
+  color: #6B185E;
+}
+
+.iconContent {
+  display: flex;
+  gap: 10%;
+}
+
+li img {
+  width: 28px;
+}
+
+.menu li a {
+  font-size: 20px;
+  font-weight: 500;
+  color: #6B185E;
+  text-decoration: none;
+  display: block;
+}
+
+.firstSubmenuItemLink {
+  color: #1E293B !important;
+}
+
+.activeIcon {
+  color: #A6BCDF !important;
+  background-color: #6B185E !important;
+}
+
+.activeImage {
+  filter: brightness(0) saturate(100%) invert(76%) sepia(7%) saturate(604%) hue-rotate(168deg) brightness(91%) contrast(92%);
+}
+
+.submenu {
+  list-style-type: none;
+  padding-left: 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.perfil {
+  width: 50%;
+}
+
+.submenuOpen {
+  max-height: 500px;
+  background: #EFF5FE;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 70%;
+  margin-top: 5%;
+}
+
+.submenu li {
+  padding: 5px 0;
+}
+
+.submenu li a {
+  font-size: 18px;
+  color: #6B185E;
+  text-decoration: none;
+}
+
+.submenuPerfil {
+  width: 48%;
+}
+

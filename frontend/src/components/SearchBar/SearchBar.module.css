@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; 
+
+}
+.title {
+  position: absolute;
+  top: 10%;
+}
+.bgImg {
+  width: 100vw;
+}
+.bar {
+  padding: 4%;
+  width: 80vw;
+  margin-left: 5%;
+  border: #6B185E 2px solid;
+  border-radius: 0.5rem;
+  background-color: #EFF5FE;
+}
+
+.barIcon {
+  display: flex;
+  border-radius: 0.5rem;
+  align-items: center;
+  background-color: transparent;
+  box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
+}
+.searchIcon {
+  position: absolute;
+  right: 25%;
+  color: #6B185E;
+  width: 1rem;
+  height: 1rem;
+}
+.barIconFilter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  bottom: 8rem;
+}
+.filterButton {
+  background-color: #EFF5FE;
+}
