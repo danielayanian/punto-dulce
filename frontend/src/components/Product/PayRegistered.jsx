@@ -11,7 +11,7 @@ function PayRegistered({ products }) {
     fullName: 'Juan Pérez',
     phone: '+1234567890',
     street: 'Av. Ficticia',
-    number: '123',
+    streetNumber: '123',
     floor: '4',
     apartment: 'A',
     neighborhood: 'Barrio Ficticio',
@@ -37,7 +37,7 @@ function PayRegistered({ products }) {
   const [isCustomerDataChecked, setIsCustomerDataChecked] = useState(true);
   const [isReceiverDataChecked, setIsReceiverDataChecked] = useState(false);
   const [isEditingReceiverData, setIsEditingReceiverData] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // Nuevo estado para controlar la apertura del popup
+  // const [isPopupOpen, setIsPopupOpen] = useState(false); // Nuevo estado para controlar la apertura del popup
 
   const openEditPopup = () => {
     setIsEditingUserData(true);

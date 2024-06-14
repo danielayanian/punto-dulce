@@ -2,15 +2,17 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
-import styles from './EditPopUp.module.css'; // Ensure this matches your actual file name
-import { FaPencilAlt } from 'react-icons/fa'; 
+import styles from './EditPopUp.module.css'; // Asegúrate de que coincida con el nombre real de tu archivo CSS
+import { FaPencilAlt } from 'react-icons/fa';
+
 const EditPopup = ({ isOpen, onClose, data, handleInputChange, saveChanges, type }) => {
   return (
     isOpen && (
       <div className={styles.popupOverlay}>
         <div className={styles.popupContainer}>
           <button className={styles.closeButton} onClick={onClose}>×</button>
-          <h2>  <FaPencilAlt />MODIFICAR DATOS</h2> <input
+          <h2><FaPencilAlt /> MODIFICAR DATOS</h2>
+          <input
             type="text"
             id={`${type}FullName`}
             name="fullName"
@@ -26,6 +28,26 @@ const EditPopup = ({ isOpen, onClose, data, handleInputChange, saveChanges, type
             value={data.phone}
             onChange={handleInputChange}
           />
+          {type === 'wholesale' && (
+            <>
+              <input
+                type="text"
+                id={`${type}Company`}
+                name="company"
+                placeholder="Razón Social"
+                value={data.Company}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                id={`${type}CUIT`}
+                name="cuit"
+                placeholder="CUIT"
+                value={data.CUIT}
+                onChange={handleInputChange}
+              />
+            </>
+          )}
           <input
             type="text"
             id={`${type}Street`}
@@ -39,7 +61,7 @@ const EditPopup = ({ isOpen, onClose, data, handleInputChange, saveChanges, type
             id={`${type}Number`}
             name="number"
             placeholder="Número"
-            value={data.number}
+            value={data.streetNumber}
             onChange={handleInputChange}
           />
           <input
@@ -66,6 +88,7 @@ const EditPopup = ({ isOpen, onClose, data, handleInputChange, saveChanges, type
             value={data.neighborhood}
             onChange={handleInputChange}
           />
+          <button className={styles.saveButton} onClick={saveChanges}>Guardar</button>
         </div>
       </div>
     )

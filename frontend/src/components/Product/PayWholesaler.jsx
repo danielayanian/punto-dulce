@@ -3,19 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
 import Left from '../../../public/img/chevron-left.svg';
 import Right from '../../../public/img/chevron-right.svg';
+import EditPopUp from './EditPopUp';
 
 function PayWholesaler({ products }) {
-  // Objeto con datos del usuario
-  // const initialReceiverData = {
-  //   fullName: 'Juan Pérez',
-  //   phone: '+1234567890',
-  //   address: 'Av. Ficticia',
-  //   number: '123',
-  //   floor: '4',
-  //   apartment: 'A',
-  //   neighborhood: 'Barrio Ficticio',
-  // };
-
   const initialUserData = {
     fullName: 'María García',
     Adress: 'Calle Ficticia 456',
@@ -38,21 +28,7 @@ function PayWholesaler({ products }) {
   const [receiverData, setReceiverData] = useState([]);
   const [isCustomerDataChecked, setIsCustomerDataChecked] = useState(true);
   const [isReceiverDataChecked, setIsReceiverDataChecked] = useState(false);
-
-  //   const handleReceiverDataChange = () => {
-  //     setIsReceiverDataChecked(!isReceiverDataChecked);
-  //   };
-
-  // const handleCheckboxEditReceiverData = () => {
-  //   setIsEditingReceiverData(!isEditingReceiverData);
-  // };
-
-  const handleEditUserData = () => {
-    setIsEditingUserData(!isEditingUserData);
-  };
-  // const handleEditReceiverData = () => {
-  //   setIsEditingReceiverData(!isEditingReceiverData);
-  // };
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +37,26 @@ function PayWholesaler({ products }) {
       [name]: value,
     }));
   };
+
+  const handleSaveChanges = () => {
+    console.log('Guardando cambios:', userData);
+
+    setIsPopupOpen(false);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const openEditPopup = () => {
+    setIsEditingUserData(true);
+    setIsPopupOpen(true)
+    
+  };
+
+  // const handleEditUserData = () => {
+  //   setIsEditingUserData(!isEditingUserData);
+  // };
 
   const handlePaymentChange = (e) => {
     setSelectedPayment(e.target.value);
@@ -265,11 +261,11 @@ function PayWholesaler({ products }) {
                   />
                   Datos Mayorista
                 </label>
-                <span className={styles.editLink} onClick={handleEditUserData}>
-                  {isEditingUserData ? 'Guardar' : 'Editar'}
+                <span className={styles.editLink} onClick={openEditPopup}>
+                  Editar
                 </span>
               </div>{' '}
-              {!isEditingUserData && (
+              {!isPopupOpen && (
                 <div className={styles.userDataList}>
                   <ul>
                     <li>Nombre Completo: {userData.fullName}</li>
@@ -289,89 +285,15 @@ function PayWholesaler({ products }) {
                   </ul>
                 </div>
               )}
-              {isEditingUserData && (
-                <div className={styles.inputsContainer}>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    placeholder="Nombre Completo"
-                    value={userData.fullName}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="Adress"
-                    name="Adress"
-                    placeholder="Domicilio Celular"
-                    value={userData.Adress}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="streetNumber"
-                    name="streetNumber"
-                    placeholder="Número"
-                    value={userData.streetNumber}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="floor"
-                    name="floor"
-                    placeholder="Piso"
-                    value={userData.floor}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="apartment"
-                    name="apartment"
-                    placeholder="Dpto"
-                    value={userData.apartment}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="neighborhood"
-                    name="neighborhood"
-                    placeholder="Barrio"
-                    value={userData.neighborhood}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    placeholder="Celular"
-                    value={userData.phone}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="Condition"
-                    name="Condition"
-                    placeholder="Cond.Frente al IVA"
-                    value={userData.Condition}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="Company"
-                    name="Company"
-                    placeholder="Razón Social"
-                    value={userData.Condition}
-                    onChange={handleInputChange}
-                  />{' '}
-                  <input
-                    type="text"
-                    id="CUIT"
-                    name="CUIT"
-                    placeholder="CUIT"
-                    value={userData.CUIT}
-                    onChange={handleInputChange}
-                  />
-                </div>
+              {isPopupOpen && (
+                <EditPopUp
+                  isOpen={isPopupOpen}
+                  onClose={handleClosePopup}
+                  data={userData}
+                  handleInputChange={handleInputChange}
+                  saveChanges={handleSaveChanges}
+                  type="wholesale" // Cambia a "wholesale" si estás editando datos del mayorista
+                />
               )}
             </div>
           </div>
@@ -480,7 +402,7 @@ function PayWholesaler({ products }) {
             </div>
             <div>
               <h3>Domicilio de Facturación</h3>
-              <ul  className={styles.listShipping}>
+              <ul className={styles.listShipping}>
                 <li>{initialUserData.fullName}</li>
                 <li>
                   {initialUserData.street}
@@ -510,7 +432,10 @@ function PayWholesaler({ products }) {
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
-              <Link to="/purchase-completed" className={`${styles.button} ${styles.buttonLeft}`}>
+              <Link
+                to="/purchase-completed"
+                className={`${styles.button} ${styles.buttonLeft}`}
+              >
                 Terminar <img src={Right} alt="Right arrow" />
               </Link>
             </div>
