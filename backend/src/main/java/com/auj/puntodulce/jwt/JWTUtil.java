@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -20,6 +20,9 @@ public class JWTUtil {
         return issueToken(subject, Map.of());
     }
     public String issueToken(String subject, String ...scopes){
+        return issueToken(subject, Map.of("scopes", scopes));
+    }
+    public String issueToken(String subject, List<String> scopes){
         return issueToken(subject, Map.of("scopes", scopes));
     }
     public String issueToken(String subject, Map<String, Object> claims){

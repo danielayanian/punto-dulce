@@ -1,5 +1,6 @@
 package com.auj.puntodulce.jwt;
 
+import com.auj.puntodulce.user.UserDetailsServiceImplementation;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +9,6 @@ import lombok.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -19,9 +19,9 @@ import java.io.IOException;
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     private final JWTUtil jwtUtil;
-    private final UserDetailsService userDetailsService;
+    private final UserDetailsServiceImplementation userDetailsService;
 
-    public JWTAuthenticationFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService) {
+    public JWTAuthenticationFilter(JWTUtil jwtUtil, UserDetailsServiceImplementation userDetailsService) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
     }
@@ -51,7 +51,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         }
 
         if(subject != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = userDetailsService.loadUserByUsername(subject);
+            UserDetails userDetails = userDetailsService.loadUserById(subject);
             if(jwtUtil.isTokenValid(jwt, userDetails.getUsername())){
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authenticationToken.setDetails(

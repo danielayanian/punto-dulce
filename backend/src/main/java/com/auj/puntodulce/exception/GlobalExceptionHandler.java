@@ -7,6 +7,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -28,43 +30,43 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(CartNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorMessage> handleCartNotFoundException(RuntimeException ex) {
+    public ResponseEntity<ErrorMessage> handleCartNotFoundException(CartNotFoundException ex) {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(ProductNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorMessage> handleProductNotFoundException(RuntimeException ex) {
+    public ResponseEntity<ErrorMessage> handleProductNotFoundException(ProductNotFound ex) {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(UserEmailNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorMessage> handleUserEmailNotFoundException(RuntimeException ex) {
+    public ResponseEntity<ErrorMessage> handleUserEmailNotFoundException(UserEmailNotFound ex) {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(CustomerDetailsNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorMessage> handleCustomerDetailsNotFound(RuntimeException ex) {
+    public ResponseEntity<ErrorMessage> handleCustomerDetailsNotFound(CustomerDetailsNotFound ex) {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(InvalidCartException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorMessage> handleInvalidCartException(RuntimeException ex) {
+    public ResponseEntity<ErrorMessage> handleInvalidCartException(InvalidCartException ex) {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(InvalidRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorMessage> handleInvalidRequestException(RuntimeException ex) {
+    public ResponseEntity<ErrorMessage> handleInvalidRequestException(InvalidRequestException ex) {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(InvalidPasswordException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorMessage> handleInvalidPasswordException(RuntimeException ex) {
+    public ResponseEntity<ErrorMessage> handleInvalidPasswordException(InvalidPasswordException ex) {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
@@ -80,5 +82,17 @@ public class GlobalExceptionHandler {
         result.put("errors", errors);
 
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(InsufficientAuthenticationException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<ErrorMessage> handleAuthException(InsufficientAuthenticationException ex) {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.FORBIDDEN);
+    }
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<ErrorMessage> handleAuthException(BadCredentialsException ex) {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.UNAUTHORIZED);
     }
 }

@@ -19,5 +19,8 @@ public class UserDataAccessService {
     public Optional<User> selectUserById(String userId){
         return userRepository.findById(UUID.fromString(userId));
     }
+    public Optional<User> selectUserByEmail(String email){
+        return userRepository.findUserByEmail(email);
+    }
 
 }
