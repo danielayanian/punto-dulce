@@ -1,23 +1,23 @@
-.popupOverlay {
+/* .popupOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Increased opacity for a darker background */
+  background-color: rgba(0, 0, 0, 0.8); 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Ensures the overlay is on top */
+  z-index: 999; 
 }
 
 .popupContainer {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-  position: relative; /* Necessary for the close button positioning */
-  z-index: 1000; /* Ensures the container is on top of the overlay */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); 
+  position: relative; 
+  z-index: 1000; 
 }
 
 .closeButton {
@@ -29,6 +29,6 @@
   cursor: pointer;
   color: #333;
   font-size: 18px;
-  font-weight: bold; /* Make the cross bold */
+  font-weight: bold; 
   line-height: 1;
-}
+} */
