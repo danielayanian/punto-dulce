@@ -12,6 +12,8 @@ import { Wsp } from "./components/WhatsApp/Wsp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Policy from "./components/Policy/Policy";
 import ScrollToTop from "./Hooks/ScrollToTop";
+import PaymentForm from './pages/PaymentDetails';
+import PurchaseCompleted from './pages/PurchaseCompleted';
 
 
 const App = () =>{
@@ -30,11 +32,14 @@ const App = () =>{
           <Route path="/product-list/:slug" element={<ProductList />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart/>} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/paymentDetails" element={<PaymentForm />} />
+          <Route path="/purchase-completed" element={<PurchaseCompleted />} />
           <Route path="/policy" element={<Policy/>} />
           <Route path="/*" element={<NotFound />} />
+
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </QueryClientProvider>
  

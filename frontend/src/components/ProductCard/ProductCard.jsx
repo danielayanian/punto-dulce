@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Button from "../Button/Button";
 import ButtonSum from "../Button/ButtonSum.jsx";
 import styles from "./ProductCard.module.css";

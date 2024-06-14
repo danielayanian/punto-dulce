@@ -1,13 +1,11 @@
 package com.auj.puntodulce.product;
 
 import com.auj.puntodulce.category.Category;
-import com.auj.puntodulce.models.Order;
+import com.auj.puntodulce.order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.math.BigDecimal;
@@ -40,7 +38,9 @@ public class Product {
     @Column(nullable = false)
     private int stock;
     @Column(nullable = false)
-    private BigDecimal price;
+    private BigDecimal priceMinor;
+    @Column(nullable = false)
+    private BigDecimal priceMayor;
     @JsonIgnore
     @Column(name = "price_updated_at",nullable = false)
     private Date priceUpdatedAt;
@@ -54,10 +54,6 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @JsonIgnore
-    @ManyToMany(mappedBy = "products")
-    @ToString.Exclude
-    private List<Order> orders;
 
     @PrePersist
     protected void onCreate() {

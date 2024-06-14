@@ -1,5 +1,6 @@
 package com.auj.puntodulce.cart;
 
+import com.auj.puntodulce.order.Order;
 import com.auj.puntodulce.product.Product;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,9 +23,15 @@ public class CartItem {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id", nullable = true)
+    @ToString.Exclude
     private Cart cart;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = true)
+    @ToString.Exclude
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
@@ -34,16 +41,17 @@ public class CartItem {
     private int quantity;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private BigDecimal totalPriceMinor;
 
     @Column(nullable = false)
-    private BigDecimal total;
+    private BigDecimal totalPriceMayor;
 
     @PrePersist
     protected void onCreate() {
         if (this.id == null) {
             this.id = UUID.randomUUID();
         }
-        this.total = this.price.multiply(BigDecimal.valueOf(this.quantity));
+        this.totalPriceMinor = this.product.getPriceMinor().multiply(BigDecimal.valueOf(this.quantity));
+        this.totalPriceMayor = this.product.getPriceMayor().multiply(BigDecimal.valueOf(this.quantity));
     }
 }

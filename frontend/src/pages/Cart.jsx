@@ -46,7 +46,6 @@ const Cart = () => {
       quantity: 4 
     },
   ];
-  
 
   return <ProductCart products={products} />;
 };
