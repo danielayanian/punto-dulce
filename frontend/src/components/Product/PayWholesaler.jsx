@@ -22,7 +22,6 @@ function PayWholesaler({ products }) {
 
   // Estado para los datos del usuario
   const [userData, setUserData] = useState(initialUserData);
-  const [isEditingUserData, setIsEditingUserData] = useState(''); // Inicialmente seleccionado
   const [selectedPayment, setSelectedPayment] = useState('');
   const [selectedDelivery, setSelectedDelivery] = useState('');
   const [receiverData, setReceiverData] = useState([]);
@@ -49,14 +48,9 @@ function PayWholesaler({ products }) {
   };
 
   const openEditPopup = () => {
-    setIsEditingUserData(true);
-    setIsPopupOpen(true)
-    
+    setIsPopupOpen(true);
   };
 
-  // const handleEditUserData = () => {
-  //   setIsEditingUserData(!isEditingUserData);
-  // };
 
   const handlePaymentChange = (e) => {
     setSelectedPayment(e.target.value);
