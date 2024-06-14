@@ -54,7 +54,7 @@ function PaymentDetails() {
 
   useEffect(() => {
     // Simulación de verificación de usuario registrado y mayorista
-    const isUserRegistered = false; 
+    const isUserRegistered = true; 
     const isWholesaler = false; 
 
     setRegisteredUser(isUserRegistered);
