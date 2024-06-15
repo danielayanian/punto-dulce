@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/auth")
 @Tag(name = "auth", description = "Operations related to authentication")
+@Validated
 public class AuthController {
     private final JWTUtil jwtUtil;
     private final UserService userService;
@@ -37,7 +39,7 @@ public class AuthController {
             tags = {"auth"}
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Successfully registered user"),
+            @ApiResponse(responseCode = "204", description = "Successfully registered user", content = @Content),
             @ApiResponse(responseCode = "400", description = "Invalid request data"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
@@ -59,7 +61,7 @@ public class AuthController {
             tags = {"auth"}
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Successfully authenticated user"),
+            @ApiResponse(responseCode = "204", description = "Successfully authenticated user", content = @Content),
             @ApiResponse(responseCode = "400", description = "Invalid login credentials"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })

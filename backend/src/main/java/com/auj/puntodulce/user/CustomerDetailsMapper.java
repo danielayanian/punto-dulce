@@ -10,11 +10,11 @@ public class CustomerDetailsMapper implements Function<CheckoutRequest, Customer
     @Override
     public CustomerDetails apply(CheckoutRequest checkoutRequest) {
         CustomerDetails customerDetails =  new CustomerDetails();
-        customerDetails.setAddress(checkoutRequest.address());
-        customerDetails.setApartment(checkoutRequest.apartment());
-        customerDetails.setPhone(checkoutRequest.phone());
-        customerDetails.setFullName(checkoutRequest.fullName());
-        customerDetails.setNeighborhood(checkoutRequest.neighborhood());
+        customerDetails.setAddress(checkoutRequest.getAddress());
+        customerDetails.setApartment(checkoutRequest.getApartment());
+        customerDetails.setPhone(checkoutRequest.getPhone());
+        customerDetails.setFullName(checkoutRequest.getFullName());
+        customerDetails.setNeighborhood(checkoutRequest.getNeighborhood());
         return customerDetails;
     }
 }

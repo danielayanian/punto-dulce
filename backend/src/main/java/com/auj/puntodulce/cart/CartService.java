@@ -51,7 +51,9 @@ public class CartService {
     public void validateCart(UUID cartId) {
         Cart cart = cartDataAccessService.findById(cartId)
                 .orElseThrow(() -> new CartNotFoundException("Cart not found"));
-
+        if (cart.getItems().isEmpty()) {
+            throw new InvalidCartException("Cart is empty");
+        }
         boolean changesDetected = false;
         for (CartItem item : cart.getItems()) {
             Product product = productDataAccessService.selectProductById(item.getProduct().getId())

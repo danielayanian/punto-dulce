@@ -28,7 +28,7 @@ public class User  implements UserDetails {
 	@Column(name = "id")
 	@JdbcTypeCode(Types.VARCHAR)
 	private UUID id;
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	@Column(nullable = false)
 	private String password;
