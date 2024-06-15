@@ -1,10 +1,13 @@
-package com.auj.puntodulce.user;
+package com.auj.puntodulce.auth;
 
-import com.auj.puntodulce.cart.CartService;
 import com.auj.puntodulce.jwt.JWTUtil;
+import com.auj.puntodulce.user.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
@@ -14,22 +17,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("api/v1/auth")
-@Tag(name = "auth", description = "Operations related to auth")
+@Tag(name = "auth", description = "Operations related to authentication")
 public class AuthController {
     private final JWTUtil jwtUtil;
     private final UserService userService;
     private final AuthService authService;
 
-    public AuthController(JWTUtil jwtUtil, UserService userService, AuthService authService, CartService cartService) {
+    public AuthController(JWTUtil jwtUtil, UserService userService, AuthService authService) {
         this.jwtUtil = jwtUtil;
         this.userService = userService;
         this.authService = authService;
     }
 
+    @Operation(
+            summary = "Register a new user",
+            description = "Registers a new user with the provided details, issues a JWT token, and sets a cartId cookie.",
+            tags = {"auth"}
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Successfully registered user"),
+            @ApiResponse(responseCode = "400", description = "Invalid request data"),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
     @PostMapping("register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterUserDTO request, HttpServletResponse response){
         RegisterResponse registerResponse = userService.addUser(request);
@@ -42,6 +53,16 @@ public class AuthController {
         return ResponseEntity.noContent().header(HttpHeaders.AUTHORIZATION, jwt).build();
     }
 
+    @Operation(
+            summary = "User login",
+            description = "Authenticates a user with the provided credentials, issues a JWT token, and sets a cartId cookie.",
+            tags = {"auth"}
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Successfully authenticated user"),
+            @ApiResponse(responseCode = "400", description = "Invalid login credentials"),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
     @PostMapping("login")
     public ResponseEntity<?> signInUser(@Valid @RequestBody AuthLoginRequest request, HttpServletResponse response){
         LoginResponse loginResponse = authService.login(request);

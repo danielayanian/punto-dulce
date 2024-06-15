@@ -1,6 +1,7 @@
-package com.auj.puntodulce.user;
+package com.auj.puntodulce.auth;
 
 import com.auj.puntodulce.jwt.JWTUtil;
+import com.auj.puntodulce.user.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

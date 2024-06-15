@@ -1,5 +1,6 @@
 package com.auj.puntodulce.user;
 
+import com.auj.puntodulce.auth.RegisterUserDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

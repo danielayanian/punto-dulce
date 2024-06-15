@@ -1,10 +1,10 @@
 package com.auj.puntodulce.user;
 
+import com.auj.puntodulce.auth.RegisterResponse;
+import com.auj.puntodulce.auth.RegisterUserDTO;
 import com.auj.puntodulce.exception.InvalidPasswordException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class UserService {

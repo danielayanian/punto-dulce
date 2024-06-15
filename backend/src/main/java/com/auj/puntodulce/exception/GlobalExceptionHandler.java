@@ -1,9 +1,6 @@
 package com.auj.puntodulce.exception;
 
-import io.swagger.v3.oas.annotations.Hidden;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springdoc.api.ErrorMessage;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +8,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +68,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<?> notValid(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ResponseEntity<Map<String, List<String>>> notValid(MethodArgumentNotValidException ex) {
         List<String> errors = new ArrayList<>();
 
         ex.getAllErrors().forEach(err -> errors.add(err.getDefaultMessage()));

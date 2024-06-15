@@ -1,6 +1,7 @@
-package com.auj.puntodulce.user;
+package com.auj.puntodulce.auth;
 
 import com.auj.puntodulce.cart.Cart;
+import com.auj.puntodulce.user.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

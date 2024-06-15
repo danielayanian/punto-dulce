@@ -1,4 +1,4 @@
-package com.auj.puntodulce.user;
+package com.auj.puntodulce.auth;
 
 import java.util.UUID;
 
