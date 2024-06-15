@@ -1,5 +1,6 @@
 package com.auj.puntodulce.user;
 
+import com.auj.puntodulce.cart.Cart;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -23,6 +24,11 @@ public class RegisterUserDTO {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
+
+        Cart cart = new Cart();
+        cart.setUser(user);
+        user.setCart(cart);
+
         return user;
     }
 }

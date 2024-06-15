@@ -15,7 +15,7 @@ public class AuthService {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
-    public String login(AuthLoginRequest request){
+    public LoginResponse login(AuthLoginRequest request){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -23,6 +23,7 @@ public class AuthService {
                 )
         );
         User principal = (User) authentication.getPrincipal();
-        return jwtUtil.issueToken(principal.getId().toString(), principal.getAuthorities().toString());
+        String token = jwtUtil.issueToken(principal.getId().toString(), principal.getAuthorities().toString());
+        return new LoginResponse(principal.getCart().getId().toString(), token, principal.getId());
     }
 }

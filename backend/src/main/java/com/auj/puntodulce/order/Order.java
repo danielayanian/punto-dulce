@@ -32,10 +32,6 @@ public class Order {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
     private Status status;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customer_details_id")
-	@ToString.Exclude
-	private CustomerDetails customerDetails;
 
 
 	@Override

@@ -1,5 +1,7 @@
 package com.auj.puntodulce.user;
 
+import com.auj.puntodulce.cart.Cart;
+import com.auj.puntodulce.order.Order;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -26,13 +28,21 @@ public class User  implements UserDetails {
 	@Column(name = "id")
 	@JdbcTypeCode(Types.VARCHAR)
 	private UUID id;
-
-	private String name;
 	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
 	private String password;
-	private String address;
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false)
+	@ToString.Exclude
+	private Cart cart;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ToString.Exclude
+	private List<Order> orders;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ToString.Exclude
+	private List<CustomerDetails> customerDetails;
 
 	public User(String email, String password) {
 		this.email = email;

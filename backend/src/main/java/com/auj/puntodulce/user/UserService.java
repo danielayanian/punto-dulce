@@ -16,11 +16,12 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UUID addUser(RegisterUserDTO request){
+    public RegisterResponse addUser(RegisterUserDTO request){
         if ( !request.getPassword().equals(request.getConfirmPassword())) {
             throw new InvalidPasswordException("Passwords do not match");
         }
         request.setPassword(passwordEncoder.encode(request.getConfirmPassword()));
-        return userDataAccessService.createUser(request).getId();
+        User user = userDataAccessService.createUser(request);
+        return new RegisterResponse(user.getId().toString(), user.getCart().getId().toString());
     }
 }

@@ -23,10 +23,9 @@ public class OrderDataAccessService {
         this.cartItemRepository = cartItemRepository;
     }
     @Transactional
-    public void createOrder(UUID cartId, CustomerDetails customerDetails){
+    public void createOrder(UUID cartId){
         Cart cart = cartDataAccessService.findById(cartId).orElseThrow(()-> new CartNotFoundException("Cart not found"));
         Order order = new Order();
-        order.setCustomerDetails(customerDetails);
         order.setCreatedAt(new Date());
         order.setStatus(Status.PENDING);
         order.setTotalPrice(cart.getTotalPriceMinor());

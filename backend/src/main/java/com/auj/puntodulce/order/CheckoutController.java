@@ -1,11 +1,12 @@
 package com.auj.puntodulce.order;
 
-import com.auj.puntodulce.cart.CartService;
 import com.auj.puntodulce.exception.CartNotFoundException;
 import com.auj.puntodulce.exception.InvalidRequestException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,8 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/checkout")
+@Tag(name = "checkout", description = "Operations related to orders")
+@SecurityRequirement(name = "bearerAuth")
 public class CheckoutController {
     private final OrderService orderService;
 
