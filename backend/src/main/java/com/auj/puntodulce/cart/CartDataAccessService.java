@@ -20,6 +20,9 @@ public class CartDataAccessService {
     public Optional<Cart> findById(UUID cartId) {
         return cartRepository.findById(cartId);
     }
+    public Optional<Cart> findByUserId(UUID userId) {
+        return cartRepository.findCartByUserId(userId);
+    }
 
     public Cart findCartByIdOrCreate(UUID cartId) {
         return cartId == null ? new Cart() : findById(cartId).orElse(new Cart());
@@ -31,5 +34,7 @@ public class CartDataAccessService {
     public Cart saveCart(Cart cart) {
         return cartRepository.save(cart);
     }
-
+    public void deleteCart(UUID cartId){
+        cartRepository.deleteById(cartId);
+    }
 }

@@ -24,7 +24,7 @@ public class CartService {
 
 
     public CartResponse addOrUpdateItemToCart(UUID cartID, UUID productId, int quantity){
-        Cart cart = cartDataAccessService.findCartByIdOrCreate(cartID);
+        Cart cart = cartDataAccessService.findById(cartID).orElseThrow(()-> new CartNotFoundException("Cart not found"));
         Product product = productDataAccessService.selectProductById(productId)
                 .orElseThrow(() -> new ProductNotFound("Product not found"));
         cart.addOrUpdateItem(product, quantity);
@@ -81,5 +81,4 @@ public class CartService {
             throw new InvalidCartException("Cart has changed. Please review the changes.");
         }
     }
-
 }

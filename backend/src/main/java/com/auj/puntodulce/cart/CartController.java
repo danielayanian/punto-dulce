@@ -2,8 +2,10 @@ package com.auj.puntodulce.cart;
 
 import com.auj.puntodulce.exception.CartNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,16 +17,17 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/v1/cart")
 @Tag(name = "cart", description = "Operations related to cart")
+@SecurityRequirement(name = "bearerAuth")
 public class CartController {
     private final CartService cartService;
 
     public CartController(CartService cartService) {
         this.cartService = cartService;
     }
-    @Operation(summary = "Post a cart", description = "Adds a product to the cart and returns the updated cart.", tags = {"cart"})
+    @Operation(summary = "Add a product to the cart", description = "Adds a product to the cart and returns the updated cart.", tags = {"cart"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully added item to cart"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     @PutMapping("{productId}")
     public CartDTO putCart(@PathVariable UUID productId, @RequestParam int quantity, HttpServletRequest request, HttpServletResponse response) {
@@ -47,7 +50,7 @@ public class CartController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully fetched cart"),
             @ApiResponse(responseCode = "404", description = "Cart not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     @GetMapping
     public CartDTO getCart(HttpServletRequest request) {
@@ -62,7 +65,7 @@ public class CartController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully removed item from cart"),
             @ApiResponse(responseCode = "404", description = "Cart not found or Product not found in cart"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     @DeleteMapping("{productId}")
     public CartDTO deleteProductFromCart(@PathVariable UUID productId, HttpServletRequest request) {
