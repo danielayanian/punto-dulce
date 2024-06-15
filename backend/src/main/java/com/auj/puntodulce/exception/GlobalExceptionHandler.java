@@ -53,6 +53,12 @@ public class GlobalExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(InvalidProductQuantityException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorMessage> handleInvalidProductQuantityException(InvalidProductQuantityException ex) {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(InvalidRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorMessage> handleInvalidRequestException(InvalidRequestException ex) {
@@ -68,15 +74,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Map<String, List<String>>> notValid(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorMessage> notValid(MethodArgumentNotValidException ex) {
         List<String> errors = new ArrayList<>();
 
         ex.getAllErrors().forEach(err -> errors.add(err.getDefaultMessage()));
 
-        Map<String, List<String>> result = new HashMap<>();
-        result.put("errors", errors);
-
-        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+        ErrorMessage errorMessage = new ErrorMessage("Validation failed: " + String.join(", ", errors));
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(InsufficientAuthenticationException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)

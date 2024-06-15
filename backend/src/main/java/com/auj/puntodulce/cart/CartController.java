@@ -24,15 +24,16 @@ public class CartController {
     public CartController(CartService cartService) {
         this.cartService = cartService;
     }
-    @Operation(summary = "Add a product to the cart", description = "Adds a product to the cart and returns the updated cart.", tags = {"cart"})
+    @Operation(summary = "Add, update, or remove a product in the cart",
+            description = "Adds a product to the cart, updates the quantity of an existing product, or removes the product if the quantity is set to 0. Returns the updated cart.", tags = {"cart"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully added item to cart"),
+            @ApiResponse(responseCode = "200", description = "Successfully added, updated, or removed item from cart"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     @PutMapping("{productId}")
     public CartDTO putCart(@PathVariable UUID productId, @RequestParam int quantity, HttpServletRequest request, HttpServletResponse response) {
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be a positive number");
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity must be zero or a positive number");
         }
         UUID cartId = getCartIdFromCookies(request);
         CartResponse cartResponse = cartService.addOrUpdateItemToCart(cartId, productId, quantity);
