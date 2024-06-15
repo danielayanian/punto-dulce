@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -35,7 +36,7 @@ public class CheckoutController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void confirmOrder(@RequestParam(required = false) UUID customerDetailsId, @RequestBody(required = false) CheckoutRequest checkoutRequest, HttpServletRequest request) {
+    public void confirmOrder(@RequestParam(required = false) UUID customerDetailsId, @RequestBody(required = false) CheckoutRequest checkoutRequest, HttpServletRequest request, Authentication authentication) {
         if (customerDetailsId != null && checkoutRequest != null) {
             throw new InvalidRequestException("Provide either customerDetailsId or checkoutRequest, not both.");
         }
@@ -53,7 +54,7 @@ public class CheckoutController {
             // Create a minimal CheckoutRequest with just the customerDetailsId
             orderService.confirmOrder(cartId, customerDetailsId);
         }else{
-            orderService.confirmOrder(cartId, checkoutRequest);
+            orderService.confirmOrder(cartId, checkoutRequest, authentication.getName());
         }
 
     }

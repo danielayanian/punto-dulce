@@ -9,8 +9,12 @@ import java.util.function.Function;
 public class CustomerDetailsMapper implements Function<CheckoutRequest, CustomerDetails> {
     @Override
     public CustomerDetails apply(CheckoutRequest checkoutRequest) {
-        return new CustomerDetails(null,checkoutRequest.fullName(),
-                checkoutRequest.address(), checkoutRequest.apartment(), checkoutRequest.neighborhood(),checkoutRequest.phone()
-        );
+        CustomerDetails customerDetails =  new CustomerDetails();
+        customerDetails.setAddress(checkoutRequest.address());
+        customerDetails.setApartment(checkoutRequest.apartment());
+        customerDetails.setPhone(checkoutRequest.phone());
+        customerDetails.setFullName(checkoutRequest.fullName());
+        customerDetails.setNeighborhood(checkoutRequest.neighborhood());
+        return customerDetails;
     }
 }

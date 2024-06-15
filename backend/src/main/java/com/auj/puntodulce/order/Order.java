@@ -3,8 +3,12 @@ package com.auj.puntodulce.order;
 import com.auj.puntodulce.cart.CartItem;
 import com.auj.puntodulce.enums.Status;
 import com.auj.puntodulce.user.CustomerDetails;
+import com.auj.puntodulce.user.User;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.math.BigDecimal;
@@ -32,6 +36,14 @@ public class Order {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
     private Status status;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	@ToString.Exclude
+	private User user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "customer_details_id")
+	@ToString.Exclude
+	private CustomerDetails customerDetails;
 
 
 	@Override
