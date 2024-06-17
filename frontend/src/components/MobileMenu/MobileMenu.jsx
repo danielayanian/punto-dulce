@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
-import filter from "../../../public/img/Filter.png";
+import filter from "/img/Filter.png";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
       {isOpen && <div className={styles.overlay}></div>}
       <div className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
         <div className={styles.header}>
-          <img src="../../../public/img/icon-arg.svg" alt="icono" />
+          <img src="/img/icon-arg.svg" alt="icono" />
           <button className={styles.closeButton} onClick={toggleMenu}>
             X
           </button>

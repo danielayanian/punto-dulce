@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../components/LoginInput/LoginInput.module.css';
 import Button from "../Button/Button";
-import Link from "../../../public/img/link-button.png"
+import Link from "/img/link-button.png"
 import { validateEmail, validatePassword } from '../Utils/Validation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +45,7 @@ const RegisterInput = () => {
   };
   return (
     <section className={styles.container}>
-      <img className={styles.logo} src="../../../public/img/logo.png"  alt="logo de la página" />
+      <img className={styles.logo} src="/img/logo.png"  alt="logo de la página" />
       <h1 className={styles.title}>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>

@@ -5,27 +5,27 @@ const OtherBrands = () => {
     {
       id: 1, // Assuming each brand has a unique ID
       name: "flynpaf",
-      imageUrl: "../../../public/img/flynpaf.png",
+      imageUrl: "/img/flynpaf.png",
     },
     {
       id: 2,
       name: "vaquita",
-      imageUrl: "../../../public/img/vaquita.png",
+      imageUrl: "/img/vaquita.png",
     },
     {
       id: 3,
       name: "terrabusi",
-      imageUrl: "../../../public/img/terrabusi.png",
+      imageUrl: "/img/terrabusi.png",
     },
     {
       id: 4,
       name: "Fellfor",
-      imageUrl: "../../../public/img/felfort.png",
+      imageUrl: "/img/felfort.png",
     },
     {
       id: 5,
       name: "arcor",
-      imageUrl: "../../../public/img/arcor.png",
+      imageUrl: "/img/arcor.png",
     },
   ];
 

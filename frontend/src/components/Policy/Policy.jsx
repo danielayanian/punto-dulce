@@ -1,7 +1,7 @@
 import styles from "./Policy.module.css";
-import line from "../../../public/img/longLine.svg";
+import line from "/img/longLine.svg";
 import Button from "../Button/Button";
-import left from "../../../public/img/chevron-left.svg";
+import left from "/img/chevron-left.svg";
 import { useNavigate  } from "react-router-dom";
 
 export const Policy = () => {

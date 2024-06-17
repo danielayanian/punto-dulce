@@ -37,7 +37,7 @@ const LoginInput = () => {
 
   return (
     <section className={styles.container}>
-      <img className={styles.logo} src="../../../public/img/logo.png"  alt="logo de la página" />
+      <img className={styles.logo} src="/img/logo.png"  alt="logo de la página" />
       <div className={styles.loginBox}></div>
         <h1 className={styles.title}>Log in</h1>
         <form onSubmit={handleSubmit}>

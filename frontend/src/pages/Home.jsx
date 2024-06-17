@@ -10,7 +10,7 @@ export const Home = () => {
     {
       id: 1,
       categoryName: "Alfajores",
-      imageUrl: "../../../public/img/alfajores.png",
+      imageUrl: "/img/alfajores.png",
     },
   ];
   return (

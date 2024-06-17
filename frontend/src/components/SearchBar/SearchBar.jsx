@@ -1,7 +1,7 @@
-import filter from "../../../public/img/Filter.svg";
+import filter from "/img/Filter.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import bg from "../../../public/img/img-product.png";
+import bg from "/img/img-product.png";
 import styles from "./SearchBar.module.css";
 import Button from "../Button/Button";
 import { useState } from "react";
