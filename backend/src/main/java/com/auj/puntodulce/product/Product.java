@@ -1,7 +1,6 @@
 package com.auj.puntodulce.product;
 
 import com.auj.puntodulce.category.Category;
-import com.auj.puntodulce.order.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +10,6 @@ import org.hibernate.proxy.HibernateProxy;
 import java.math.BigDecimal;
 import java.sql.Types;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -40,7 +38,7 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal priceMinor;
     @Column(nullable = false)
-    private BigDecimal priceMayor;
+    private BigDecimal priceMajor;
     @JsonIgnore
     @Column(name = "price_updated_at",nullable = false)
     private Date priceUpdatedAt;

@@ -7,6 +7,6 @@ public record CartDTO(
         List<CartItemDTO> items,
         int totalItems,
         BigDecimal totalPriceMinor,
-        BigDecimal totalPriceMayor
+        BigDecimal totalPriceMajor
 ) {
 }

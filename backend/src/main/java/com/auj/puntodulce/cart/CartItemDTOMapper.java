@@ -13,7 +13,7 @@ public class CartItemDTOMapper implements Function<CartItem, CartItemDTO> {
                 new ProductDTOMapper().apply(cartItem.getProduct()),
                 cartItem.getQuantity(),
                 cartItem.getTotalPriceMinor(),
-                cartItem.getTotalPriceMayor()
+                cartItem.getTotalPriceMajor()
         );
     }
 }

@@ -27,7 +27,11 @@ public class CartService {
         Cart cart = cartDataAccessService.findById(cartID).orElseThrow(()-> new CartNotFoundException("Cart not found"));
         Product product = productDataAccessService.selectProductById(productId)
                 .orElseThrow(() -> new ProductNotFound("Product not found"));
+
         cart.addOrUpdateItem(product, quantity);
+        if(quantity == 0 ){
+            removeItemFromCart(cartID, productId);
+        }
         cart = cartDataAccessService.saveCart(cart);
         CartDTO cartDTO = cartDTOMapper.apply(cart);
 
@@ -63,7 +67,7 @@ public class CartService {
             if (item.getQuantity() > product.getStock()) {
                 item.setQuantity(product.getStock());
                 item.setTotalPriceMinor(item.getProduct().getPriceMinor().multiply(BigDecimal.valueOf(item.getQuantity())));
-                item.setTotalPriceMayor(item.getProduct().getPriceMayor().multiply(BigDecimal.valueOf(item.getQuantity())));
+                item.setTotalPriceMajor(item.getProduct().getPriceMajor().multiply(BigDecimal.valueOf(item.getQuantity())));
                 changesDetected = true;
             }
 
