@@ -1,3 +1,4 @@
+
 import "./App.css";
 import { BrowserRouter as Router, Link, Route, Routes  } from "react-router-dom";
 import Home from "./pages/Home";
@@ -12,19 +13,14 @@ import { Wsp } from "./components/WhatsApp/Wsp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Policy from "./components/Policy/Policy";
 import ScrollToTop from "./Hooks/ScrollToTop";
-import Admi from './pages/Admi';
 import PaymentForm from './pages/PaymentDetails';
 import PurchaseCompleted from './pages/PurchaseCompleted';
 
 
+const App = () =>{
+  
+  const client = new QueryClient()
 
- 
-
-
-
-
-
-function App() { const client = new QueryClient()
   return (
     
     <QueryClientProvider client={client} >
@@ -32,26 +28,17 @@ function App() { const client = new QueryClient()
       <ScrollToTop />
         <Header />
         <Wsp/>
-
-
-        <Wsp />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product-list/:slug" element={<ProductList />} />
           <Route path="/login" element={<Login/>} />
-      
-  
-      
-        
           <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path="/policy" element={<Policy/>} />
-          <Route path="/*" element={<NotFound />} />
-          
-        
+          <Route path="/cart" element={<Cart />} />
           <Route path="/paymentDetails" element={<PaymentForm />} />
           <Route path="/purchase-completed" element={<PurchaseCompleted />} />
+          <Route path="/policy" element={<Policy/>} />
+          <Route path="/*" element={<NotFound />} />
+
         </Routes>
         <Footer />
       </Router>
@@ -62,3 +49,4 @@ function App() { const client = new QueryClient()
 }
 
 export default App;
+
