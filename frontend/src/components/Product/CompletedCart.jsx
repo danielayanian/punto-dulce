@@ -6,7 +6,7 @@ const TuComponente = () => {
   return (
     <div className={styles.contenedor}>
       <BsCheckCircle className={styles.iconoCirculoTic} />
-      <h2>COMPRA REALIZADA CON ÉXITO!</h2>
+      <h2 className="titleH2">COMPRA REALIZADA CON ÉXITO!</h2>
       <div>
         <p>En breve arrancaremos a preparar tu pedido</p>
         <p>Puedes ver el estado de tu compra en tu cuenta.</p>

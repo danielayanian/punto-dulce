@@ -70,7 +70,7 @@
   align-items: center;
 }
 
-img {
+.imgProduct {
   width: 30px;
   height: 30px;
   margin-right: 20px;
@@ -94,7 +94,7 @@ img {
   justify-content: space-between;
 }
 
-input {
+.inputForm {
   border-radius: 40px;
   background: none;
   border: 2px solid black;
@@ -138,7 +138,7 @@ input {
   margin-left: 10px;
 }
 
-p {
+.phrases {
   font-size: 12px;
   margin: 0 0 0 20px;
 }
@@ -196,7 +196,7 @@ p {
 .commentBox {
   justify-content: center;
 }
-textarea {
+.textarea {
   width: 60%;
   height: 100px;
   margin-top: 10px;

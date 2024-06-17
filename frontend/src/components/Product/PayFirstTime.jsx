@@ -205,7 +205,7 @@ function PaymentForm({ products }) {
             />
             <label htmlFor="homeDelivery">Envío a Domicilio</label>
           </div>
-          <p>Envío sin cargo</p>
+          <p className="phrases">Envío sin cargo</p>
         </div>
         <div>
           <div className={styles.paymentOption}>
@@ -219,7 +219,7 @@ function PaymentForm({ products }) {
             />
             <label htmlFor="deposit">Retirar por Depósito</label>
           </div>
-          <p>Dirección de deposito</p>
+          <p className="phrases">Dirección de deposito</p>
         </div>
 
         <h3>Datos de Envío</h3>
@@ -365,6 +365,7 @@ function PaymentForm({ products }) {
                   onChange={handleReceiverDataChange}
                 />
                 <input
+                  
                   type="text"
                   id="receiverPhone"
                   name="phone"
@@ -394,7 +395,7 @@ function PaymentForm({ products }) {
           ))}
           <div>
             <h3>Como seguir pedido</h3>
-            <p>
+            <p className="phrases">
               En la sección "Mi cuenta" puedes ver el seguimiento de la compra
             </p>
           </div>
@@ -402,7 +403,7 @@ function PaymentForm({ products }) {
         <div>
           <h3>Informaciones del pedido</h3>
           <span>EMAIL</span>
-          <p>ejemplo@ejemplo.com</p>
+          <p className="phrases">ejemplo@ejemplo.com</p>
         </div>
         { // Render the billing address section only if customerData has any non-empty fields
           Object.values(customerData).some(field => field !== '') ? (
@@ -426,7 +427,7 @@ function PaymentForm({ products }) {
         }
         <div>
           <h3>Forma de Entrega</h3>
-          <p>
+          <p className="phrases">
             {selectedDelivery === '' ? '' : selectedDelivery === 'homeDelivery' ? 'Envío a Domicilio' : 'Retirar por Depósito'}
           </p>
         </div>

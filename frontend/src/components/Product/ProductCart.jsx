@@ -18,7 +18,7 @@ function Product({ products }) {
           <div key={product.id} className={styles.productContainer}>
             <div className={styles.productInfo}>
               <div className={styles.topTitle}>
-                <img
+                <img className="imgPorduct"
                   src={product.imageUrl}
                   alt={product.name}
                   className={styles.productImage}
