@@ -14,6 +14,7 @@ import Policy from "./components/Policy/Policy";
 import ScrollToTop from "./Hooks/ScrollToTop";
 import PaymentForm from './pages/PaymentDetails';
 import PurchaseCompleted from './pages/PurchaseCompleted';
+import LoginInput from "./components/LoginInput/LoginInput";
 
 
 const App = () =>{
@@ -30,7 +31,7 @@ const App = () =>{
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product-list/:slug" element={<ProductList />} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<LoginInput/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/paymentDetails" element={<PaymentForm />} />
