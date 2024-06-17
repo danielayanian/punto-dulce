@@ -375,7 +375,7 @@ function PayWholesaler({ products }) {
           </div>
           <div className="CommentBox">
             <h3>Observaciones / Comentarios</h3>
-            <textarea placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
+            <textarea className='textareaForm' placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
           </div>
           <div className={styles.confirmation}>
             <h3>Confirmar datos</h3>

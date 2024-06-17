@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
-import styles from './EditPopUp.module.css'; // Asegúrate de que coincida con el nombre real de tu archivo CSS
+import styles from './EditPopUp.module.css'; 
 import { FaPencilAlt } from 'react-icons/fa';
 
 const EditPopup = ({ isOpen, onClose, data, handleInputChange, saveChanges, type }) => {
