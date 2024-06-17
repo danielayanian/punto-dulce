@@ -10,7 +10,10 @@
   touch-action: pan-x; /* Permite deslizamiento horizontal en dispositivos táctiles */
   scrollbar-width: thin;
 }
-
+.link{
+  text-decoration: none;
+  color: #AB5195;
+}
 .imgcontainer  {
   padding: 0;
   margin: 0.5rem;

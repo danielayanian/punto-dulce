@@ -7,8 +7,8 @@ const ButtonSum = () => {
   return (
     <div className={styles.buttonContainer}>
       <Button text="" icon={minus} className={`${styles.buttonIcon} ${styles.buttonRight}`}/>
+      <input type="text" placeholder="" className={styles.styleInput}/>
       <Button text="" icon={plus} className={`${styles.buttonIcon} ${styles.buttonLeft}`}/>
-
     </div>
   );
 };
