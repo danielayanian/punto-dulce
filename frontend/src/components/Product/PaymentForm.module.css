@@ -94,13 +94,13 @@
   justify-content: space-between;
 }
 
-input {
+/* input {
   border-radius: 40px;
   background: none;
   border: 2px solid black;
   padding: 7px;
   margin: 5px;
-}
+} */
 
 .detailTitle {
   font-weight: bold;
