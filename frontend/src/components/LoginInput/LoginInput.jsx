@@ -3,7 +3,8 @@ import styles from "./LoginInput.module.css";
 import { validateEmail, validatePassword } from "../Utils/Validation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faTimesCircle, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { urls } from "../../helpers/url";
 
 
 const LoginInput = () => {
@@ -11,8 +12,10 @@ const LoginInput = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); 
+  const location = useLocation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -30,7 +33,33 @@ const LoginInput = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // console.log("Formulario enviado");
+      try {
+        const response = await fetch(urls.login, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+          const token = response.headers.get('Authorization');
+          if (token) {
+            const jwt = token.replace('Bearer ', '');
+            localStorage.setItem('jwt', jwt); 
+            
+            const from = location.state?.from || '/'; 
+            
+            navigate(from); 
+          } else {
+            throw new Error('No se ha recibido el token de autenticación')
+          }
+        } else {
+          setErrors({ form: 'Credenciales incorrectas' });
+        }
+      } catch (error) {
+        setErrors({ form: 'Error de servidor' });
+      }
     }
   };
 
@@ -83,14 +112,14 @@ const LoginInput = () => {
           </div>
 
           <div className={styles.checkboxGroup}>
-            <input type="checkbox" id="password" />
+            <input type="checkbox" id="savePassword" />
             <label htmlFor="password">Guardar Contraseña</label>
           </div>
           <div className={styles.links}>
             <a href="/">Has perdido la contraseña?  <span className={styles.underline}>Recuperar</span></a>
             <Link to="/register">No tienes una cuenta?  <span className={styles.underline}>Registrate ahora!</span> </Link>
           </div>
-            <button className={styles.access}>
+            <button type="submit" className={styles.access}>
             <FontAwesomeIcon icon={faRightToBracket} /> Acceder
             </button>
           

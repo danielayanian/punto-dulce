@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 import filter from "/img/Filter.png";
 import Button from "../Button/Button";
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
+  const location = useLocation();
   return (
     <>
       {isOpen && <div className={styles.overlay}></div>}
@@ -22,16 +23,16 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
             <FontAwesomeIcon icon={faCircleUser} size="xl" />
             {isAuthenticated ? (
               <div className={styles.authUser}>
-                <span>{userName}</span>
+                {<span>{userName ?? ""}</span>}
                 <span>Mi cuenta</span>
               </div>
             ) : (
               <div className={styles.authButtons}>
-                <Link to="/login" className={styles.authButton} onClick={toggleMenu}>
+                <Link to="/register" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
                 REGISTRAR
                 </Link>
                 <span className={styles.separator}>/</span>
-                <Link to="/register" className={styles.authButton} onClick={toggleMenu}>
+                <Link to="/login" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
                  ENTRAR
                 </Link>
               </div>
