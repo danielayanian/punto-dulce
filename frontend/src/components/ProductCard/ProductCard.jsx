@@ -2,9 +2,9 @@
 import Button from "../Button/Button";
 import ButtonSum from "../Button/ButtonSum.jsx";
 import styles from "./ProductCard.module.css";
-import linkDark from "../../../public/img/link-dark.svg";
-import linkWhite from "../../../public/img/link-white.svg";
-import Right from "../../../public/img/chevron-right.svg";
+import linkDark from "/img/link-dark.svg";
+import linkWhite from "/img/link-white.svg";
+import Right from "/img/chevron-right.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";

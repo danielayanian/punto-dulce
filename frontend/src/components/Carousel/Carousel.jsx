@@ -19,11 +19,11 @@ const settings = {
 
 const Carousel = () => {
   const images = [
-    { src: "../../../public/img/alfajores.png" },
-    { src: '../../../public/img/bombones.png' },
-    { src: '../../../public/img/chocolate.png' },
-    { src: '../../../public/img/chupetines.png' },
-    { src: '../../../public/img/galletas.png' }
+    { src: "/img/alfajores.png" },
+    { src: '/img/bombones.png' },
+    { src: '/img/chocolate.png' },
+    { src: '/img/chupetines.png' },
+    { src: '/img/galletas.png' }
   ];
 
   return (

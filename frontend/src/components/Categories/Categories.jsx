@@ -9,17 +9,17 @@ const Categories = () => {
   console.log('Data:', data)
 
   const categoryImg = {
-    Alfajores: '../../../public/img/i-alfajor.svg',
-    'Bocaditos y Bombones': '../../../public/img/i-bombones.svg',
-    Chocolate: '../../../public/img/i-chocolates.svg',
-    'Chupetines y Chicles': '../../../public/img/i-chupetines.svg',
-    'Galletitas y Barritas': '../../../public/img/i-galletas.svg',
-    'Dulce de Leche y Miel': '../../../public/img/i-dulceYmiel.svg',
-    'Caramelos y Gomitas': '../../../public/img/i-caramelos.svg',
-    'Turrones y Mantecol': '../../../public/img/i-turrones.svg',
-    Bebidas: '../../../public/img/i-bebidas.svg',
-    Diet: '../../../public/img/i-diet.svg',
-    Varios: '../../../public/img/i-varios.svg',
+    Alfajores: '/img/i-alfajor.svg',
+    'Bocaditos y Bombones': '/img/i-bombones.svg',
+    Chocolate: '/img/i-chocolates.svg',
+    'Chupetines y Chicles': '/img/i-chupetines.svg',
+    'Galletitas y Barritas': '/img/i-galletas.svg',
+    'Dulce de Leche y Miel': '/img/i-dulceYmiel.svg',
+    'Caramelos y Gomitas': '/img/i-caramelos.svg',
+    'Turrones y Mantecol': '/img/i-turrones.svg',
+    Bebidas: '/img/i-bebidas.svg',
+    Diet: '/img/i-diet.svg',
+    Varios: '/img/i-varios.svg',
   };
 
 // if(isLoading) return Spninner. agregar spinner

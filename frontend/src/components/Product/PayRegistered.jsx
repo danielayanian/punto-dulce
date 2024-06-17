@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
-import Left from '../../../public/img/chevron-left.svg';
-import Right from '../../../public/img/chevron-right.svg';
+import Left from '/img/chevron-left.svg';
+import Right from '/img/chevron-right.svg';
 import EditPopUp from './EditPopUp'; // Importa el componente Popup
 
 function PayRegistered({ products }) {

@@ -1,9 +1,9 @@
 import Button from "../Button/Button";
-import giftcard from "../../../public/img/giftcard.png";
+import giftcard from "/img/giftcard.png";
 
-import Link from "../../../public/img/link-button.png";
+import Link from "/img/link-button.png";
 
-import Gift from "../../../public/img/gift.svg";
+import Gift from "/img/gift.svg";
 
 
 import styles from "./GiftCard.module.css";
