@@ -23,8 +23,16 @@ margin-top: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    color: #1E293B;
 }
 .copyRight{
     color: #6B185E;
     font-weight: bold;
+}
+.footerLinks{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #1E293B;
 }

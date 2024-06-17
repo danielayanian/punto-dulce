@@ -16,8 +16,8 @@
 }
 
 .bar:focus{
-  padding: 4%;
-  width: 80vw;
+  padding: 3%;
+  width: 78vw;
   margin-left: 5%;
   border: #6B185E 2px solid;
   border-radius: 0.5rem;
@@ -55,12 +55,13 @@
 
 .filterButton {
   background-color: #EFF5FE;
+  padding: 0;
 }
 
 .bar {
   all: unset;
-  padding: 4%;
-  width: 80vw;
+  padding: 3%;
+  width: 78vw;
   margin-left: 5%;
   border: #6B185E 2px solid;
   border-radius: 0.5rem;

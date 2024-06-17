@@ -5,6 +5,7 @@ import bg from "/img/img-product.png";
 import styles from "./SearchBar.module.css";
 import Button from "../Button/Button";
 import { useState } from "react";
+import FilterModal from "../Modals/FilterModal";
 
 export const SearchBar = ({ onSearchTermChange, onSearchSubmit }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +18,10 @@ export const SearchBar = ({ onSearchTermChange, onSearchSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onSearchSubmit(); 
+    setIsModalOpen(true); 
   };
+  
+
 
   return (
     <>
@@ -38,6 +42,7 @@ export const SearchBar = ({ onSearchTermChange, onSearchSubmit }) => {
           />
           <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
         </div>
+        
         <Button type="submit" icon={filter} className={styles.filterButton} />
         </div>
       </form>

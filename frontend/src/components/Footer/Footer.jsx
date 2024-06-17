@@ -17,7 +17,9 @@ const Footer = () => {
           <h3>Atención al Cliente</h3>
           <img src={line}></img>
           <div className={styles.adds}>
+            <a href="/policy" className={styles.footerLinks}>
             <img src={arrowRight} /> <p>Politicas De Envio</p>
+            </a>
           </div>
           <div className={styles.adds}>
             <img src={arrowRight} /> <p>Sugerencias</p>

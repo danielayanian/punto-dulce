@@ -1,5 +1,4 @@
-import "./App.css";
-import { BrowserRouter as Router, Link, Route, Routes  } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProductList from "./pages/ProductList";
@@ -17,17 +16,18 @@ import PurchaseCompleted from './pages/PurchaseCompleted';
 import LoginInput from "./components/LoginInput/LoginInput";
 
 
-const App = () =>{
+const App = () => {
+  const client = new QueryClient();
   
-  const client = new QueryClient()
+
 
   return (
-    
-    <QueryClientProvider client={client} >
+    <QueryClientProvider client={client}>
       <Router>
-      <ScrollToTop />
+        <ScrollToTop />
         <Header />
-        <Wsp/>
+        <Wsp />
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product-list/:slug" element={<ProductList />} />
@@ -43,9 +43,7 @@ const App = () =>{
         <Footer />
       </Router>
     </QueryClientProvider>
- 
-    
   );
-}
+};
 
 export default App;

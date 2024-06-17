@@ -3,7 +3,6 @@
   flex-direction: row;
   width: fit-content;
   border: #6b185e solid 2px;
-
   border-radius: 0.5rem;
   box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
   -webkit-box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.35);
@@ -22,9 +21,12 @@
   display: flex;
   align-items: center;
 }
+img {
 
+  padding: 0 0.3rem 0 0 ;
+}
 .buttonStyle {
-  margin: 0.5rem;
+  margin: 1rem;
   border: #6b185e solid 2px;
   background-color: transparent;
   color: #6b185e;

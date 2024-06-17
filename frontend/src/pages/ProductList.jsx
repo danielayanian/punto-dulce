@@ -6,6 +6,7 @@ import styles from "../components/ProductCard/ProductCard.module.css";
 import useGetProducts from "../Hooks/useGetProducts";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FilterModal from "../components/Modals/FilterModal"
 
 export const ProductList = () => {
   const { slug } = useParams();
@@ -25,9 +26,11 @@ export const ProductList = () => {
 
   const handleSearchSubmit = () => {
     setIsSearching(true);
-    // Aquí puedes agregar la lógica para filtrar los productos basados en searchTerm
-    // Por ejemplo, podrías hacer una solicitud a la API o filtrar localmente la lista de productos
+    setIsModalOpen(true);
+ 
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   if (error) return <p>Ha habido un error ..</p>;
   return (
     <>
@@ -35,6 +38,9 @@ export const ProductList = () => {
         onSearchTermChange={handleSearchTermChange}
         onSearchSubmit={handleSearchSubmit}
       />
+       
+        <FilterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}></FilterModal>
+        
       <Button
         text={"Regresar"}
         icon={chevronLeft}
