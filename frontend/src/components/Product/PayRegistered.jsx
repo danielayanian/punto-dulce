@@ -152,7 +152,7 @@ function PayRegistered({ products }) {
               />
               <label htmlFor="debitCard">Tarjetas de débito</label>
               {selectedPayment === 'debitCard' && (
-                <div className={styles.inputs}>
+                <div className={styles.inputForm}>
                   <input type="text" placeholder="Número de tarjeta" />
                   <div className={styles.expiryAndCvc}>
                     <input
@@ -242,7 +242,7 @@ function PayRegistered({ products }) {
               />
               <label htmlFor="homeDelivery">Envío a Domicilio</label>
             </div>
-            <p>Envío sin cargo</p>
+            <p className="phrases">Envío sin cargo</p>
           </div>
           <div>
             <div className={styles.paymentOption}>
@@ -256,7 +256,7 @@ function PayRegistered({ products }) {
               />
               <label htmlFor="deposit">Retirar por Depósito</label>
             </div>
-            <p>Dirección de deposito</p>
+            <p className="phrases">Dirección de deposito</p>
           </div>
           <h3>Datos de Envío</h3>
           <div className={styles.shippingForm}>
@@ -364,7 +364,7 @@ function PayRegistered({ products }) {
               ))}
               <div>
                 <h3>Como seguir pedido</h3>
-                <p>
+                <p className="phrases">
                   En la sección "Mi cuenta" puedes ver el seguimiento de la
                   compra
                 </p>
@@ -373,7 +373,7 @@ function PayRegistered({ products }) {
             <div>
               <h3>Informaciones del pedido</h3>
               <span>EMAIL</span>
-              <p>ejemplo@ejemplo.cpm</p>
+              <p className="phrases">ejemplo@ejemplo.cpm</p>
             </div>
             <div>
               <h3>Domicilio de Facturación</h3>
@@ -391,7 +391,7 @@ function PayRegistered({ products }) {
             </div>
             <div>
               <h3>Froma de Entrega</h3>
-              <p>
+              <p className="phrases">
                 {' '}
                 {selectedDelivery === ''
                   ? ''
