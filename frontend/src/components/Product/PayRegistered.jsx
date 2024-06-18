@@ -4,6 +4,7 @@ import styles from './PaymentForm.module.css';
 import Left from '/img/chevron-left.svg';
 import Right from '/img/chevron-right.svg';
 import EditPopUp from './EditPopUp'; // Importa el componente Popup
+import ProductCartList from '../Cart/ProductCartList';
 
 function PayRegistered({ products }) {
   // Objeto con datos del usuario
@@ -85,7 +86,7 @@ function PayRegistered({ products }) {
     setIsEditingUserData(false);
     setIsEditingReceiverData(false);
   };
-
+ 
   return (
     <>
       <div className="container">
@@ -100,7 +101,7 @@ function PayRegistered({ products }) {
           </div>
         </div>
         <h2 className="title">PRODUCTO</h2>
-        <div className={styles.cartContainer}>
+        {/* <div className={styles.cartContainer}>
           {products.map((product) => (
             <div key={product.id} className={styles.productContainer}>
               <div className={styles.productInfo}>
@@ -136,7 +137,8 @@ function PayRegistered({ products }) {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
+        <ProductCartList data={products} />
         {/* Payment form */}
         <div className={styles.paymentForm}>
           <div className={styles.paymentOptions}>
@@ -355,8 +357,8 @@ function PayRegistered({ products }) {
           <div className={styles.confirmation}>
             <h3>Confirmar datos</h3>
             <div className={styles.confirmationDetails}>
-              {products.map((product) => (
-                <div key={product.id} className={styles.confirmationProduct}>
+              {products.map((product,index) => (
+                <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
                   <span>{product.name}</span>
                   <span>{product.quantity}</span>
                   <span>${product.price * product.quantity}</span>

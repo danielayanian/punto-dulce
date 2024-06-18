@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
 import Left from '/img/chevron-left.svg';
 import Right from '/img/chevron-right.svg';
+import ProductCartList from '../Cart/ProductCartList';
 
 function PaymentForm({ products }) {
   const [selectedPayment, setSelectedPayment] = useState('');
@@ -61,6 +62,7 @@ function PaymentForm({ products }) {
     setShowCustomerData(false);
     setShowReceiverData(true);
   };
+  console.log(products.map(product => product.name));
 
   return (
     <div className='container'>
@@ -72,41 +74,44 @@ function PaymentForm({ products }) {
         </div>
       </div>
       <h2 className='title'>PRODUCTO</h2>
-      <div className={styles.cartContainer}>
-        {products.map((product) => (
-          <div key={product.id} className={styles.productContainer}>
-            <div className={styles.productInfo}>
-              <div className={styles.topTitle}>
-                <img
-                  src={product.imageUrl}
-                  alt={product.name}
-                  className={styles.productImage}
-                />
-                <div className={styles.productName}>{product.name}</div>
+      {/* <div className={styles.cartContainer}>
+          {products.map((product) => (
+            <div key={product.id} className={styles.productContainer}>
+              <div className={styles.productInfo}>
+                <div className={styles.topTitle}>
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className={styles.productImage}
+                  />
+                  <div className={styles.productName}>{product.name}</div>
+                </div>
+                <div className={styles.productDescription}>
+                  {product.description}
+                </div>
               </div>
-              <div className={styles.productDescription}>
-                {product.description}
+              <div className={styles.productDetails}>
+                <div className={styles.detailRow}>
+                  <span className={styles.detailTitle}>Cont:</span>
+                  <span className={styles.detailValue}>{product.quantity}</span>
+                </div>
+                <div className={styles.detailRow}>
+                  <span className={styles.detailTitle}>$ Unit:</span>
+                  <span className={styles.detailValue}>${product.price}</span>
+                </div>
+                <div className={styles.detailRow}>
+                  <span className={styles.detailTitle}>
+                    Precio Total Minorista:
+                  </span>
+                  <span className={styles.detailValue}>
+                    ${product.price * product.quantity}
+                  </span>
+                </div>
               </div>
             </div>
-            <div className={styles.productDetails}>
-              <div className={styles.detailRow}>
-                <span className={styles.detailTitle}>Cont:</span>
-                <span className={styles.detailValue}>{product.quantity}</span>
-              </div>
-              <div className={styles.detailRow}>
-                <span className={styles.detailTitle}>$ Unit:</span>
-                <span className={styles.detailValue}>${product.price}</span>
-              </div>
-              <div className={styles.detailRow}>
-                <span className={styles.detailTitle}>Precio Total Minorista:</span>
-                <span className={styles.detailValue}>
-                  ${product.price * product.quantity}
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div> */}
+        <ProductCartList data={products} />
 
       <div className={styles.paymentForm}>
         <div className={styles.paymentOptions}>
@@ -385,13 +390,20 @@ function PaymentForm({ products }) {
       <div className={styles.confirmation}>
         <h3>Confirmar datos</h3>
         <div className={styles.confirmationDetails}>
-          {products.map((product) => (
-            <div key={product.id} className={styles.confirmationProduct}>
+          {/* {products.map((product,index) => (
+            <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
               <span>{product.name}</span>
               <span>{product.quantity}</span>
               <span>${product.price * product.quantity}</span>
             </div>
-          ))}
+          ))} */}
+        {products.map((product) => (
+  <div key={product.id}>
+    <h3>{product.name}</h3>
+    <p>{product.description}</p>
+    {/* Más detalles del producto */}
+  </div>
+))}
           <div>
             <h3>Como seguir pedido</h3>
             <p>

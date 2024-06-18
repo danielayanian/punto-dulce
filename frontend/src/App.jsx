@@ -16,7 +16,6 @@ import PurchaseCompleted from './pages/PurchaseCompleted';
 import LoginInput from "./components/LoginInput/LoginInput";
 import Admi from "./pages/Admi";
 
-
 const App = () =>{
   
   const client = new QueryClient()
@@ -39,7 +38,6 @@ const App = () =>{
           <Route path="/purchase-completed" element={<PurchaseCompleted />} />
           <Route path="/policy" element={<Policy/>} />
           <Route path="/*" element={<NotFound />} />
-
         </Routes>
         <Footer />
       </Router>

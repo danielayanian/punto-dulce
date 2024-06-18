@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
-import Left from '/img/chevron-left.svg'
-import Right from '/img/chevron-right.svg'
+// import Left from '/img/chevron-left.svg'
+// import Right from '/img/chevron-right.svg'
 
 function Product({ products }) {
+
   return (
     <>
       <div className={styles.top}>
@@ -14,19 +15,19 @@ function Product({ products }) {
         <span>TOTAL</span>
       </div>
       <div className={styles.cartContainer}>
-        {products.map((product) => (
-          <div key={product.id} className={styles.productContainer}>
+        {products?.map((product,index) => (
+          <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.productContainer}>
             <div className={styles.productInfo}>
               <div className={styles.topTitle}>
                 <img
-                  src={product.imageUrl}
+                  src={product.product.image}
                   alt={product.name}
                   className={styles.productImage}
                 />
-                <div className={styles.productName}>{product.name}</div>
+                <div className={styles.productName}>{product.product.name}</div>
               </div>
-              <div className={styles.productDescription}>
-                {product.description}
+              <div className={styles.Description}>
+                {product.product.description}
               </div>
             </div>
             <div className={styles.productDetails}>
@@ -36,18 +37,13 @@ function Product({ products }) {
               </div>
               <div className={styles.detailRow}>
                 <span className={styles.detailTitle}>$ Unit:</span>
-                <span className={styles.detailValue}>${product.price}</span>
-              </div>
-              <div className={styles.detailRow}>
-                <span className={styles.detailTitle}>Precio Total Minorista:</span>
-                <span className={styles.detailValue}>
-                  ${product.price * product.quantity}
-                </span>
+                <span className={styles.detailValue}>${product.product.priceMinor}</span>
               </div>
             </div>
+              
           </div>
         ))}
-        <div className={styles.buttonContainer}>
+        {/* <div className={styles.buttonContainer}>
           <Link to="/" className={`${styles.button} ${styles.buttonRight}`}>
             Regresar
             <img src={Left}/>
@@ -56,7 +52,7 @@ function Product({ products }) {
             Siguiente
             <img src={Right}/>
           </Link>
-        </div>
+        </div> */}
     
       </div>
     </>
