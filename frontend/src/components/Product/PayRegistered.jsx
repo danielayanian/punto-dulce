@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
-import Left from '../../../public/img/chevron-left.svg';
-import Right from '../../../public/img/chevron-right.svg';
+import Left from '/img/chevron-left.svg';
+import Right from '/img/chevron-right.svg';
+import EditPopUp from './EditPopUp'; // Importa el componente Popup
 
 function PayRegistered({ products }) {
   // Objeto con datos del usuario
@@ -10,7 +11,7 @@ function PayRegistered({ products }) {
     fullName: 'Juan Pérez',
     phone: '+1234567890',
     street: 'Av. Ficticia',
-    number: '123',
+    streetNumber: '123',
     floor: '4',
     apartment: 'A',
     neighborhood: 'Barrio Ficticio',
@@ -18,46 +19,41 @@ function PayRegistered({ products }) {
 
   const initialUserData = {
     fullName: 'María García',
-    Adress: 'Calle Ficticia 456',
+    address: 'Calle Ficticia 456',
     street: 'Av. Principal',
     streetNumber: '789',
     floor: '2',
     apartment: 'B',
     neighborhood: 'Otro Barrio Ficticio',
-    phone:'+1234567890',
+    phone: '+1234567890',
   };
 
   // Estado para los datos del usuario
   const [userData, setUserData] = useState(initialUserData);
-  const [isEditingUserData, setIsEditingUserData] = useState(''); // Inicialmente seleccionado
+  const [isEditingUserData, setIsEditingUserData] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState('');
   const [selectedDelivery, setSelectedDelivery] = useState('');
   const [receiverData, setReceiverData] = useState(initialReceiverData);
   const [isCustomerDataChecked, setIsCustomerDataChecked] = useState(true);
   const [isReceiverDataChecked, setIsReceiverDataChecked] = useState(false);
   const [isEditingReceiverData, setIsEditingReceiverData] = useState(false);
+  // const [isPopupOpen, setIsPopupOpen] = useState(false); // Nuevo estado para controlar la apertura del popup
 
-  //   const handleReceiverDataChange = () => {
-  //     setIsReceiverDataChecked(!isReceiverDataChecked);
-  //   };
+  const openEditPopup = () => {
+    setIsEditingUserData(true);
+  };
 
   const handleCheckboxEditReceiverData = () => {
     setIsEditingReceiverData(!isEditingReceiverData);
   };
 
-  const handleEditUserData = () => {
-    setIsEditingUserData(!isEditingUserData);
-  };
-  const handleEditReceiverData = () => {
-    setIsEditingReceiverData(!isEditingReceiverData);
-  };
-
-  const handleInputChange = (e) => {
+  const handleInputChange = (e, type) => {
     const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (type === 'user') {
+      setUserData((prevData) => ({ ...prevData, [name]: value }));
+    } else {
+      setReceiverData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handlePaymentChange = (e) => {
@@ -67,6 +63,7 @@ function PayRegistered({ products }) {
   const handleDeliveryChange = (e) => {
     setSelectedDelivery(e.target.value);
   };
+
   const handleCustomerDataChange = () => {
     setIsCustomerDataChecked(true);
     setIsReceiverDataChecked(false);
@@ -75,6 +72,18 @@ function PayRegistered({ products }) {
   const handleReceiverDataChange = () => {
     setIsCustomerDataChecked(false);
     setIsReceiverDataChecked(true);
+  };
+
+  const saveReceiverDataChanges = () => {
+    setIsEditingReceiverData(false);
+  };
+  const saveUserDataChanges = () => {
+    closeEditPopup();
+  };
+
+  const closeEditPopup = () => {
+    setIsEditingUserData(false);
+    setIsEditingReceiverData(false);
   };
 
   return (
@@ -89,7 +98,7 @@ function PayRegistered({ products }) {
               Regresar <img src={Left} alt="Left arrow" />
             </Link>
           </div>
-        </div>{' '}
+        </div>
         <h2 className="title">PRODUCTO</h2>
         <div className={styles.cartContainer}>
           {products.map((product) => (
@@ -263,83 +272,33 @@ function PayRegistered({ products }) {
                   />
                   Datos de Cliente
                 </label>
-                <span className={styles.editLink} onClick={handleEditUserData}>
-                  {isEditingUserData ? 'Guardar' : 'Editar'}
+                <span className={styles.editLink} onClick={openEditPopup}>
+                  Editar
                 </span>
-              </div>{' '}
+              </div>
               {!isEditingUserData && (
                 <div className={styles.userDataList}>
                   <ul>
                     <li>Nombre: {userData.fullName}</li>
-                    <li>Domicilio: {userData.Adress}</li>
+                    <li>Domicilio: {userData.address}</li>
                     <li>Calle: {userData.street}</li>
                     <li>Número: {userData.streetNumber}</li>
                     <li>Piso: {userData.floor}</li>
                     <li>Dpto: {userData.apartment}</li>
                     <li>Barrio: {userData.neighborhood}</li>
+                    <li>Teléfono: {userData.phone}</li>
                   </ul>
                 </div>
               )}
-              {/* Inputs para editar los datos */}
               {isEditingUserData && (
-                <div className={styles.inputsContainer}>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    placeholder="Nombre Completo"
-                    value={userData.fullName}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="Adress"
-                    name="Adress"
-                    placeholder="Domicilio Celular"
-                    value={userData.Adress}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="street"
-                    name="street"
-                    placeholder="Calle"
-                    value={userData.street}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="streetNumber"
-                    name="streetNumber"
-                    placeholder="Número"
-                    value={userData.streetNumber}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="floor"
-                    name="floor"
-                    placeholder="Piso"
-                    value={userData.floor}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="apartment"
-                    name="apartment"
-                    placeholder="Dpto"
-                    value={userData.apartment}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="neighborhood"
-                    name="neighborhood"
-                    placeholder="Barrio"
-                    value={userData.neighborhood}
-                    onChange={handleInputChange}
-                  />
-                </div>
+                <EditPopUp
+                  isOpen={isEditingUserData}
+                  onClose={closeEditPopup}
+                  data={userData}
+                  handleInputChange={(e) => handleInputChange(e, 'user')}
+                  saveChanges={saveUserDataChanges}
+                  type="user"
+                />
               )}
             </div>
           </div>
@@ -377,64 +336,14 @@ function PayRegistered({ products }) {
                 </div>
               )}
               {isEditingReceiverData && (
-                <div className={styles.inputsContainer}>
-                  <input
-                    type="text"
-                    id="receiverName"
-                    name="fullName"
-                    placeholder="Nombre Completo"
-                    value={receiverData.fullName}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverphone"
-                    name="phone"
-                    placeholder="Celular"
-                    value={receiverData.phone}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverStreet"
-                    name="street"
-                    placeholder="Calle"
-                    value={receiverData.street}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverNumber"
-                    name="number"
-                    placeholder="Número"
-                    value={receiverData.number}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverFloor"
-                    name="floor"
-                    placeholder="Piso"
-                    value={receiverData.floor}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverApartment"
-                    name="apartment"
-                    placeholder="Dpto"
-                    value={receiverData.apartment}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="text"
-                    id="receiverNeighborhood"
-                    name="neighborhood"
-                    placeholder="Barrio"
-                    value={receiverData.neighborhood}
-                    onChange={handleInputChange}
-                  />
-                </div>
+                <EditPopUp
+                  isOpen={isEditingReceiverData}
+                  onClose={closeEditPopup}
+                  data={receiverData}
+                  handleInputChange={(e) => handleInputChange(e, 'receiver')}
+                  saveChanges={saveReceiverDataChanges}
+                  type="receiver"
+                />
               )}
             </div>
           </div>{' '}
@@ -468,20 +377,28 @@ function PayRegistered({ products }) {
             </div>
             <div>
               <h3>Domicilio de Facturación</h3>
-              <ul>
+              <ul className={styles.listShipping}>
                 <li>{initialUserData.fullName}</li>
                 <li>
                   {initialUserData.street}
-                  {initialUserData.streetNumber}       {initialUserData.apartment}
+                  {initialUserData.streetNumber} {initialUserData.apartment}
                   {initialUserData.floor}
                 </li>
-           
+
                 <li>{initialUserData.neighborhood}</li>
                 <li>{initialUserData.phone}</li>
               </ul>
             </div>
-            <div><h3>Froma de Entrega</h3>
-            <p> {selectedDelivery === '' ? '' : (selectedDelivery === 'homeDelivery' ? 'Envío a Domicilio' : 'Retirar por Depósito')}</p>
+            <div>
+              <h3>Froma de Entrega</h3>
+              <p>
+                {' '}
+                {selectedDelivery === ''
+                  ? ''
+                  : selectedDelivery === 'homeDelivery'
+                  ? 'Envío a Domicilio'
+                  : 'Retirar por Depósito'}
+              </p>
             </div>
             <div className={styles.buttonContainer}>
               <Link
@@ -490,8 +407,11 @@ function PayRegistered({ products }) {
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
-              <Link to="/" className={`${styles.button} ${styles.buttonLeft}`}>
-                Pagar <img src={Right} alt="Right arrow" />
+              <Link
+                to="/purchase-completed"
+                className={`${styles.button} ${styles.buttonLeft}`}
+              >
+                Terminar <img src={Right} alt="Right arrow" />
               </Link>
             </div>
           </div>

@@ -1,18 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 import filter from "../../../public/img/Filter.svg";
+import filter from "/img/Filter.png";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
+  const location = useLocation();
   return (
     <>
       {isOpen && <div className={styles.overlay}></div>}
       <div className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
         <div className={styles.header}>
-          <img src="../../../public/img/icon-arg.svg" alt="icono" />
+          <img src="/img/icon-arg.svg" alt="icono" />
           <button className={styles.closeButton} onClick={toggleMenu}>
             X
           </button>
@@ -22,7 +24,7 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
             <FontAwesomeIcon icon={faCircleUser} size="xl" />
             {isAuthenticated ? (
               <div className={styles.authUser}>
-                <span>{userName}</span>
+                {<span>{userName ?? ""}</span>}
                 <span>Mi cuenta</span>
               </div>
             ) : (
@@ -32,6 +34,10 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
                 </Link>
                 <span className={styles.separator}>/</span>
                 <Link to="/login" className={styles.authButton} onClick={toggleMenu}>
+                <Link to="/register" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
+                REGISTRAR
+                </Link>
+                <span className={styles.separator}>/</span>
                  ENTRAR
                 </Link>
               </div>

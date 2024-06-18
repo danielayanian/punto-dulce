@@ -1,6 +1,7 @@
 package com.auj.puntodulce.cart;
 
 import com.auj.puntodulce.product.Product;
+import com.auj.puntodulce.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -24,6 +25,11 @@ public class Cart {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
+    private User user;
+
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<CartItem> items = new ArrayList<>();
@@ -32,15 +38,21 @@ public class Cart {
     private int totalItems;
 
     @Column(nullable = false)
-    private BigDecimal totalPrice;
+    private BigDecimal totalPriceMinor;
+
+    @Column(nullable = false)
+    private BigDecimal totalPriceMajor;
 
     @PrePersist
     protected void onCreate() {
         if (this.id == null) {
             this.id = UUID.randomUUID();
         }
-        if(this.totalPrice == null){
-            this.totalPrice = BigDecimal.ZERO;
+        if(this.totalPriceMinor == null){
+            this.totalPriceMinor = BigDecimal.ZERO;
+        }
+        if(this.totalPriceMajor == null){
+            this.totalPriceMajor = BigDecimal.ZERO;
         }
     }
 
@@ -51,10 +63,14 @@ public class Cart {
 
         if (existingCartItem.isPresent()) {
             CartItem cartItem = existingCartItem.get();
-            cartItem.setQuantity(cartItem.getQuantity() + quantity);
-            cartItem.setTotal(cartItem.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+            if(quantity == 0){
+                removeItem(product.getId());
+            }
+            cartItem.setQuantity(quantity);
+            cartItem.setTotalPriceMinor(cartItem.getTotalPriceMinor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+            cartItem.setTotalPriceMajor(cartItem.getTotalPriceMajor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
         } else {
-            CartItem cartItem = new CartItem(UUID.randomUUID(), this,null, product, quantity, product.getPrice(), product.getPrice().multiply(BigDecimal.valueOf(quantity)));
+            CartItem cartItem = new CartItem(UUID.randomUUID(), this,null, product, quantity, product.getPriceMinor().multiply(BigDecimal.valueOf(quantity)), product.getPriceMajor().multiply(BigDecimal.valueOf(quantity)));
             items.add(cartItem);
         }
 
@@ -72,8 +88,11 @@ public class Cart {
 
     public void recalculateTotals() {
         totalItems = items.stream().mapToInt(CartItem::getQuantity).sum();
-        totalPrice = items.stream()
-                .map(CartItem::getTotal)
+        totalPriceMinor = items.stream()
+                .map(CartItem::getTotalPriceMinor)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        totalPriceMajor = items.stream()
+                .map(CartItem::getTotalPriceMajor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

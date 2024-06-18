@@ -3,8 +3,6 @@ package com.auj.puntodulce.cart;
 import com.auj.puntodulce.exception.CartNotFoundException;
 import com.auj.puntodulce.exception.InvalidCartException;
 import com.auj.puntodulce.exception.ProductNotFound;
-import com.auj.puntodulce.order.CheckoutRequest;
-import com.auj.puntodulce.order.OrderDataAccessService;
 import com.auj.puntodulce.product.Product;
 import com.auj.puntodulce.product.ProductDataAccessService;
 import org.springframework.stereotype.Service;
@@ -25,11 +23,15 @@ public class CartService {
     }
 
 
-    public CartResponse addItemToCart(UUID cartID, UUID productId, int quantity){
-        Cart cart = cartDataAccessService.findCartByIdOrCreate(cartID);
+    public CartResponse addOrUpdateItemToCart(UUID cartID, UUID productId, int quantity){
+        Cart cart = cartDataAccessService.findById(cartID).orElseThrow(()-> new CartNotFoundException("Cart not found"));
         Product product = productDataAccessService.selectProductById(productId)
                 .orElseThrow(() -> new ProductNotFound("Product not found"));
+
         cart.addOrUpdateItem(product, quantity);
+        if(quantity == 0 ){
+            removeItemFromCart(cartID, productId);
+        }
         cart = cartDataAccessService.saveCart(cart);
         CartDTO cartDTO = cartDTOMapper.apply(cart);
 
@@ -53,7 +55,9 @@ public class CartService {
     public void validateCart(UUID cartId) {
         Cart cart = cartDataAccessService.findById(cartId)
                 .orElseThrow(() -> new CartNotFoundException("Cart not found"));
-
+        if (cart.getItems().isEmpty()) {
+            throw new InvalidCartException("Cart is empty");
+        }
         boolean changesDetected = false;
         for (CartItem item : cart.getItems()) {
             Product product = productDataAccessService.selectProductById(item.getProduct().getId())
@@ -62,16 +66,17 @@ public class CartService {
             // Check if product quantity exceeds available stock
             if (item.getQuantity() > product.getStock()) {
                 item.setQuantity(product.getStock());
-                item.setTotal(item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
+                item.setTotalPriceMinor(item.getProduct().getPriceMinor().multiply(BigDecimal.valueOf(item.getQuantity())));
+                item.setTotalPriceMajor(item.getProduct().getPriceMajor().multiply(BigDecimal.valueOf(item.getQuantity())));
                 changesDetected = true;
             }
 
             // Check if product price has changed
-            if (item.getPrice().compareTo(product.getPrice()) != 0) {
+            /*if (item.getPrice().compareTo(product.getPrice()) != 0) {
                 item.setPrice(product.getPrice());
                 item.setTotal(item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
                 changesDetected = true;
-            }
+            }*/
         }
 
         // Recalculate cart totals
@@ -82,5 +87,4 @@ public class CartService {
             throw new InvalidCartException("Cart has changed. Please review the changes.");
         }
     }
-
 }

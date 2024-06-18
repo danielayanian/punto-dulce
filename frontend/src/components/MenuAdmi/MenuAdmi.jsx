@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import IconAdmi from "../IconAdmi/IconAdmi";
 import styles from "./MenuAdmi.module.css";
-import logo from "../../../public/img/logo.png";
+import logo from "/img/logo.png";
 
 const MenuAdmi = ({ isOpen, toggleSidebar }) => {
   const [activeIcon, setActiveIcon] = useState(null);

@@ -20,7 +20,8 @@ public class OrderService {
         this.cartService = cartService;
     }
     @Transactional
-    public void confirmOrder(UUID cartId, CheckoutRequest checkoutRequest) {
+    public void confirmOrder(UUID cartId, CheckoutRequest checkoutRequest,
+                             String userId) {
 
         // Validate cart one more time to ensure no changes have occurred since last validation
         cartService.validateCart(cartId);
@@ -30,7 +31,7 @@ public class OrderService {
         // Get current authenticated user if available
 
         // Create order from cart
-        CustomerDetails customerDetails = customerDetailsDataAccessService.create(checkoutRequest);
+        CustomerDetails customerDetails = customerDetailsDataAccessService.create(checkoutRequest, userId);
         orderDataAccessService.createOrder(cartId, customerDetails);
     }
     @Transactional

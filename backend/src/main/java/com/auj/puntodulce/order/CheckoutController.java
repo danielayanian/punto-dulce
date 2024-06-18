@@ -1,20 +1,25 @@
 package com.auj.puntodulce.order;
 
-import com.auj.puntodulce.cart.CartService;
 import com.auj.puntodulce.exception.CartNotFoundException;
 import com.auj.puntodulce.exception.InvalidRequestException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/checkout")
+@Tag(name = "checkout", description = "Operations related to orders")
+@SecurityRequirement(name = "bearerAuth")
 public class CheckoutController {
     private final OrderService orderService;
 
@@ -32,7 +37,7 @@ public class CheckoutController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void confirmOrder(@RequestParam(required = false) UUID customerDetailsId, @RequestBody(required = false) CheckoutRequest checkoutRequest, HttpServletRequest request) {
+    public void confirmOrder( @RequestParam(required = false) UUID customerDetailsId,@Valid @RequestBody(required = false) CheckoutRequest checkoutRequest, HttpServletRequest request, Authentication authentication) {
         if (customerDetailsId != null && checkoutRequest != null) {
             throw new InvalidRequestException("Provide either customerDetailsId or checkoutRequest, not both.");
         }
@@ -50,7 +55,7 @@ public class CheckoutController {
             // Create a minimal CheckoutRequest with just the customerDetailsId
             orderService.confirmOrder(cartId, customerDetailsId);
         }else{
-            orderService.confirmOrder(cartId, checkoutRequest);
+            orderService.confirmOrder(cartId, checkoutRequest, authentication.getName());
         }
 
     }

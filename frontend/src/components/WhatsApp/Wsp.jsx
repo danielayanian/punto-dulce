@@ -1,4 +1,4 @@
-import wsp from "../../../public/img/Whatsapp.svg";
+import wsp from "/img/Whatsapp.svg";
 import styles from "./Wsp.module.css";
 
 export const Wsp = () => {

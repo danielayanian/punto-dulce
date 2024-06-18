@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import Button from "../Button/Button";
 import ButtonSum from "../Button/ButtonSum.jsx";
 import styles from "./ProductCard.module.css";
-import linkDark from "../../../public/img/link-dark.svg";
-import linkWhite from "../../../public/img/link-white.svg";
+import linkDark from "/img/link-dark.svg";
+import linkWhite from "/img/link-white.svg";
+import Right from "/img/chevron-right.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Right from "../../../public/img/chevron-right.svg";
 
 export const ProductCard = ({ product }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -15,6 +16,7 @@ export const ProductCard = ({ product }) => {
   const handleOptionChange = (value) => {
     setSelectedOption(value);
   };
+
   return (
     <>
       <div className={styles.container}>
@@ -43,7 +45,7 @@ export const ProductCard = ({ product }) => {
               }`}
             />
             <label htmlFor="minorista" className={styles.customRadioLlabel}>
-              Minorista - {product.priceMinor}
+              Minorista - $ {product.priceMinor}
             </label>
           </div>
           <div>
@@ -59,22 +61,31 @@ export const ProductCard = ({ product }) => {
               }`}
             />
             <label htmlFor="mayor" className={styles.customRadioLlabel}>
-              Mayorista - {product.priceMajor}
+              Mayorista - ${product.priceMajor}
             </label>
           </div>
         </div>
 
         <div className={styles.buttonsContainer}>
+        <Link to="/cart" style={{ textDecoration: 'none', color: 'inherit' }}>
           <Button
             text={"Carrito"}
             icon={linkDark}
             className={styles.bottomButton}
+            onClick={() => {}}
           />
+          </Link>
+
+          
+          <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
           <Button
             text={"Comprar"}
             icon={linkWhite}
-            className={styles.bottomButtonRight}
-          />
+            className={`${styles.bottomButtonRight} ${styles.bottomButton}`}
+            />
+          </Link>
+
+
         </div>
         <div className={styles.delivery}>
           <FontAwesomeIcon
@@ -85,10 +96,11 @@ export const ProductCard = ({ product }) => {
           <h3 className={styles.deliveryText}>Envio gratis</h3>
         </div>
       </div>
-      <Link to="" className={styles.policy}>
+      <Link to="/policy" className={styles.policy}>
         Ver politicas de envio
         <img src={Right} />
       </Link>
+     
     </>
   );
 };

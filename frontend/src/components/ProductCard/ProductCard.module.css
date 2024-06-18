@@ -7,8 +7,13 @@
   border: transparent solid 1px;
   position: relative;
 }
+
 .image {
   width: 100%;
+}
+
+.imageButtons {
+  position: relative;
 }
 
 .prices {
@@ -19,15 +24,18 @@
   padding: 1rem;
   color: #6b185e;
 }
+
 .chevronButton {
   box-shadow: none;
   border: none;
   color: #ab5195;
 }
+
 .nameStyle {
   color: #171733;
   padding-left: 1rem;
 }
+
 .description {
   padding-left: 1rem;
 }
@@ -37,9 +45,11 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
 .bottomButton {
   padding: 0.5rem 1rem;
 }
+
 .bottomButtonRight {
   background-color: rgb(107, 24, 94);
   color: #ebf1fa;
@@ -57,12 +67,15 @@
   background-color: #ab5195;
   margin: 0.5rem 1rem;
 }
+
 .truckIcon {
   color: #ebf1fa;
 }
+
 .deliveryText {
   color: #ebf1fa;
 }
+
 .policy {
   border: none;
   color: #6b185e;
@@ -75,30 +88,24 @@
 }
 .customRadioButton {
   appearance: none;
-  background-color: #6b185e; /* Color del fondo */
+  background-color: #6b185e;
   border-radius: 50%;
   width: 1rem;
   height: 1rem;
-}
-/* .customRadioLlabel {
-  cursor: pointer;
-} */
-.customRadioButton::before {
-  content: "";
-  display: block;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin: 12%;
-  border-radius: 50%;
-  background-color: white; /* Color del circulo secundario interno */
-}
-.customRadioButton.selected {
-  background-color: white;
-  border: 2px solid #6b185e; /* borde del circulo interno */
+  position: relative;
 }
 .customRadioButton.selected::before {
-  width: 0.5rem;
-  height: 0.5rem;
-  margin: 18%;
-  background-color: #6b185e; /* Color del circulo interno cuando es seleccionado */
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: white;
+}
+.customRadioButton::before {
+  background-color: #6b185e;
 }

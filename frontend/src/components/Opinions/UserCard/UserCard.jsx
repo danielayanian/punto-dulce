@@ -4,7 +4,8 @@ const UserCard = ({ user, opinion, rating }) => {
   const renderStars = () => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
-      stars.push(<span className={styles.star}>&#9733;</span>);
+      // Use the index as a key, assuming the list of stars won't change dynamically
+      stars.push(<span key={i} className={styles.star}>&#9733;</span>);
     }
     return stars;
   };

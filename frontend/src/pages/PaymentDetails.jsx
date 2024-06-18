@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import PayFirstTime from '../components/Product/PayFirstTime';
 import PayRegistered from '../components/Product/PayRegistered';
+import PayWholesaler from '../components/Product/PayWholesaler';
 
 function PaymentDetails() {
-  const [registeredUser, setRegisteredUser] = useState(true); // Estado que indica si el usuario está registrado
+  const [registeredUser, setRegisteredUser] = useState(false); // Default to false
   const [products, setProducts] = useState([]); // Estado para almacenar los productos
+  const [wholesaler, setWholesaler] = useState(false); // Default to false
 
   // Lista de productos (simulación de datos)
   const productList = [
@@ -52,9 +53,12 @@ function PaymentDetails() {
   ];
 
   useEffect(() => {
-    // Simulación de verificación de usuario registrado 
+    // Simulación de verificación de usuario registrado y mayorista
     const isUserRegistered = true; 
+    const isWholesaler = false; 
+
     setRegisteredUser(isUserRegistered);
+    setWholesaler(isWholesaler);
 
     // Establecer la lista de productos
     setProducts(productList);
@@ -62,7 +66,9 @@ function PaymentDetails() {
 
   // Función para renderizar el componente correcto según el estado de registro del usuario
   const renderPaymentComponent = () => {
-    if (registeredUser) {
+    if (wholesaler === true) {
+      return <PayWholesaler products={products} />;
+    } else if (registeredUser=== true) {
       return <PayRegistered products={products} />;
     } else {
       return <PayFirstTime products={products} />;
@@ -71,7 +77,7 @@ function PaymentDetails() {
 
   return (
     <div>
-      {/* Si el usuario está registrado, renderiza PayRegistered, de lo contrario, PayFirstTime */}
+      {/* Si el usuario está registrado, renderiza PayRegistered, de lo contrario, PayFirstTime y si es mayorista Wholesaler*/}
       {renderPaymentComponent()}
     </div>
   );
