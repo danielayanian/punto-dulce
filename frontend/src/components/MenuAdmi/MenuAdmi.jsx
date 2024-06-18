@@ -23,7 +23,7 @@ const MenuAdmi = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       <div className={`${styles.menuContent} ${isOpen ? styles.open : ""}`}>
-        <img src={logo} alt="logo de la pagina" className={styles.logo} />
+      <Link to="/admin/menu"><img src={logo} alt="logo de la pagina" className={styles.logo} /></Link>
         <div className={styles.icons}>
           <div className={styles.searchIcon}>
             <IconAdmi iconName="faSearch" extraClass={styles.searchIcon} />
@@ -46,15 +46,15 @@ const MenuAdmi = ({ isOpen, toggleSidebar }) => {
                 isActive={activeIcon === "faUser"}
                 onClick={() => handleIconClick("faUser")}
               />
-              <Link to="" onClick={toggleSidebar}>
+              <Link to="/admin/profile" onClick={toggleSidebar}>
                 Perfil
               </Link>
             </div>
             {openMenus["faUser"] && (
               <div>
                 <ul className={`${styles.submenu} ${styles.submenuPerfil} ${openMenus["faUser"] ? styles.submenuOpen : ""}`}>
-                  <li><Link to="./profile" onClick={toggleSidebar} className={styles.firstSubmenuItemLink}>Perfil</Link></li>
-                  <li>Cerrar sesión</li>
+                  <li><Link to="/admin/profile" onClick={toggleSidebar} className={styles.firstSubmenuItemLink}>Perfil</Link></li>
+                  <li> <Link to="" className={styles.firstSubmenuItemLink}> Cerrar sesión </Link></li>
                 </ul>
               </div>
             )}
@@ -74,15 +74,15 @@ const MenuAdmi = ({ isOpen, toggleSidebar }) => {
             {openMenus["ventas"] && (
               <div>
                 <ul className={`${styles.submenu} ${openMenus["ventas"] ? styles.submenuOpen : ""}`}>
-                  <li><Link to="" onClick={toggleSidebar} className={styles.firstSubmenuItemLink}>Resumenes de ventas</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Ventas por artículo</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Ventas por categoría</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Ventas por empleado</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Ventas por tipo de pago</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Recibo</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Ventas por modificador</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Descuentos</Link></li>
-                  <li><Link to="" onClick={toggleSidebar}>Impuestos</Link></li>
+                  <li className={styles.firstSubmenuItemLink}> Resumenes de ventas</li>
+                  <li>Ventas por artículo</li>
+                  <li>Ventas por categoría</li>
+                  <li>Ventas por empleado</li>
+                  <li>Ventas por tipo de pago</li>
+                  <li>Recibo</li>
+                  <li>Ventas por modificador</li>
+                  <li>Descuentos</li>
+                  <li>Impuestos</li>
                 </ul>
               </div>
             )}
