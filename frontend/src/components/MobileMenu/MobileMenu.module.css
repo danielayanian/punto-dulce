@@ -111,7 +111,7 @@
   border: 1.5px solid #6b185e;
   height: 50px;
   width: 58px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   background-color: #eff5fe;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.15);
   cursor: pointer;
@@ -124,7 +124,7 @@
 .buttonContainer {
   display: flex;
 }
-span {
+.titleSearch {
   font-size: 14px;
   color: #6b185e;
   font-weight: 600;

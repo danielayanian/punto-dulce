@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
-import filter from "/img/Filter.png";
+import filter from "/img/Filter.svg";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -28,11 +28,11 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
               </div>
             ) : (
               <div className={styles.authButtons}>
+                <Link to="/login" className={styles.authButton} onClick={toggleMenu}>
                 <Link to="/register" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
                 REGISTRAR
                 </Link>
                 <span className={styles.separator}>/</span>
-                <Link to="/login" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
                  ENTRAR
                 </Link>
               </div>
@@ -51,7 +51,7 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
             <Button icon={filter} className={styles.buttonFilter} />
           </div>
           <div className={styles.mostSearched}>
-            <span>Lo más buscado</span>
+            <span className={styles.titleSearch}>Lo más buscado</span>
             <div className={styles.buttonContainer}>
               <button className={styles.searchButton}>Golosina 1</button>
               <button className={styles.searchButton}>Golosina 1</button>

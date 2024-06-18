@@ -1,0 +1,332 @@
+.profilePicture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  margin: 5%;
+  color: black;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.logo {
+  margin-left: 3%;
+  border-radius: 9999px;
+  border: 1px solid #fff;
+  background-color: #eff5fe;
+  width: 88px;
+  height: 88px;
+}
+
+.titleProfile {
+  color: #1e293b;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.buttonDelete {
+  background: none;
+  border: none;
+  margin-top: 5%;
+  color: #6b185e;
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.profileForm {
+  margin: 3%;
+  width: 95%;
+}
+
+.inputField {
+  margin-bottom: 1em;
+  padding: 0px 12px;
+}
+
+.inputField label {
+  margin-left: 1%;
+  color: #6b185e;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputForm:hover {
+  background-color: #ab519580;
+  border: 1.5px solid #6b185e;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 9px;
+  color: #6b185e;
+  pointer-events: none;
+}
+
+.inputForm {
+  width: 100%;
+  padding: 15px;
+  padding-left: 22px;
+  border: 1.5px solid #6b185e;
+  border-radius: 8px;
+  background-color: #eff5fe;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.inputForm:focus {
+  background-color: #6b185e;
+  color: #a6bcdf;
+  border: 1.5px solid #6b185e;
+}
+
+.inputForm::placeholder {
+  color: #6b185e;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.inputForm:focus::placeholder {
+  color: #a6bcdf;
+}
+
+.inputImage {
+  width: 68%;
+  padding: 15px;
+  border: 1.5px solid #6b185e;
+  border-radius: 8px;
+  background-color: #eff5fe;
+  outline: none;
+}
+
+.uploadButton {
+  font-weight: 700;
+  color: #6b185e;
+  font-size: 14px;
+  width: 20%;
+  padding: 15px;
+  border: 1.5px solid #6b185e;
+  border-radius: 8px;
+  background-color: #eff5fe;
+  outline: none;
+  cursor: pointer;
+}
+
+.uploadButton:hover {
+  background-color: #ab519580;
+}
+
+.buttonContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10%;
+  width: 80%;
+  gap: 16px;
+}
+
+.buttonSubmit {
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  border: none;
+  font-size: 16px;
+  color: #a6bcdf;
+  padding: 16px;
+  border-radius: 7px;
+  background-color: #ab519580;
+  cursor: pointer;
+}
+
+.buttonCancel {
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  border: 2px solid #ab519580;
+  font-size: 16px;
+  color: #ab519580;
+  padding: 16px;
+  border-radius: 7px;
+  background-color: #eff5fe;
+  cursor: pointer;
+}
+
+.iconFooter {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.selectStyled {
+  width: 98%;
+  padding: 15px;
+  border: 1.5px solid #6b185e;
+  border-radius: 8px;
+  background-color: #eff5fe;
+  font-size: 16px;
+  color: #6b185e;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.selectStyled:focus {
+  border-color: #ab519580;
+  border-radius: 0; 
+}
+.selectStyled option {
+  padding: 25px !important; 
+  border: 1.5px solid #6b185e !important;
+}
+
+.selectStyled option:hover {
+ background-color: #6b185e !important;
+  color: #6b185e !important; 
+}
+
+.selectArrow {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #6b185e;
+}
+
+.buttonSubmitCompleted {
+  background-color: #6b185e;
+  color: #eff5fe;
+}
+
+.successMessage {
+  position: absolute;
+  margin-top: -109%;
+  margin-left: -8%;
+  width: 80%;
+  padding: 16px;
+  color: #eff5fe;
+  text-align: start;
+  margin-bottom: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  background: #00874f;
+  box-shadow: 0px 2px 2px -1px rgba(30, 41, 59, 0.04),
+    0px 16px 24px -4px rgba(30, 41, 59, 0.16);
+}
+
+.successIcon {
+  color: #eff5fe;
+  margin-right: 3%;
+  font-size: 20px;
+}
+
+.closeIcon {
+  float: right;
+  cursor: pointer;
+  margin-top: -5%;
+  font-size: 20px;
+}
+
+.cancelPopup {
+  width: 70%;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.popTitle {
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 20px;
+}
+
+.popCancel {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1e293b;
+  padding: 10px;
+}
+
+.cancelButton {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  color: #1e293b;
+  cursor: pointer;
+  background: none;
+  border-right: 1px solid #171733;
+}
+
+.okButton {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  color: #1e293b;
+  cursor: pointer;
+  background: none;
+}
+
+.imagePreview {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.imagePreview span {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.removeIcon {
+  cursor: pointer;
+  color: #6b185e;
+}
+
+.separatorLine {
+  border: none;
+  border-top: 1px solid black;
+  margin-top: 5%;
+}
+
+.requiredAsterisk {
+  font-size: 14px;
+  color: red;
+  margin-left: 0;
+}

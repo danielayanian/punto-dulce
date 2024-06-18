@@ -72,9 +72,8 @@
 
 img {
   width: 30px;
-  height: 30px;
-  margin-right: 20px;
-}
+  /* margin-right: 20px; */
+/* } */
 
 .productName {
   font-weight: bold;
@@ -238,4 +237,4 @@ textarea {
 }
 .listShipping{
 list-style: none;
-} */
+} 
