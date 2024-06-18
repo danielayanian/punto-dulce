@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../../components/LoginInput/LoginInput.module.css';
-import Button from "../Button/Button";
 import { validateEmail, validatePassword } from '../Utils/Validation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faTimesCircle } from "@fortawesome/free-solid-svg-icons";

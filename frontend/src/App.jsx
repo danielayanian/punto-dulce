@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 import ProductList from "./pages/ProductList";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 import Register from "./components/Register/Register";
 import Cart from "./pages/Cart";
 import { Wsp } from "./components/WhatsApp/Wsp";
@@ -15,6 +15,7 @@ import ScrollToTop from "./Hooks/ScrollToTop";
 import PaymentForm from './pages/PaymentDetails';
 import PurchaseCompleted from './pages/PurchaseCompleted';
 import LoginInput from "./components/LoginInput/LoginInput";
+import Admi from "./pages/Admi";
 
 
 const App = () =>{
