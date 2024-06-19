@@ -10,8 +10,40 @@
 
 .image {
   width: 100%;
+  border-radius: 10px;
+  height: 250px;
+  object-fit: cover;
+  
 }
+.styleInput{
+  width: 55%;
+  color: #6B185E;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+.quantityButton{
+position: absolute;
+top: 70%;
+left: 25%;
+text-align: center;
+border: 1.5px solid  #6B185E;
+border-radius: 10px;
+background:  #EFF5FE;
+box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.15);
+padding: 10px;
+width: 45%;
 
+}
+.quantityButton button{
+  border-radius: 5px;
+  background: #6B185E;
+  border: none;
+}
 .imageButtons {
   position: relative;
 }
@@ -26,9 +58,15 @@
 }
 
 .chevronButton {
+  font-size: 16px;
+  font-weight: 600;
   box-shadow: none;
   border: none;
-  color: #ab5195;
+  color: #6B185E;
+}
+.quantityButton img {
+  filter: invert(82%) sepia(9%) saturate(3106%) hue-rotate(169deg) brightness(97%) contrast(89%);
+  cursor: pointer;
 }
 
 .nameStyle {
@@ -47,14 +85,24 @@
 }
 
 .bottomButton {
+  cursor: pointer;
   padding: 0.5rem 1rem;
+  font-size: 16px;
+  font-weight: 700;
+}
+.bottomButton:hover{
+  background-color: #AB519580;
 }
 
 .bottomButtonRight {
+  font-size: 16px;
   background-color: rgb(107, 24, 94);
-  color: #ebf1fa;
-  padding-right: 1rem;
+  color: #A6BCDF;
+  padding-right: 3rem;
   font-weight: 500;
+}
+.bottomButtonRight:hover{
+  background:  rgb(107, 24, 94);
 }
 
 .delivery {
@@ -93,6 +141,7 @@
   width: 1rem;
   height: 1rem;
   position: relative;
+  border:1px solid #6b185e;
 }
 .customRadioButton.selected::before {
   content: "";
@@ -108,4 +157,9 @@
 }
 .customRadioButton::before {
   background-color: #6b185e;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

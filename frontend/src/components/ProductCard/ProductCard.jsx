@@ -8,6 +8,8 @@ import Right from "/img/chevron-right.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import masIcon from "/img/mas.png";
+import menosIcon from "/img/menos.png";
 import { useEffect, useState } from "react";
 import { urls } from "../../helpers/url.js";
 
@@ -37,20 +39,22 @@ export const ProductCard = ({ product }) => {
   const handleOptionChange = (value) => {
     setSelectedOption(value);
   };
-
   const handleInputChange = (event) => {
-    setQuantity(event.target.value);
-  };
-
-  
-
-  const handleQuantityChange = (action) => {
-    if (action === "increment") {
-      setQuantity((prevQuantity) => prevQuantity + 1);
-    } else if (action === "decrement") {
-      setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 0)); 
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      setQuantity(value);
+    } else if (event.target.value === "") {
+      setQuantity(0);
     }
   };
+
+  const handleQuantityChange = (action) => {
+    setQuantity((prevQuantity) => {
+      const newQuantity = action === "increment" ? prevQuantity + 1 : prevQuantity - 1;
+      return Math.max(newQuantity, 0);
+    });
+  };
+  
   return (
     <>
       <div className={styles.container}>
@@ -61,10 +65,11 @@ export const ProductCard = ({ product }) => {
             className={styles.image}
           />
           {/* <ButtonSum quantity={quantity} handleInputChange={handleInputChange} /> */}
+          <div className={styles.quantityButton}>
           <button onClick={() => handleQuantityChange("decrement")}>
-            {/* Icono de menos */}
+          <img src={menosIcon} alt="Decrement" />
           </button>
-          <input
+          <input 
             type="number"
             placeholder=""
             className={styles.styleInput}
@@ -72,8 +77,9 @@ export const ProductCard = ({ product }) => {
             onChange={(e) => handleInputChange(e)}
           />
           <button onClick={() => handleQuantityChange("increment")}>
-            {/* Icono de más */}
+          <img src={masIcon} alt="Increment" />
           </button>
+          </div>
         </div>
         <h2 className={styles.nameStyle}>{
         product.name}</h2>
