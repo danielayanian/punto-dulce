@@ -70,8 +70,8 @@ function PayWholesaler({ products }) {
   };
 
   return (
-    <>
-      <div className="container">
+    <><div className={styles.container}>
+      <div >
         <div className={styles.buttonContainer}>
           <div className={styles.topRightButton}>
             <Link
@@ -435,7 +435,7 @@ function PayWholesaler({ products }) {
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
     </>
   );
 }

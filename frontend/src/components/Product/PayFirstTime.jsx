@@ -63,7 +63,9 @@ function PaymentForm({ products }) {
   };
 
   return (
-    <div className='container'>
+    
+    <div className={styles.container}>
+    <div >
       <div className={styles.buttonContainer}>
         <div className={styles.topRightButton}>
           <Link to="/cart" className={`${styles.button} ${styles.buttonRight}`}>
@@ -439,7 +441,7 @@ function PaymentForm({ products }) {
           </Link>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 }
 
