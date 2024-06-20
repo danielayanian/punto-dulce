@@ -1,23 +1,30 @@
-/* .container {
-  padding: 20px;
+ .cartContainer {
+  padding: 15px;
   box-sizing: border-box;
+  margin: 0;
+  color:#AB5195;
+ 
+   
+}
+.purpleColor{
+  color:#6b185e
 }
 
 .topRightButton {
   text-align: left;
   margin-bottom: 10px;
 }
-.title {
-  border-bottom: 4px solid #6b185e;
+.titleCart {
+  border-bottom: 2px solid #AB5195;
   padding-left: 5px;
 }
 
-.buttonContainer {
+.buttonContain {
   display: flex;
   justify-content: space-between;
 }
 
-.button {
+.buttonCart{
   padding: 0.5rem;
   background-color: transparent;
   color: #6b185e;
@@ -28,13 +35,13 @@
   font-weight: bold;
 }
 
-.buttonRight {
+.buttonR {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
 }
-.buttonLeft {
+.buttonL {
   border: #6b185e solid 2px;
   display: flex;
   flex-direction: row;
@@ -58,6 +65,7 @@
   justify-content: space-between;
   border-bottom: 1px solid #ccc;
   padding: 10px 0;
+  flex-direction: column;
 }
 
 .productInfo {
@@ -67,25 +75,39 @@
 
 .topTitle {
   display: flex;
+  flex-direction: row;
   align-items: center;
 }
+.titleProduct{
+  display: flex;
+  flex-direction: column;
+}
 
-img {
-  width: 30px;
-  /* margin-right: 20px; */
-/* } */
+.imgProduct {
+  width: 124px;
+  height: 124px;
+  margin:5px;
+  border:2px solid #6b185e;
+}
 
 .productName {
   font-weight: bold;
+  color: #6b185e;
 }
 
 .productDescription {
   margin-top: 5px;
+  color: #AB5195;
 }
 
-.productDetails {
+.totalMinorista {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: #AB5195;
+  border-bottom: #AB5195 2px solid;
+  align-items: center;
 }
 
 .detailRow {
@@ -93,13 +115,7 @@ img {
   justify-content: space-between;
 }
 
-input {
-  border-radius: 40px;
-  background: none;
-  border: 2px solid black;
-  padding: 7px;
-  margin: 5px;
-}
+
 
 .detailTitle {
   font-weight: bold;
@@ -107,6 +123,8 @@ input {
 
 .detailValue {
   margin-left: 10px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .paymentForm {
@@ -136,14 +154,20 @@ input {
   color: black;
   margin-left: 10px;
 }
-
-p {
-  font-size: 12px;
-  margin: 0 0 0 20px;
+.label{
+  margin-bottom: 0;
+  line-height: 1%;
 }
 
-.shortInput {
-  width: 70px;
+.phrases {
+  font-size: 12px;
+  margin: 0px 0px 0px 10px;
+}
+.miniphrases{
+  padding: 0px 0px 5px 30px;
+font-size: small};
+
+.shortInput {  width: 70px;
 }
 
 .expiryAndCvc {
@@ -153,12 +177,17 @@ p {
 
 .shippingForm {
   margin-top: 30px;
- 
+
 }
 .inputsContainer{ display: flex;
   flex-direction: column;
 
 }
+ .customeRadio{
+  color:#AB5195;
+  font-weight:bold;
+ }
+ 
 
 .customerData,
 .receiverData {
@@ -194,13 +223,16 @@ p {
 }
 .commentBox {
   justify-content: center;
+  justify-content: center;
+  align-items: center;
 }
-textarea {
-  width: 60%;
+.textareaForm {
+  width: 90%;
   height: 100px;
   margin-top: 10px;
   border-radius: 5%;
   margin: 5px;
+
 
   padding: 10px;
 }
@@ -231,10 +263,9 @@ textarea {
   margin-top: 20px;
 }
 
-.wsp {
-  font-size: 12px;
-  margin: 0 0 0 20px;
-}
+
 .listShipping{
 list-style: none;
-} 
+margin:0px;
+padding: 0px;
+}

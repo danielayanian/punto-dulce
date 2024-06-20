@@ -71,13 +71,13 @@ function PayWholesaler({ products }) {
   };
   console.log("wholesaler" + products);
   return (
-    <>
-      <div className="container">
-        <div className={styles.buttonContainer}>
+    <><div className={styles.cartContainer}>
+      <div >
+        <div className={styles.buttonContain}>
           <div className={styles.topRightButton}>
             <Link
               to="/cart"
-              className={`${styles.button} ${styles.buttonRight}`}
+              className={`${styles.buttonCart} ${styles.buttonRight}`}
             >
               Regresar <img src={Left} alt="Left arrow" />
             </Link>
@@ -421,23 +421,23 @@ function PayWholesaler({ products }) {
                   : 'Retirar por Depósito'}
               </p>
             </div>
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonContain}>
               <Link
                 to="/cart"
-                className={`${styles.button} ${styles.buttonRight}`}
+                className={`${styles.buttonCart} ${styles.buttonR}`}
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
               <Link
                 to="/purchase-completed"
-                className={`${styles.button} ${styles.buttonLeft}`}
+                className={`${styles.buttonCart} ${styles.buttonL}`}
               >
                 Terminar <img src={Right} alt="Right arrow" />
               </Link>
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
     </>
   );
 }

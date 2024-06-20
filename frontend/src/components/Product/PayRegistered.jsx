@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
-import Left from '/img/chevron-left.svg';
-import Right from '/img/chevron-right.svg';
-import EditPopUp from './EditPopUp'; // Importa el componente Popup
-import ProductCartList from '../Cart/ProductCartList';
+import Left from '../../../public/img/chevron-left.svg';
+import Right from '../../../public/img/chevron-right.svg';
+import EditPopUp from './EditPopUp';
 
 function PayRegistered({ products }) {
   // Objeto con datos del usuario
@@ -16,6 +15,7 @@ function PayRegistered({ products }) {
     floor: '4',
     apartment: 'A',
     neighborhood: 'Barrio Ficticio',
+    DNI: '387439874',
   };
 
   const initialUserData = {
@@ -27,6 +27,7 @@ function PayRegistered({ products }) {
     apartment: 'B',
     neighborhood: 'Otro Barrio Ficticio',
     phone: '+1234567890',
+    DNI: '387439874',
   };
 
   // Estado para los datos del usuario
@@ -86,22 +87,26 @@ function PayRegistered({ products }) {
     setIsEditingUserData(false);
     setIsEditingReceiverData(false);
   };
- 
+  const totalMinorista = products.reduce((total, product) => {
+    return total + (product.price * product.quantity);
+}, 0);
+
   return (
     <>
-      <div className="container">
-        <div className={styles.buttonContainer}>
+      <div className={styles.cartContainer}>
+        <div className={styles.buttonContain}>
           <div className={styles.topRightButton}>
             <Link
               to="/cart"
-              className={`${styles.button} ${styles.buttonRight}`}
+              className={`${styles.buttonCart} ${styles.buttonR}`}
             >
-              Regresar <img src={Left} alt="Left arrow" />
+              Regresar{' '}
+              <img src={Left} alt="Left arrow" />
             </Link>
           </div>
         </div>
-        <h2 className="title">PRODUCTO</h2>
-        {/* <div className={styles.cartContainer}>
+        <h2 className={styles.title}>PRODUCTO</h2>
+        <div className={styles.cartContainer}>
           {products.map((product) => (
             <div key={product.id} className={styles.productContainer}>
               <div className={styles.productInfo}>
@@ -109,15 +114,17 @@ function PayRegistered({ products }) {
                   <img
                     src={product.imageUrl}
                     alt={product.name}
-                    className={styles.productImage}
+                    className={styles.imgProduct}
                   />
-                  <div className={styles.productName}>{product.name}</div>
-                </div>
-                <div className={styles.productDescription}>
-                  {product.description}
+                  <div className={styles.titleProduct}>
+                    <div className={styles.productName}>{product.name}</div>{' '}
+                    <div className={styles.productDescription}>
+                      {product.description}
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className={styles.productDetails}>
+              {/* <div className={styles.productDetails}>
                 <div className={styles.detailRow}>
                   <span className={styles.detailTitle}>Cont:</span>
                   <span className={styles.detailValue}>{product.quantity}</span>
@@ -126,23 +133,27 @@ function PayRegistered({ products }) {
                   <span className={styles.detailTitle}>$ Unit:</span>
                   <span className={styles.detailValue}>${product.price}</span>
                 </div>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>
-                    Precio Total Minorista:
-                  </span>
-                  <span className={styles.detailValue}>
-                    ${product.price * product.quantity}
-                  </span>
-                </div>
+                <div className={styles.detailRow}> 
+                <span className={styles.detailTitle}>
+                  Precio Total Minorista:
+                </span>
+                <span className={styles.detailValue}>
+                  ${product.price * product.quantity}
+                </span>
               </div>
+            </div> */}
             </div>
           ))}
-        </div> */}
-        <ProductCartList data={products} />
+          
+        </div>
+          {/* Total minorista */}
+          <div className={styles.totalMinorista}>
+                <h3>Total Minorista:  </h3><span>${totalMinorista.toFixed(2)}</span>
+            </div>
         {/* Payment form */}
         <div className={styles.paymentForm}>
           <div className={styles.paymentOptions}>
-            <h3>Formas de Pago</h3>
+            <h3 className={styles.purpleColor}>Formas de Pago</h3>
             <div className={styles.paymentOption}>
               <input
                 type="radio"
@@ -152,7 +163,9 @@ function PayRegistered({ products }) {
                 checked={selectedPayment === 'debitCard'}
                 onChange={handlePaymentChange}
               />
-              <label htmlFor="debitCard">Tarjetas de débito</label>
+              <label className={styles.customeRadio} htmlFor="debitCard">
+                Tarjetas de débito
+              </label>
               {selectedPayment === 'debitCard' && (
                 <div className={styles.inputs}>
                   <input type="text" placeholder="Número de tarjeta" />
@@ -180,7 +193,9 @@ function PayRegistered({ products }) {
                 checked={selectedPayment === 'dniAccount'}
                 onChange={handlePaymentChange}
               />
-              <label htmlFor="dniAccount">Mi cuenta DNI</label>
+              <label className={styles.customeRadio} htmlFor="dniAccount">
+                Mi cuenta DNI
+              </label>
               {selectedPayment === 'dniAccount' && (
                 <div className={styles.qrImage}>
                   <img src="ruta_a_tu_qr_image.png" alt="QR Code" />
@@ -196,7 +211,9 @@ function PayRegistered({ products }) {
                 checked={selectedPayment === 'cash'}
                 onChange={handlePaymentChange}
               />
-              <label htmlFor="cash">Efectivo</label>
+              <label className={styles.customeRadio} htmlFor="cash">
+                Efectivo
+              </label>
             </div>
             <div className={styles.paymentOption}>
               <input
@@ -207,7 +224,9 @@ function PayRegistered({ products }) {
                 checked={selectedPayment === 'mercadopago'}
                 onChange={handlePaymentChange}
               />
-              <label htmlFor="mercadopago">Mercado de Pago</label>
+              <label className={styles.customeRadio} htmlFor="mercadopago">
+                Mercado de Pago
+              </label>
               {selectedPayment === 'mercadopago' && (
                 <div>
                   <a className={styles.yellowLink} href="mercadoPagoLink">
@@ -225,14 +244,16 @@ function PayRegistered({ products }) {
                 checked={selectedPayment === 'transfer'}
                 onChange={handlePaymentChange}
               />
-              <label htmlFor="transfer">Transferencia</label>
+              <label className={styles.customeRadio} htmlFor="transfer">
+                Transferencia
+              </label>
               {selectedPayment === 'transfer' && (
                 <p className={styles.wsp}>Los Datos se envían por Whatsapp</p>
               )}
             </div>
           </div>
-          <h3>Formas de Entrega</h3>
-          <div>
+          <h3 className={styles.purpleColor}>Formas de Entrega</h3>
+          <div className={styles.label}>
             <div className={styles.paymentOption}>
               <input
                 type="radio"
@@ -242,11 +263,13 @@ function PayRegistered({ products }) {
                 checked={selectedDelivery === 'homeDelivery'}
                 onChange={handleDeliveryChange}
               />
-              <label htmlFor="homeDelivery">Envío a Domicilio</label>
+              <label className={styles.customeRadio} htmlFor="homeDelivery">
+                Envío a Domicilio
+              </label>
             </div>
-            <p>Envío sin cargo</p>
+            <p className={styles.miniphrases}>Envío sin cargo</p>
           </div>
-          <div>
+          <div className={styles.label}>
             <div className={styles.paymentOption}>
               <input
                 type="radio"
@@ -256,15 +279,17 @@ function PayRegistered({ products }) {
                 checked={selectedDelivery === 'deposit'}
                 onChange={handleDeliveryChange}
               />
-              <label htmlFor="deposit">Retirar por Depósito</label>
+              <label className={styles.customeRadio} htmlFor="deposit">
+                Retirar por Depósito
+              </label>
             </div>
-            <p>Dirección de deposito</p>
+            <p className={styles.miniphrases}>Dirección de deposito</p>
           </div>
-          <h3>Datos de Envío</h3>
+          <h3 className={styles.purpleColor}>Datos de Envío</h3>
           <div className={styles.shippingForm}>
             <div className={styles.customerData}>
               <div className={styles.dataHeader}>
-                <label htmlFor="customerData">
+                <label className={styles.customeRadio} htmlFor="customerData">
                   <input
                     type="radio"
                     id="customerData"
@@ -307,7 +332,7 @@ function PayRegistered({ products }) {
           <div className={styles.shippingForm}>
             <div className={styles.receiverData}>
               <div className={styles.dataHeader}>
-                <label htmlFor="receiverData">
+                <label htmlFor="receiverData" className={styles.customeRadio}>
                   <input
                     type="radio"
                     id="receiverData"
@@ -344,18 +369,21 @@ function PayRegistered({ products }) {
                   data={receiverData}
                   handleInputChange={(e) => handleInputChange(e, 'receiver')}
                   saveChanges={saveReceiverDataChanges}
-                  type="receiver"
+                  type="user"
                 />
               )}
             </div>
           </div>{' '}
           <div className="CommentBox">
             {' '}
-            <h3>Observaciones / Comentarios</h3>
-            <textarea placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
+            <h3 className={styles.purpleColor}>Observaciones / Comentarios</h3>
+            <textarea
+              className={styles.textareaForm}
+              placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."
+            ></textarea>
           </div>
           <div className={styles.confirmation}>
-            <h3>Confirmar datos</h3>
+            <h3 className={styles.purpleColor}>Confirmar datos</h3>
             <div className={styles.confirmationDetails}>
               {products.map((product,index) => (
                 <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
@@ -365,20 +393,20 @@ function PayRegistered({ products }) {
                 </div>
               ))}
               <div>
-                <h3>Como seguir pedido</h3>
-                <p>
+                <h3 className={styles.purpleColor}>Como seguir pedido</h3>
+                <p className={styles.phrases}>
                   En la sección "Mi cuenta" puedes ver el seguimiento de la
                   compra
                 </p>
               </div>
             </div>
             <div>
-              <h3>Informaciones del pedido</h3>
+              <h3 className={styles.purpleColor}>Informaciones del pedido</h3>
               <span>EMAIL</span>
-              <p>ejemplo@ejemplo.cpm</p>
+              <p className={styles.phrases}>ejemplo@ejemplo.cpm</p>
             </div>
             <div>
-              <h3>Domicilio de Facturación</h3>
+              <h3 className={styles.purpleColor}>Domicilio de Facturación</h3>
               <ul className={styles.listShipping}>
                 <li>{initialUserData.fullName}</li>
                 <li>
@@ -392,8 +420,8 @@ function PayRegistered({ products }) {
               </ul>
             </div>
             <div>
-              <h3>Froma de Entrega</h3>
-              <p>
+              <h3 className={styles.purpleColor}>Froma de Entrega</h3>
+              <p className={styles.phrases}>
                 {' '}
                 {selectedDelivery === ''
                   ? ''
@@ -402,16 +430,16 @@ function PayRegistered({ products }) {
                   : 'Retirar por Depósito'}
               </p>
             </div>
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonContain}>
               <Link
                 to="/cart"
-                className={`${styles.button} ${styles.buttonRight}`}
+                className={`${styles.buttonCart} ${styles.buttonR}`}
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
               <Link
                 to="/purchase-completed"
-                className={`${styles.button} ${styles.buttonLeft}`}
+                className={`${styles.buttonCart} ${styles.buttonL}`}
               >
                 Terminar <img src={Right} alt="Right arrow" />
               </Link>
