@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
 import Left from '/img/chevron-left.svg';
@@ -386,7 +386,7 @@ function PayWholesaler({ products }) {
               <div>
                 <h3>Como seguir pedido</h3>
                 <p>
-                  En la sección "Mi cuenta" puedes ver el seguimiento de la
+                  En la sección &#34;Mi cuenta&#34; puedes ver el seguimiento de la
                   compra
                 </p>
               </div>
