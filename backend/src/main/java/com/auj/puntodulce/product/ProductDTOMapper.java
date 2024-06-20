@@ -14,7 +14,7 @@ public class ProductDTOMapper implements Function<Product, ProductDTO> {
                 product.getDescription(),
                 product.getImage(),
                 product.getPriceMinor(),
-                product.getPriceMayor()
+                product.getPriceMajor()
         );
     }
 }

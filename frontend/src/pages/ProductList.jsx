@@ -1,13 +1,15 @@
 import Button from "../components/Button/Button";
-import { ProductCard } from "../components/ProductCard/ProductCard";
+import  ProductCard from "../components/ProductCard/ProductCard";
 import { SearchBar } from "../components/SearchBar/SearchBar";
-import chevronLeft from "../../public/img/chevron-left.svg";
+import chevronLeft from "/img/chevron-left.svg";
 import styles from "../components/ProductCard/ProductCard.module.css";
 import useGetProducts from "../Hooks/useGetProducts";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+
 export const ProductList = () => {
+
   const { slug } = useParams();
   const { isLoading, error, data } = useGetProducts(slug ?? "");
 

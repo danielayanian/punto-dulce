@@ -1,6 +1,7 @@
 package com.auj.puntodulce.cart;
 
 import com.auj.puntodulce.product.Product;
+import com.auj.puntodulce.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -24,6 +25,11 @@ public class Cart {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
+    private User user;
+
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<CartItem> items = new ArrayList<>();
@@ -35,7 +41,7 @@ public class Cart {
     private BigDecimal totalPriceMinor;
 
     @Column(nullable = false)
-    private BigDecimal totalPriceMayor;
+    private BigDecimal totalPriceMajor;
 
     @PrePersist
     protected void onCreate() {
@@ -45,8 +51,8 @@ public class Cart {
         if(this.totalPriceMinor == null){
             this.totalPriceMinor = BigDecimal.ZERO;
         }
-        if(this.totalPriceMayor == null){
-            this.totalPriceMayor = BigDecimal.ZERO;
+        if(this.totalPriceMajor == null){
+            this.totalPriceMajor = BigDecimal.ZERO;
         }
     }
 
@@ -62,9 +68,9 @@ public class Cart {
             }
             cartItem.setQuantity(quantity);
             cartItem.setTotalPriceMinor(cartItem.getTotalPriceMinor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
-            cartItem.setTotalPriceMayor(cartItem.getTotalPriceMayor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+            cartItem.setTotalPriceMajor(cartItem.getTotalPriceMajor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
         } else {
-            CartItem cartItem = new CartItem(UUID.randomUUID(), this,null, product, quantity, product.getPriceMinor().multiply(BigDecimal.valueOf(quantity)), product.getPriceMayor().multiply(BigDecimal.valueOf(quantity)));
+            CartItem cartItem = new CartItem(UUID.randomUUID(), this,null, product, quantity, product.getPriceMinor().multiply(BigDecimal.valueOf(quantity)), product.getPriceMajor().multiply(BigDecimal.valueOf(quantity)));
             items.add(cartItem);
         }
 
@@ -85,8 +91,8 @@ public class Cart {
         totalPriceMinor = items.stream()
                 .map(CartItem::getTotalPriceMinor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        totalPriceMayor = items.stream()
-                .map(CartItem::getTotalPriceMayor)
+        totalPriceMajor = items.stream()
+                .map(CartItem::getTotalPriceMajor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

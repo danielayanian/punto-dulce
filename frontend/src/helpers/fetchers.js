@@ -8,9 +8,24 @@ const errorMessageStatus = {
   500: 'Error 500 - Error bbdd',
 }
 
+export const putCart = async (productId, quantity) => {
+  const url =`${urls.cart}/${productId}?quantity=${quantity}`
+  const token = localStorage.getItem("jwt") 
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' },
+  })
+
+  if (!response.ok) {
+    throw new Error('Error fetching quantities')
+  }
+}
+
 export const getCart = async () => {
   // const url = slug ? `${urls.getCart}?slug=${slug}` : urls.getCart
-  const response = await fetch(urls.getCart)
+ const token = localStorage.getItem("jwt") 
+  
+  const response = await fetch(urls.getCart, {method:"GET", headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' }})
   if (!response.ok) {
     throw new Error(`Error fetching topics: ${response.statusText}`)
   }

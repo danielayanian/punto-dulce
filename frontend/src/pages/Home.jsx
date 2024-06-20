@@ -6,18 +6,11 @@ import Opinions from "../components/Opinions";
 import OtherBrands from "../components/OtherBrands/OtherBrands";
 
 export const Home = () => {
-  const allCategories = [
-    {
-      id: 1,
-      categoryName: "Alfajores",
-      imageUrl: "../../../public/img/alfajores.png",
-    },
-  ];
   return (
     <>
       <Carousel />
 
-      <Categories categories={allCategories} />
+      <Categories />
 
       {/* <Offers/> */}
       <h2>OFERTAS DE LA SEMANA</h2>

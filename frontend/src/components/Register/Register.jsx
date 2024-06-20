@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styles from '../../components/LoginInput/LoginInput.module.css';
-import Button from "../Button/Button";
-import Link from "../../../public/img/link-button.png"
 import { validateEmail, validatePassword } from '../Utils/Validation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { useLocation, useNavigate } from "react-router-dom";
+import { urls } from '../../helpers/url';
 
 const RegisterInput = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +13,8 @@ const RegisterInput = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate(); 
+  const location = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,13 +41,39 @@ const RegisterInput = () => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      // Proceder con el registro
-      // console.log("Formulario enviado");
+      fetch(urls.register, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password, confirmPassword }),
+      })
+        .then((response) => {
+          if (response.ok && response.status === 204) {
+            const token = response.headers.get('Authorization');
+            if (token) {
+              const jwt = token.replace('Bearer ', ''); 
+              localStorage.setItem('jwt', jwt);
+              
+              const from = location.state?.from || '/'; 
+              navigate(from); 
+            } else {
+              setErrors({ form: 'No se ha recibido el token de autenticación' });
+            }
+          } else {
+            return response.json().then((errorData) => {
+              setErrors({ form: errorData.message || 'Error en el registro' });
+            });
+          }
+        })
+        .catch((error) => {
+          setErrors({ form: 'Error de servidor' });
+        });
     }
   };
   return (
     <section className={styles.container}>
-      <img className={styles.logo} src="../../../public/img/logo.png"  alt="logo de la página" />
+      <img className={styles.logo} src="/img/logo.png"  alt="logo de la página" />
       <h1 className={styles.title}>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>

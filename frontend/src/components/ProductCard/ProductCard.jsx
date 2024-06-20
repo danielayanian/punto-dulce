@@ -2,21 +2,55 @@
 import Button from "../Button/Button";
 import ButtonSum from "../Button/ButtonSum.jsx";
 import styles from "./ProductCard.module.css";
-import linkDark from "../../../public/img/link-dark.svg";
-import linkWhite from "../../../public/img/link-white.svg";
-import Right from "../../../public/img/chevron-right.svg";
+import linkDark from "/img/link-dark.svg";
+import linkWhite from "/img/link-white.svg";
+import Right from "/img/chevron-right.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { urls } from "../../helpers/url.js";
 
 export const ProductCard = ({ product }) => {
+  // useEffect(() => {
+  //   usePutCart(product.id, quantity);
+  // }, [product.id, quantity]);
+
+  const handleSubmit = async (productId, quantity) => {
+    const url =`${urls.cart}/${productId}?quantity=${quantity}`
+    const token = localStorage.getItem("jwt") 
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' },
+    })
+  
+    if (!response.ok) {
+      throw new Error('Error fetching quantities')
+    }
+  };
+
   const [selectedOption, setSelectedOption] = useState("");
+
+  const [quantity, setQuantity] = useState(0);
+
 
   const handleOptionChange = (value) => {
     setSelectedOption(value);
   };
 
+  const handleInputChange = (event) => {
+    setQuantity(event.target.value);
+  };
+
+  
+
+  const handleQuantityChange = (action) => {
+    if (action === "increment") {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+    } else if (action === "decrement") {
+      setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 0)); 
+    }
+  };
   return (
     <>
       <div className={styles.container}>
@@ -26,9 +60,24 @@ export const ProductCard = ({ product }) => {
             alt={product.name}
             className={styles.image}
           />
-          <ButtonSum />
+          {/* <ButtonSum quantity={quantity} handleInputChange={handleInputChange} /> */}
+          <button onClick={() => handleQuantityChange("decrement")}>
+            {/* Icono de menos */}
+          </button>
+          <input
+            type="number"
+            placeholder=""
+            className={styles.styleInput}
+            value={quantity}
+            onChange={(e) => handleInputChange(e)}
+          />
+          <button onClick={() => handleQuantityChange("increment")}>
+            {/* Icono de más */}
+          </button>
         </div>
-        <h2 className={styles.nameStyle}>{product.name}</h2>
+        <h2 className={styles.nameStyle}>{
+        product.name}</h2>
+        
         <p className={styles.description}>{product.description}</p>
 
         <div className={styles.prices}>
@@ -67,25 +116,25 @@ export const ProductCard = ({ product }) => {
         </div>
 
         <div className={styles.buttonsContainer}>
-        <Link to="/cart" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Button
-            text={"Carrito"}
-            icon={linkDark}
-            className={styles.bottomButton}
-            onClick={() => {}}
-          />
-          </Link>
-
-          
-          <Link to="" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Button
-            text={"Comprar"}
-            icon={linkWhite}
-            className={`${styles.bottomButtonRight} ${styles.bottomButton}`}
+          {/* hacer pop up */}
+          <Link to="/cart" style={{ textDecoration: "none", color: "inherit" }}>
+            <Button
+              text={"Carrito"}
+              icon={linkDark}
+              className={styles.bottomButton}
+              onClick={() => handleSubmit( product.id,quantity)}
             />
           </Link>
 
-
+          <Link to="/cart" style={{ textDecoration: "none", color: "inherit" }}>
+            <Button
+              id={product.id}
+              text={"Comprar"}
+              icon={linkWhite}
+              onClick={() => handleSubmit(product.id,quantity)}
+              className={`${styles.bottomButtonRight} ${styles.bottomButton}`}
+            />
+          </Link>
         </div>
         <div className={styles.delivery}>
           <FontAwesomeIcon
@@ -100,7 +149,7 @@ export const ProductCard = ({ product }) => {
         Ver politicas de envio
         <img src={Right} />
       </Link>
-     
     </>
   );
 };
+export default ProductCard;

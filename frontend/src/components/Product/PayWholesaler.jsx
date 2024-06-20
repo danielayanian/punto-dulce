@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
-import Left from '../../../public/img/chevron-left.svg';
-import Right from '../../../public/img/chevron-right.svg';
+import Left from '/img/chevron-left.svg';
+import Right from '/img/chevron-right.svg';
 import EditPopUp from './EditPopUp';
+import ProductCartList from '../Cart/ProductCartList';
 
 function PayWholesaler({ products }) {
   const initialUserData = {
@@ -68,7 +69,7 @@ function PayWholesaler({ products }) {
     setIsCustomerDataChecked(false);
     setIsReceiverDataChecked(true);
   };
-
+  console.log("wholesaler" + products);
   return (
     <><div className={styles.container}>
       <div >
@@ -83,7 +84,7 @@ function PayWholesaler({ products }) {
           </div>
         </div>{' '}
         <h2 className="title">PRODUCTO</h2>
-        <div className={styles.cartContainer}>
+        {/* <div className={styles.cartContainer}>
           {products.map((product) => (
             <div key={product.id} className={styles.productContainer}>
               <div className={styles.productInfo}>
@@ -119,7 +120,8 @@ function PayWholesaler({ products }) {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
+        <ProductCartList data={products} />
         {/* Payment form */}
         <div className={styles.paymentForm}>
           <div className={styles.paymentOptions}>
@@ -374,8 +376,8 @@ function PayWholesaler({ products }) {
           <div className={styles.confirmation}>
             <h3>Confirmar datos</h3>
             <div className={styles.confirmationDetails}>
-              {products.map((product) => (
-                <div key={product.id} className={styles.confirmationProduct}>
+              {products.map((product,index) => (
+                <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
                   <span>{product.name}</span>
                   <span>{product.quantity}</span>
                   <span>${product.price * product.quantity}</span>

@@ -27,7 +27,7 @@ public class CartDTOMapper implements Function<Cart, CartDTO> {
                 items,
                 cart.getTotalItems(),
                 cart.getTotalPriceMinor(),
-                cart.getTotalPriceMayor()
+                cart.getTotalPriceMajor()
         );
     }
 }

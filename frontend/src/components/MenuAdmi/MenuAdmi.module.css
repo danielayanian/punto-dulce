@@ -1,29 +1,29 @@
-/* src/components/MenuAdmi.module.css */
+
 .menuContent {
   background-color: #6B185E;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.30);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
   position: relative;
-  width: 100%;
   z-index: 1001;
   transition: all 0.3s ease-in-out;
 }
 
 .logo {
-  width: 35%;
+  width: 45%;
 }
 
 .icons {
   display: flex;
   align-items: center;
-  margin-right: 10%;
+  margin-right: 5%;
 }
 
 .searchIcon {
   color: #EFF5FE;
-  margin-right: 10px;
+  margin-right: 10%;
 }
 
 .menuIcon {

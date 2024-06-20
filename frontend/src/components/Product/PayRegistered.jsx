@@ -385,8 +385,8 @@ function PayRegistered({ products }) {
           <div className={styles.confirmation}>
             <h3 className={styles.purpleColor}>Confirmar datos</h3>
             <div className={styles.confirmationDetails}>
-              {products.map((product) => (
-                <div key={product.id} className={styles.confirmationProduct}>
+              {products.map((product,index) => (
+                <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
                   <span>{product.name}</span>
                   <span>{product.quantity}</span>
                   <span>${product.price * product.quantity}</span>

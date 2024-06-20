@@ -1,9 +1,6 @@
 package com.auj.puntodulce.user;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 
@@ -36,6 +33,11 @@ public class CustomerDetails {
 
     @Column(nullable = false)
     private String phone;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User user;
 
     @PrePersist
     protected void onCreate() {

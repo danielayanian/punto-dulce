@@ -1,11 +1,11 @@
 import styles from "./Footer.module.css";
-import line from "../../../public/img/linea.svg";
-import longLine from "../../../public/img/longLine.svg";
-import logo from "../../../public/img/logo.png";
-import arrowRight from "../../../public/img/chevron-right.svg";
-import phone from "../../../public/img/tel.svg";
-import homeIcon from "../../../public/img/home-icon.svg";
-import logo2 from "../../../public/img/logo-2.svg";
+import line from "/img/linea.svg";
+import longLine from "/img/longLine.svg";
+import logo from "/img/logo.png";
+import arrowRight from "/img/chevron-right.svg";
+import phone from "/img/tel.svg";
+import homeIcon from "/img/home-icon.svg";
+import logo2 from "/img/logo-2.svg";
 
 const Footer = () => {
   return (
