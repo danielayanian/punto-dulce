@@ -36,7 +36,7 @@ public class CartController {
             throw new IllegalArgumentException("Quantity must be zero or a positive number");
         }
         UUID cartId = getCartIdFromCookies(request);
-        CartResponse cartResponse = cartService.addOrUpdateItemToCart(cartId, productId, quantity);
+        CartResponse cartResponse = cartService.addOrUpdateOrRemoveItemToCart(cartId, productId, quantity);
         if (cartId == null || !cartId.equals(cartResponse.cartId())) {
             Cookie cookie = new Cookie("cartId", cartResponse.cartId().toString());
             cookie.setHttpOnly(true);
