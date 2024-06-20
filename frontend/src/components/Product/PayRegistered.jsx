@@ -93,12 +93,12 @@ function PayRegistered({ products }) {
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.buttonContainer}>
+      <div className={styles.cartContainer}>
+        <div className={styles.buttonContain}>
           <div className={styles.topRightButton}>
             <Link
               to="/cart"
-              className={`${styles.button} ${styles.buttonRight}`}
+              className={`${styles.buttonCart} ${styles.buttonR}`}
             >
               Regresar{' '}
               <img src={Left} alt="Left arrow" />
@@ -430,16 +430,16 @@ function PayRegistered({ products }) {
                   : 'Retirar por Depósito'}
               </p>
             </div>
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonContain}>
               <Link
                 to="/cart"
-                className={`${styles.button} ${styles.buttonRight}`}
+                className={`${styles.buttonCart} ${styles.buttonR}`}
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
               <Link
                 to="/purchase-completed"
-                className={`${styles.button} ${styles.buttonLeft}`}
+                className={`${styles.buttonCart} ${styles.buttonL}`}
               >
                 Terminar <img src={Right} alt="Right arrow" />
               </Link>

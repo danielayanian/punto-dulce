@@ -143,7 +143,7 @@ const EditPopup = ({
             </>
           )}
           <div className={styles.saveButton}>
-          <button className={styles.buttonSave} onClick={saveChanges}>  <FaSave className={styles.icon}/>Guardar</button>
+          <button className={styles.buttonSave} onClick={saveChanges}>  <FaSave className={styles.iconPop}/>Guardar</button>
           </div>
         </div>
       </div>

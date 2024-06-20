@@ -66,16 +66,16 @@ function PaymentForm({ products }) {
 
   return (
     
-    <div className={styles.container}>
+    <div className={styles.cartContainer}>
     <div >
-      <div className={styles.buttonContainer}>
+      <div className={styles.buttonContain}>
         <div className={styles.topRightButton}>
-          <Link to="/cart" className={`${styles.button} ${styles.buttonRight}`}>
+          <Link to="/cart" className={`${styles.button} ${styles.buttonR}`}>
             Regresar <img src={Left} alt="Left Chevron" />
           </Link>
         </div>
       </div>
-      <h2 className='title'>PRODUCTO</h2>
+      <h2 >PRODUCTO</h2>
       {/* <div className={styles.cartContainer}>
           {products.map((product) => (
             <div key={product.id} className={styles.productContainer}>
@@ -444,11 +444,11 @@ function PaymentForm({ products }) {
             {selectedDelivery === '' ? '' : selectedDelivery === 'homeDelivery' ? 'Envío a Domicilio' : 'Retirar por Depósito'}
           </p>
         </div>
-        <div className={styles.buttonContainer}>
-          <Link to="/cart" className={`${styles.button} ${styles.buttonRight}`}>
+        <div className={styles.buttonContain}>
+          <Link to="/cart" className={`${styles.button} ${styles.buttonR}`}>
             Regresar <img src={Left} alt="Left arrow" />
           </Link>
-          <Link to="/purchase-completed" className={`${styles.button} ${styles.buttonLeft}`}>
+          <Link to="/purchase-completed" className={`${styles.button} ${styles.buttonL}`}>
             Terminar <img src={Right} alt="Right arrow" />
           </Link>
         </div>

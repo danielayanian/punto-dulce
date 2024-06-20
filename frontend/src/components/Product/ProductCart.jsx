@@ -9,11 +9,11 @@ import Right from '/img/chevron-right.svg';
 function Product({ products }) {
   return (
     <>
-      <div className={styles.top}>
+      <div className={styles.topCart}>
         <span>PRODUCTO</span>
         <span>TOTAL</span>
       </div>
-      <div className={styles.cartContainer}>
+      <div className={styles.cartMContainer}>
         {products?.map((product, index) => {
           if (!product || !product.product || !product.product.image) {
             console.error(`Producto en la posición ${index} es inválido o no tiene la propiedad 'image'`);
@@ -48,12 +48,12 @@ function Product({ products }) {
             </div>
           );
         })}
-        <div className={styles.buttonContainer}>
-          <Link to="/" className={`${styles.button} ${styles.buttonRight}`}>
+        <div className={styles.buttonContain}>
+          <Link to="/" className={`${styles.buttonCart} ${styles.buttonRight}`}>
             Regresar
             <img src={Left} />
           </Link>
-          <Link to="/paymentDetails" className={`${styles.button} ${styles.buttonLeft}`}>
+          <Link to="/paymentDetails" className={`${styles.buttonCart} ${styles.buttonL}`}>
             Siguiente
             <img src={Right} />
           </Link>
