@@ -3,7 +3,7 @@ import PayFirstTime from '../components/Product/PayFirstTime';
 import PayRegistered from '../components/Product/PayRegistered';
 import PayWholesaler from '../components/Product/PayWholesaler';
 import ProductCartList from '../components/Cart/ProductCartList';
-import useGetCart from '../Hooks/useGetCart';
+import useGetPreview from '../Hooks/useGetPreview';
 
 function PaymentDetails() {
   
@@ -67,7 +67,7 @@ function PaymentDetails() {
   //   setProducts(data);
   }, []);
 
-  const { isLoading, error, data } = useGetCart();
+  const { isLoading, error, data } = useGetPreview();
   console.log(data);
 
 
@@ -92,7 +92,6 @@ function PaymentDetails() {
       
       {/* Si el usuario está registrado, renderiza PayRegistered, de lo contrario, PayFirstTime y si es mayorista Wholesaler*/}
       {renderPaymentComponent()}
-       
 
     </div>
     

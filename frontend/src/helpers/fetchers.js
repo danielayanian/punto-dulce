@@ -17,7 +17,7 @@ export const putCart = async (productId, quantity) => {
   })
 
   if (!response.ok) {
-    throw new Error('Error fetching quantities')
+    throw new Error(errorMessageStatus[res.status])
   }
 }
 
@@ -25,9 +25,21 @@ export const getCart = async () => {
   // const url = slug ? `${urls.getCart}?slug=${slug}` : urls.getCart
  const token = localStorage.getItem("jwt") 
   
-  const response = await fetch(urls.getCart, {method:"GET", headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' }})
+  const response = await fetch(urls.cart, {method:"GET", headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' }})
   if (!response.ok) {
-    throw new Error(`Error fetching topics: ${response.statusText}`)
+    throw new Error(errorMessageStatus[res.status])
+  }
+
+  const data = await response.json()
+  return data
+}
+
+export const getPreview = async () => {
+ const token = localStorage.getItem("jwt") 
+  
+  const response = await fetch(`${urls.checkout}/preview`, {method:"GET", headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' }})
+  if (!response.ok) {
+    throw new Error(errorMessageStatus[res.status])
   }
 
   const data = await response.json()
@@ -37,7 +49,7 @@ export const getProducts = async (category) => {
   const url = category ? `${urls.getProduct}?category=${category}` : urls.getProduct
   const response = await fetch(url)
   if (!response.ok) {
-    throw new Error(`Error fetching category: ${response.statusText}`)
+    throw new Error(errorMessageStatus[res.status])
   }
 
   const data = await response.json()
