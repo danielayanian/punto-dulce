@@ -60,6 +60,21 @@ public class CheckoutController {
 
     }
 
+    @Operation(summary = "Get preview of the order", description = "Returns a preview of the order with product details, total price, email, and customer details.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved order preview"),
+            @ApiResponse(responseCode = "404", description = "Cart or user not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    @GetMapping("/preview")
+    public OrderPreviewResponse getPreviewOrder(HttpServletRequest request, Authentication authentication) {
+        UUID cartId = getCartIdFromCookies(request);
+        if (cartId == null) {
+            throw new CartNotFoundException("Cart not found");
+        }
+        String userId = authentication.getName();
+        return orderService.getPreviewOrder(cartId, userId);
+    }
     private UUID getCartIdFromCookies(HttpServletRequest request) {
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {

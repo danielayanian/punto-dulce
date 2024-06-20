@@ -1,5 +1,6 @@
 package com.auj.puntodulce.cart;
 
+import com.auj.puntodulce.exception.ProductNotFound;
 import com.auj.puntodulce.product.Product;
 import com.auj.puntodulce.user.User;
 import jakarta.persistence.*;
@@ -63,9 +64,6 @@ public class Cart {
 
         if (existingCartItem.isPresent()) {
             CartItem cartItem = existingCartItem.get();
-            if(quantity == 0){
-                removeItem(product.getId());
-            }
             cartItem.setQuantity(quantity);
             cartItem.setTotalPriceMinor(cartItem.getTotalPriceMinor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
             cartItem.setTotalPriceMajor(cartItem.getTotalPriceMajor().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
@@ -77,9 +75,18 @@ public class Cart {
         recalculateTotals();
     }
 
-    public void removeItem(UUID productId) {
+    public UUID removeItem(UUID productId) {
+        Optional<CartItem> cartItemOptional = items.stream()
+                .filter(item -> item.getProduct().getId().equals(productId))
+                .findFirst();
+
+        if (cartItemOptional.isEmpty()) {
+            return null;
+        }
+        UUID cartItemId = cartItemOptional.get().getId();
         items.removeIf(item -> item.getProduct().getId().equals(productId));
         recalculateTotals();
+        return cartItemId;
     }
     public void removeAllItems(){
         items.clear();
