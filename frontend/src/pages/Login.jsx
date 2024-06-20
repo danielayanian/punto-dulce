@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import Input from '../components/LoginInput/LoginInput';
 import styles from "../components/WhatsApp/Wsp.module.css";
@@ -30,3 +31,4 @@ const LoginInput = () => {
 };
 
 export default LoginInput;
+
