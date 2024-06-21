@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
-import Left from '../../../public/img/chevron-left.svg';
-import Right from '../../../public/img/chevron-right.svg';
+import Left from '/img/chevron-left.svg';
+import Right from '/img/chevron-right.svg';
 import EditPopUp from './EditPopUp';
 
 function PayRegistered({ products }) {
@@ -87,9 +87,7 @@ function PayRegistered({ products }) {
     setIsEditingUserData(false);
     setIsEditingReceiverData(false);
   };
-  const totalMinorista = products.reduce((total, product) => {
-    return total + (product.price * product.quantity);
-}, 0);
+  const totalMinorista = products.totalPriceMinor;
 
   return (
     <>
@@ -107,12 +105,12 @@ function PayRegistered({ products }) {
         </div>
         <h2 className={styles.title}>PRODUCTO</h2>
         <div className={styles.cartContainer}>
-          {products.map((product) => (
-            <div key={product.id} className={styles.productContainer}>
+          {products.products.map((product) => (
+            <div key={product.name} className={styles.productContainer}>
               <div className={styles.productInfo}>
                 <div className={styles.topTitle}>
                   <img
-                    src={product.imageUrl}
+                    src={product.image}
                     alt={product.name}
                     className={styles.imgProduct}
                   />
@@ -385,7 +383,7 @@ function PayRegistered({ products }) {
           <div className={styles.confirmation}>
             <h3 className={styles.purpleColor}>Confirmar datos</h3>
             <div className={styles.confirmationDetails}>
-              {products.map((product,index) => (
+              {products.products.map((product,index) => (
                 <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
                   <span>{product.name}</span>
                   <span>{product.quantity}</span>

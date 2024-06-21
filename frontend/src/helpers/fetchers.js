@@ -17,7 +17,10 @@ export const putCart = async (productId, quantity) => {
   })
 
   if (!response.ok) {
-    throw new Error(errorMessageStatus[res.status])
+    if(response.status === 403){
+      localStorage.removeItem("jwt")
+    }
+    throw new Error(errorMessageStatus[response.status])
   }
 }
 
@@ -27,7 +30,10 @@ export const getCart = async () => {
   
   const response = await fetch(urls.cart, {method:"GET", headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' }})
   if (!response.ok) {
-    throw new Error(errorMessageStatus[res.status])
+    if(response.status === 403){
+      localStorage.removeItem("jwt")
+    }
+    throw new Error(errorMessageStatus[response.status])
   }
 
   const data = await response.json()
@@ -38,8 +44,12 @@ export const getPreview = async () => {
  const token = localStorage.getItem("jwt") 
   
   const response = await fetch(`${urls.checkout}/preview`, {method:"GET", headers: {"Authorization": `Bearer ${token}`, "Content-Type":'application/json' }})
+  console.log(response);
   if (!response.ok) {
-    throw new Error(errorMessageStatus[res.status])
+    if(response.status === 403){
+      localStorage.removeItem("jwt")
+    }
+    throw new Error(errorMessageStatus[response.status])
   }
 
   const data = await response.json()
@@ -49,7 +59,7 @@ export const getProducts = async (category) => {
   const url = category ? `${urls.getProduct}?category=${category}` : urls.getProduct
   const response = await fetch(url)
   if (!response.ok) {
-    throw new Error(errorMessageStatus[res.status])
+    throw new Error(errorMessageStatus[response.status])
   }
 
   const data = await response.json()

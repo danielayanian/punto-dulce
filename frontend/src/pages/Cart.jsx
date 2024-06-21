@@ -12,7 +12,7 @@ export const Cart = ({ totalPriceMinor }) => {
     return <p>Loading...</p>;
   }
   console.log("Data:", data);
-console.log("Total Price Minor:", totalPriceMinor);
+console.log("Total Price Minor:", data.totalPriceMinor);
   return (
     <>
       <ProductCartList data={data} />;

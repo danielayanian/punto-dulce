@@ -75,11 +75,11 @@ function PaymentDetails() {
   const renderPaymentComponent = () => {
     
     if (wholesaler === true) {
-      return <PayWholesaler products={data.items} />;
+      return <PayWholesaler products={data} />;
     } else if (registeredUser=== true) {
-      return <PayRegistered products={data.items} />;
+      return <PayRegistered products={data} />;
     } else {
-      return <PayFirstTime products={data.items} />;
+      return <PayFirstTime products={data} />;
     }
   };
 

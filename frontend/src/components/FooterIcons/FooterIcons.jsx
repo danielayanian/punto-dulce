@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCartShopping, faUserFriends } from "@fortawesome/free-solid-svg-icons";
-import graphicIcon from "../../../public/img/graphic.png";
+import graphicIcon from "/img/graphic.png";
 import styles from "./FooterIcons.module.css";
 
 const FooterIcons = () => {
