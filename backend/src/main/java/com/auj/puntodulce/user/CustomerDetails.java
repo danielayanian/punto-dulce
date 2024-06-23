@@ -8,6 +8,7 @@ import java.sql.Types;
 import java.util.UUID;
 
 @Entity(name = "customer_details")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 @ToString
@@ -24,9 +25,6 @@ public class CustomerDetails {
 
     @Column(nullable = false)
     private String address;
-
-    @Column(nullable = false)
-    private String apartment;
 
     @Column(nullable = false)
     private String neighborhood;
@@ -46,3 +44,9 @@ public class CustomerDetails {
         }
     }
 }
+
+
+
+
+
+
