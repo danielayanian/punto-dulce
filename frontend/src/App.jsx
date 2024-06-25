@@ -16,6 +16,7 @@ import PurchaseCompleted from './pages/PurchaseCompleted';
 import LoginInput from "./components/LoginInput/LoginInput";
 import Admi from "./pages/Admi";
 
+
 const App = () =>{
   
   const client = new QueryClient()

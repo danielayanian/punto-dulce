@@ -1,13 +1,19 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 import filter from "/img/Filter.svg";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser, faSearch, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("jwt"); 
+    navigate("/");
+  };
+
   return (
     <>
       {isOpen && <div className={styles.overlay}></div>}
@@ -64,6 +70,10 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
             </div>
           </div>
         </div>
+               <button className={styles.buttonOut} onClick={handleLogout}>
+                  <FontAwesomeIcon icon={faSignOutAlt  } size="xl"/>
+                  SALIR
+                </button>
       </div>
     </>
   );
