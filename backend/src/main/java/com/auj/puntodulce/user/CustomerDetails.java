@@ -32,8 +32,8 @@ public class CustomerDetails {
     @Column(nullable = false)
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true)
     @ToString.Exclude
     private User user;
 

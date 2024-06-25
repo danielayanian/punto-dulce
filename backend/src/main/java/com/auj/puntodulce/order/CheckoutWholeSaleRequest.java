@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
-public class CheckoutRequest {
+public class CheckoutWholeSaleRequest {
     @NotEmpty(message = "Full name is required")
     private String fullName;
     @NotEmpty(message = "Address is required")
@@ -15,4 +15,10 @@ public class CheckoutRequest {
     String neighborhood;
     @NotEmpty(message = "Phone is required")
     String phone;
+    @NotEmpty(message = "VatCondition is required")
+    String vatCondition;
+    @NotEmpty(message = "Company name is required")
+    String companyName;
+    @NotEmpty(message = "Tax id is required")
+    String taxId;
 }

@@ -1,9 +1,7 @@
 package com.auj.puntodulce.user;
 
-import com.auj.puntodulce.exception.CartNotFoundException;
 import com.auj.puntodulce.exception.CustomerDetailsNotFound;
-import com.auj.puntodulce.order.CheckoutRequest;
-import org.hibernate.annotations.Check;
+import com.auj.puntodulce.order.CheckoutWholeSaleRequest;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
@@ -11,24 +9,24 @@ import java.util.UUID;
 
 @Repository
 public class CustomerDetailsDataAccessService {
-    private final CustomerDetailsRepository customerDetailsRepository;
+    private final WholesaleDetailsRepository wholesaleDetailsRepository;
     private final UserDataAccessService userDataAccessService;
     private final CustomerDetailsMapper customerDetailsMapper;
 
-    public CustomerDetailsDataAccessService(CustomerDetailsRepository customerDetailsRepository, UserDataAccessService userDataAccessService, CustomerDetailsMapper customerDetailsMapper) {
-        this.customerDetailsRepository = customerDetailsRepository;
+    public CustomerDetailsDataAccessService(WholesaleDetailsRepository wholesaleDetailsRepository, UserDataAccessService userDataAccessService, CustomerDetailsMapper customerDetailsMapper) {
+        this.wholesaleDetailsRepository = wholesaleDetailsRepository;
         this.userDataAccessService = userDataAccessService;
         this.customerDetailsMapper = customerDetailsMapper;
     }
 
     public CustomerDetails findById(UUID customerDetailsId){
-        return customerDetailsRepository.findById(customerDetailsId).orElseThrow(() -> new CustomerDetailsNotFound("Customer details not found"));
+        return wholesaleDetailsRepository.findById(customerDetailsId).orElseThrow(() -> new CustomerDetailsNotFound("Customer details not found"));
     }
 
-    public CustomerDetails create(CheckoutRequest checkoutRequest, String userId){
+    public CustomerDetails create(CheckoutWholeSaleRequest checkoutWholeSaleRequest, String userId){
         User user = userDataAccessService.selectUserById(userId).orElseThrow(()->new UsernameNotFoundException("User Not Found"));
-        CustomerDetails customerDetails = customerDetailsMapper.apply(checkoutRequest);
+        CustomerDetails customerDetails = customerDetailsMapper.apply(checkoutWholeSaleRequest);
         customerDetails.setUser(user);
-        return customerDetailsRepository.save(customerDetails);
+        return wholesaleDetailsRepository.save(customerDetails);
     }
 }

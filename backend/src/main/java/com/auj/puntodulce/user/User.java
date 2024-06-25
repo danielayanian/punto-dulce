@@ -40,9 +40,9 @@ public class User  implements UserDetails {
 	@ToString.Exclude
 	private List<Order> orders;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@ToString.Exclude
-	private List<CustomerDetails> customerDetails;
+	private CustomerDetails customerDetails;
 
 	public User(String email, String password) {
 		this.email = email;

@@ -35,28 +35,15 @@ public class CheckoutController {
             @ApiResponse(responseCode = "404", description = "Cart not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @PostMapping
+    @PostMapping("wholesale")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void confirmOrder( @RequestParam(required = false) UUID customerDetailsId,@Valid @RequestBody(required = false) CheckoutRequest checkoutRequest, HttpServletRequest request, Authentication authentication) {
-        if (customerDetailsId != null && checkoutRequest != null) {
-            throw new InvalidRequestException("Provide either customerDetailsId or checkoutRequest, not both.");
-        }
-
-        if (customerDetailsId == null && checkoutRequest == null) {
-            throw new InvalidRequestException("Either customerDetailsId or checkoutRequest must be provided.");
-        }
+    public void confirmOrder(@Valid @RequestBody(required = false) CheckoutWholeSaleRequest checkoutWholeSaleRequest, HttpServletRequest request, Authentication authentication) {
 
         UUID cartId = getCartIdFromCookies(request);
         if (cartId == null) {
             throw new CartNotFoundException("Cart not found");
         }
-
-        if (customerDetailsId != null) {
-            // Create a minimal CheckoutRequest with just the customerDetailsId
-            orderService.confirmOrder(cartId, customerDetailsId);
-        }else{
-            orderService.confirmOrder(cartId, checkoutRequest, authentication.getName());
-        }
+        orderService.confirmOrder(cartId, checkoutWholeSaleRequest, authentication.getName());
 
     }
 
