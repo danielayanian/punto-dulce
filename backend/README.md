@@ -14,8 +14,12 @@ Asegúrate de tener acceso al repositorio del proyecto y clona el código en tu 
 
    ```bash
    git clone https://github.com/xpan1c/punto-dulce.git
+   ```
+
+   ```bash
    cd punto-dulce/backend
    ```
+
 
 Antes de levantar los servicios, necesitarás configurar las variables de entorno que utilizan los contenedores. Crea un archivo `.env` en el directorio raíz del proyecto con el siguiente contenido:
 

@@ -1,4 +1,4 @@
-.top {
+.topCart {
   border-bottom: 1px solid #AB5195;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,7 @@
   padding: 5px;
   box-sizing: border-box;
 }
-.cartContainer {
+.cartMContainer {
   width: 100%;
   padding: 20px;
   color: #AB5195;
@@ -87,13 +87,13 @@
   margin-top: 20px;
 }
 
-.buttonContainer {
+.buttonContain {
   display: flex;
   justify-content: space-between;
 
 }
 
-.button {
+.buttonCart {
   padding: 0.5rem;
   background-color:transparent;
   color:#6B185E;
@@ -104,13 +104,13 @@
   font-weight: bold;
 }
 
-.buttonRight {
+.buttonR{
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
 }
-.buttonLeft {
+.buttonL{
   border: #6B185E solid 2px;
   display: flex;
   flex-direction: row;

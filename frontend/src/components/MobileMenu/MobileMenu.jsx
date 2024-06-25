@@ -29,17 +29,17 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
             <FontAwesomeIcon icon={faCircleUser} size="xl" />
             {isAuthenticated ? (
               <div className={styles.authUser}>
-                {<span>{userName ?? ""}</span>}
+                <span>{userName ?? ""}</span>
                 <span>Mi cuenta</span>
               </div>
             ) : (
               <div className={styles.authButtons}>
                 <Link to="/login" className={styles.authButton} onClick={toggleMenu}>
-                <Link to="/register" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
-                REGISTRAR
+                  ENTRAR
                 </Link>
                 <span className={styles.separator}>/</span>
-                 ENTRAR
+                <Link to="/register" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
+                  REGISTRAR
                 </Link>
               </div>
             )}

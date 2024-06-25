@@ -1,4 +1,4 @@
-/* .contenedor {
+ .contenedor {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,9 +11,3 @@
     color: #00874f; 
     font-size: 48px;
   }
-  h2{
-    color:  #00874f;
-    font-size: 18px;
-  font-weight: 700;}
-
-   */

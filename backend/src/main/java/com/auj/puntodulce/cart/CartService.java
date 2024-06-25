@@ -13,25 +13,29 @@ import java.util.UUID;
 @Service
 public class CartService {
     private final CartDataAccessService cartDataAccessService;
+    private final CartItemDataAccessService cartItemDataAccessService;
     private final ProductDataAccessService productDataAccessService;
     private final CartDTOMapper cartDTOMapper;
 
-    public CartService(CartDataAccessService cartDataAccessService, ProductDataAccessService productDataAccessService, CartDTOMapper cartDTOMapper) {
+    public CartService(CartDataAccessService cartDataAccessService, CartItemDataAccessService cartItemDataAccessService, ProductDataAccessService productDataAccessService, CartDTOMapper cartDTOMapper) {
         this.cartDataAccessService = cartDataAccessService;
+        this.cartItemDataAccessService = cartItemDataAccessService;
         this.productDataAccessService = productDataAccessService;
         this.cartDTOMapper = cartDTOMapper;
     }
 
 
-    public CartResponse addOrUpdateItemToCart(UUID cartID, UUID productId, int quantity){
+    public CartResponse addOrUpdateOrRemoveItemToCart(UUID cartID, UUID productId, int quantity){
         Cart cart = cartDataAccessService.findById(cartID).orElseThrow(()-> new CartNotFoundException("Cart not found"));
         Product product = productDataAccessService.selectProductById(productId)
                 .orElseThrow(() -> new ProductNotFound("Product not found"));
 
-        cart.addOrUpdateItem(product, quantity);
         if(quantity == 0 ){
-            removeItemFromCart(cartID, productId);
+            CartDTO cartDTO= removeItemFromCart(cartID, productId);
+            return new CartResponse(cart.getId(), cartDTO);
         }
+
+        cart.addOrUpdateItem(product, quantity);
         cart = cartDataAccessService.saveCart(cart);
         CartDTO cartDTO = cartDTOMapper.apply(cart);
 
@@ -47,8 +51,12 @@ public class CartService {
     public CartDTO removeItemFromCart(UUID cartId, UUID productId) {
         Cart cart = cartDataAccessService.findById(cartId)
                 .orElseThrow(() -> new CartNotFoundException("Cart not found"));
-        cart.removeItem(productId);
+        UUID cartItem = cart.removeItem(productId);
+        if(cartItem == null){
+            return cartDTOMapper.apply(cart);
+        }
         cart = cartDataAccessService.saveCart(cart);
+        cartItemDataAccessService.deleteItemById(cartItem);
         return cartDTOMapper.apply(cart);
     }
 

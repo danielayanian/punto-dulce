@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
 import Left from '/img/chevron-left.svg';
@@ -71,13 +71,13 @@ function PayWholesaler({ products }) {
   };
   console.log("wholesaler" + products);
   return (
-    <>
-      <div className="container">
-        <div className={styles.buttonContainer}>
+    <><div className={styles.cartContainer}>
+      <div >
+        <div className={styles.buttonContain}>
           <div className={styles.topRightButton}>
             <Link
               to="/cart"
-              className={`${styles.button} ${styles.buttonRight}`}
+              className={`${styles.buttonCart} ${styles.buttonRight}`}
             >
               Regresar <img src={Left} alt="Left arrow" />
             </Link>
@@ -386,7 +386,7 @@ function PayWholesaler({ products }) {
               <div>
                 <h3>Como seguir pedido</h3>
                 <p>
-                  En la sección "Mi cuenta" puedes ver el seguimiento de la
+                  En la sección &#34;Mi cuenta&#34; puedes ver el seguimiento de la
                   compra
                 </p>
               </div>
@@ -421,23 +421,23 @@ function PayWholesaler({ products }) {
                   : 'Retirar por Depósito'}
               </p>
             </div>
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonContain}>
               <Link
                 to="/cart"
-                className={`${styles.button} ${styles.buttonRight}`}
+                className={`${styles.buttonCart} ${styles.buttonR}`}
               >
                 Regresar <img src={Left} alt="Left arrow" />
               </Link>
               <Link
                 to="/purchase-completed"
-                className={`${styles.button} ${styles.buttonLeft}`}
+                className={`${styles.buttonCart} ${styles.buttonL}`}
               >
                 Terminar <img src={Right} alt="Right arrow" />
               </Link>
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
     </>
   );
 }
