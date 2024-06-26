@@ -6,7 +6,7 @@ import styles from './Product.module.css';
 import Left from '/img/chevron-left.svg';
 import Right from '/img/chevron-right.svg';
 
-function Product({ products }) {
+function Product({ product }) {
   return (
     <>
       <div className={styles.topCart}>
@@ -14,10 +14,10 @@ function Product({ products }) {
         <span>TOTAL</span>
       </div>
       <div className={styles.cartMContainer}>
-        {products?.map((product, index) => {
+        {product?.map((product, index) => {
           if (!product || !product.product || !product.product.image) {
             console.error(`Producto en la posición ${index} es inválido o no tiene la propiedad 'image'`);
-            return null; // O renderiza un placeholder, mensaje de error, etc.
+            return null; // Puedes renderizar un placeholder, mensaje de error, etc.
           }
 
           return (
@@ -51,11 +51,11 @@ function Product({ products }) {
         <div className={styles.buttonContain}>
           <Link to="/" className={`${styles.buttonCart} ${styles.buttonRight}`}>
             Regresar
-            <img src={Left} />
+            <img src={Left} alt="Back" />
           </Link>
           <Link to="/paymentDetails" className={`${styles.buttonCart} ${styles.buttonL}`}>
             Siguiente
-            <img src={Right} />
+            <img src={Right} alt="Next" />
           </Link>
         </div>
       </div>
