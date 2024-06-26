@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
-import Left from '/img/chevron-left.svg';
-import Right from '/img/chevron-right.svg';
 
 function Product({ product }) {
   return (
@@ -51,11 +48,11 @@ function Product({ product }) {
         <div className={styles.buttonContain}>
           <Link to="/" className={`${styles.buttonCart} ${styles.buttonRight}`}>
             Regresar
-            <img src={Left} alt="Back" />
+            <img src={Left} />
           </Link>
           <Link to="/paymentDetails" className={`${styles.buttonCart} ${styles.buttonL}`}>
             Siguiente
-            <img src={Right} alt="Next" />
+            <img src={Right} />
           </Link>
         </div>
       </div>
