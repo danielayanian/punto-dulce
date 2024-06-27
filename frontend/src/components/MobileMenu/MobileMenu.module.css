@@ -3,7 +3,7 @@
   top: 10%;
   right: -100%;
   width: 95%;
-  height: 302px;
+  height: auto;
   border: 2px solid #6b185e;
   background-color: #eff5fe;
   transition: right 0.3s ease;
@@ -16,8 +16,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color:rgba(0, 0, 0, 0.8);; /* Opacidad media oscura */
-  z-index: 10; /* Asegúrate de que el z-index sea menor que el del menú para que el menú se muestre encima */
+  background-color:rgba(0, 0, 0, 0.8);; 
+  z-index: 10; 
 }
 
 
@@ -146,4 +146,16 @@
 .searchButton:focus{
   color: #A6BCDF;
   background-color: #6b185e;
+}
+.buttonOut{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  margin: 3%;
+  gap: 10px;
+  color: #6b185e;
+  cursor: pointer;
+  font-weight: 500;
 }

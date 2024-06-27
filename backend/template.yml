@@ -65,6 +65,7 @@ Resources:
           git clone https://${GitHubToken}@${GitHubRepo} /home/ec2-user/app
           cd /home/ec2-user/app
           git checkout dev
+          chown -R ec2-user:ec2-user .
           cd /home/ec2-user/app/backend
           echo "MYSQL_ROOT_PASSWORD=${MYSQLRootPassword}" >> /home/ec2-user/app/backend/.env
           echo "MYSQL_DATABASE=${MYSQLDatabase}" >> /home/ec2-user/app/backend/.env

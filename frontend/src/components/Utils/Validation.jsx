@@ -3,7 +3,8 @@ export const validateEmail = (email) => {
     return re.test(String(email).toLowerCase());
   };
   
+
   export const validatePassword = (password) => {
-    return password.length >= 8;
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*()]).{8,}$/;
+    return re.test(password);
   };
-  

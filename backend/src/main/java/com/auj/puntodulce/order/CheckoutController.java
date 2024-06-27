@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/checkout")
+@RequestMapping("api/v1/checkout")
 @Tag(name = "checkout", description = "Operations related to orders")
 @SecurityRequirement(name = "bearerAuth")
 public class CheckoutController {
@@ -66,7 +66,7 @@ public class CheckoutController {
             @ApiResponse(responseCode = "404", description = "Cart or user not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @GetMapping("/preview")
+    @GetMapping("preview")
     public OrderPreviewResponse getPreviewOrder(HttpServletRequest request, Authentication authentication) {
         UUID cartId = getCartIdFromCookies(request);
         if (cartId == null) {

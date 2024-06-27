@@ -3,8 +3,7 @@
 
 import React from 'react';
 import styles from './EditPopUp.module.css'; // Asegúrate de que coincida con el nombre real de tu archivo CSS
-import { FaPencilAlt , FaSave  } from 'react-icons/fa';
-
+import { FaPencilAlt, FaSave } from 'react-icons/fa';
 
 const EditPopup = ({
   isOpen,
@@ -143,7 +142,11 @@ const EditPopup = ({
             </>
           )}
           <div className={styles.saveButton}>
-          <button className={styles.buttonSave} onClick={saveChanges}>  <FaSave className={styles.iconPop}/>Guardar</button>
+            <button className={styles.buttonSave} onClick={saveChanges}>
+              {' '}
+              <FaSave className={styles.iconPop} />
+              Guardar
+            </button>
           </div>
         </div>
       </div>
