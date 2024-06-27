@@ -14,7 +14,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showPopupCart, setShowPopupCart] = useState(false);
-  const navigate = useNavigate(); // Utiliza useNavigate para navegación
+
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');

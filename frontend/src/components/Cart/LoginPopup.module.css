@@ -4,22 +4,31 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que esté por encima del resto del contenido */
+  z-index: 1000;
+  text-align: center;
 }
 
 .loginPopup {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  width: 300px; /* Ancho del popup */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  width: 80vw;
+  max-width: 400px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  position: relative; 
+}
+
+.iconWink {
+  margin-top: 2rem;
+  font-size: 3.5rem;
 }
 
 .loginTitle {
+  margin-top: 1rem;
   margin-bottom: 10px;
   font-size: 1.5rem;
 }
@@ -28,14 +37,22 @@
   margin-bottom: 20px;
 }
 
-.closeButton {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
+.closeIcon {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 2rem;
   cursor: pointer;
+  color: #333; 
+  margin-right: 0.5rem;
 }
 
-.closeButton:hover {
-  background-color: #e0e0e0;
+.closeIcon:hover {
+  color: #622d68; 
+}
+
+
+.loginPopup a {
+  text-decoration: none; 
+  
 }
