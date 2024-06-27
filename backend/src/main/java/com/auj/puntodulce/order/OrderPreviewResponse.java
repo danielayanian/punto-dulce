@@ -12,5 +12,5 @@ public class OrderPreviewResponse {
         private BigDecimal totalPriceMinor;
         private BigDecimal totalPriceMajor;
         private String email;
-        private List<CustomerDetailsPreview> customerDetails;
+        private CustomerDetailsPreview customerDetails;
 }

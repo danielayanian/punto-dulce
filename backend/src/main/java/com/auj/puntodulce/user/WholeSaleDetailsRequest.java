@@ -25,6 +25,7 @@ public class WholeSaleDetailsRequest {
         wholesaleDetails.setFullName(fullName);
         wholesaleDetails.setAddress(address);
         wholesaleDetails.setPhone(phone);
+        wholesaleDetails.setNeighborhood(neighborhood);
         wholesaleDetails.setVatCondition(vatCondition);
         wholesaleDetails.setCompanyName(companyName);
         wholesaleDetails.setTaxId(taxId);

@@ -11,7 +11,6 @@ public class CustomerDetailsMapper implements Function<CheckoutWholeSaleRequest,
     public CustomerDetails apply(CheckoutWholeSaleRequest checkoutWholeSaleRequest) {
         CustomerDetails customerDetails =  new CustomerDetails();
         customerDetails.setAddress(checkoutWholeSaleRequest.getAddress());
-        customerDetails.setApartment(checkoutWholeSaleRequest.getApartment());
         customerDetails.setPhone(checkoutWholeSaleRequest.getPhone());
         customerDetails.setFullName(checkoutWholeSaleRequest.getFullName());
         customerDetails.setNeighborhood(checkoutWholeSaleRequest.getNeighborhood());

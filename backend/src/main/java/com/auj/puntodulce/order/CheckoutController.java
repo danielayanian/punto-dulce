@@ -1,7 +1,6 @@
 package com.auj.puntodulce.order;
 
 import com.auj.puntodulce.exception.CartNotFoundException;
-import com.auj.puntodulce.exception.InvalidRequestException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -9,7 +8,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +35,13 @@ public class CheckoutController {
     })
     @PostMapping("wholesale")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void confirmOrder(@Valid @RequestBody(required = false) CheckoutWholeSaleRequest checkoutWholeSaleRequest, HttpServletRequest request, Authentication authentication) {
+    public void confirmOrder(HttpServletRequest request, Authentication authentication) {
 
         UUID cartId = getCartIdFromCookies(request);
         if (cartId == null) {
             throw new CartNotFoundException("Cart not found");
         }
-        orderService.confirmOrder(cartId, checkoutWholeSaleRequest, authentication.getName());
+        orderService.confirmOrderWholesale(cartId, authentication.getName());
 
     }
 

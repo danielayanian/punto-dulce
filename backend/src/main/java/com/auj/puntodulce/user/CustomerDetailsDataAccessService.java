@@ -23,10 +23,4 @@ public class CustomerDetailsDataAccessService {
         return wholesaleDetailsRepository.findById(customerDetailsId).orElseThrow(() -> new CustomerDetailsNotFound("Customer details not found"));
     }
 
-    public CustomerDetails create(CheckoutWholeSaleRequest checkoutWholeSaleRequest, String userId){
-        User user = userDataAccessService.selectUserById(userId).orElseThrow(()->new UsernameNotFoundException("User Not Found"));
-        CustomerDetails customerDetails = customerDetailsMapper.apply(checkoutWholeSaleRequest);
-        customerDetails.setUser(user);
-        return wholesaleDetailsRepository.save(customerDetails);
-    }
 }

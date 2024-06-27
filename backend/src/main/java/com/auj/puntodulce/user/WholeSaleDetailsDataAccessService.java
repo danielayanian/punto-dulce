@@ -1,22 +1,22 @@
 package com.auj.puntodulce.user;
 
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class WholeSaleDetailsDataAccessService {
     private final WholesaleDetailsRepository wholesaleDetailsRepository;
-    private final UserDataAccessService userDataAccessService;
 
-    public WholeSaleDetailsDataAccessService(WholesaleDetailsRepository wholesaleDetailsRepository, UserDataAccessService userDataAccessService) {
+    public WholeSaleDetailsDataAccessService(WholesaleDetailsRepository wholesaleDetailsRepository) {
         this.wholesaleDetailsRepository = wholesaleDetailsRepository;
-        this.userDataAccessService = userDataAccessService;
     }
 
-    public void saveWholesaleDetailsTByUserId(WholeSaleDetailsRequest wholeSaleDetailsRequest, String userId){
-        User user = userDataAccessService.selectUserById(userId).orElseThrow(()-> new UsernameNotFoundException("User not found"));
-        WholesaleDetails wholesaleDetails = wholeSaleDetailsRequest.toWholesaleDetails();
-        wholesaleDetails.setUser(user);
-        wholesaleDetailsRepository.save(wholesaleDetails);
+    public void saveWholesaleDetails(WholesaleDetails wholeSaleDetails){
+        wholesaleDetailsRepository.save(wholeSaleDetails);
+    }
+    public Optional<WholesaleDetails> findByUserId(String userId){
+        return wholesaleDetailsRepository.findByUserId(UUID.fromString(userId));
     }
 }
