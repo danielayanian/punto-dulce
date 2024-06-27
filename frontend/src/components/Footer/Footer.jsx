@@ -9,7 +9,7 @@ import logo2 from "/img/logo-2.svg";
 
 const Footer = () => {
   return (
-    <footer className={styles.container}>
+    <footer className={styles.containerFooter}>
       {/* <img src={logo} alt="Logo" className="footer-logo" /> */}
       <img src={logo} alt="logo" className={styles.logo} />
       <div className={styles.sectionContainer}>

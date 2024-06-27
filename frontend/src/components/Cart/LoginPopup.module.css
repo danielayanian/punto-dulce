@@ -1,0 +1,41 @@
+.loginOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegura que esté por encima del resto del contenido */
+}
+
+.loginPopup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px; /* Ancho del popup */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.loginTitle {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.loginMessage {
+  margin-bottom: 20px;
+}
+
+.closeButton {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: #e0e0e0;
+}

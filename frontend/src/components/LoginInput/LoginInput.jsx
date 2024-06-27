@@ -69,7 +69,7 @@ const LoginInput = () => {
       <img className={styles.logo} src="/img/logo.png"  alt="logo de la página" />
       <div className={styles.loginBox}></div>
         <h1 className={styles.title}>Log in</h1>
-        <form onSubmit={handleSubmit}>
+        <form className={styles.formLogin}onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label htmlFor="email">Email </label>
 

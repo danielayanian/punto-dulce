@@ -58,7 +58,7 @@ export const ProductCard = ({ product }) => {
   
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.containerCard}>
         <div className={styles.imageButtons}>
           <img
             src={product.image}

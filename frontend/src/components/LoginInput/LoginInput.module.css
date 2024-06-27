@@ -14,7 +14,7 @@
   
   }
 
-.title {
+.titleInput {
     color: #6B185E;
     text-align: center;
     font-size: 40px;
@@ -24,8 +24,9 @@
     letter-spacing: 0.5px;
 }
 
-form{
+.formLogin{
   width: 100%;
+  margin-bottom: ;
 }
 
 .inputGroup {
