@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
 import Left from '/img/chevron-left.svg';
 import Right from '/img/chevron-right.svg';
+import ButtonNav from '../Button/NavButton'
 
 function Product({ products }) {
   return (
@@ -48,16 +49,7 @@ function Product({ products }) {
             </div>
           );
         })}
-        <div className={styles.buttonContain}>
-          <Link to="/" className={`${styles.buttonCart} ${styles.buttonRight}`}>
-            Regresar
-            <img src={Left} />
-          </Link>
-          <Link to="/paymentDetails" className={`${styles.buttonCart} ${styles.buttonL}`}>
-            Siguiente
-            <img src={Right} />
-          </Link>
-        </div>
+        <ButtonNav/>
       </div>
     </>
   );

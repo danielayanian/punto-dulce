@@ -2,39 +2,52 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; /* Añadir flexbox */
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que el popup esté encima de otros contenidos */
+  z-index: 1000;
 }
 
 .popup-cart-content {
   background-color: white;
-  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 80%;
-  max-height: 80%;
+  width: 80vw;
+  max-width: 500px;
   overflow: auto;
+  padding: 5px 20px 20px 20px;
 }
 
+.popup-cart-top {
+  display: flex;
+  justify-content: space-between; 
+  border-bottom: solid 2px #6b185e;
+  color: #ab5195;
+  align-items: baseline;
+ 
+
+}
+.popup-cart-top h2{
+  margin-bottom: 3px;
+}
+.popup-cart-top span{
+  font-size: 2.3rem;
+}
+
+
 .cart-items {
-  margin-top: 10px;
+  text-align: center;
+  padding: 1rem 0; /* Añadir padding para separación interna */
 }
 
 .popup-cart-close-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .popup-cart-close-button:hover {
-  background-color: #555;
+  color: #555;
 }
