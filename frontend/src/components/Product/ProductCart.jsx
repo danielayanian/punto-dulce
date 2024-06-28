@@ -1,13 +1,15 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Product.module.css';
-import Left from '/img/chevron-left.svg';
-import Right from '/img/chevron-right.svg';
-import ButtonNav from '../Button/NavButton'
 
-function Product({ products }) {
+function ProductCart({ data }) {
+  console.log('Data:', data); /
+
+ 
+  if (!data || !Array.isArray(data.items) || data.items.length === 0) {
+    console.error('Products is empty or not an array:', data);
+    return <div>No products available</div>;
+  }
+
   return (
     <>
       <div className={styles.topCart}>
@@ -15,10 +17,10 @@ function Product({ products }) {
         <span>TOTAL</span>
       </div>
       <div className={styles.cartMContainer}>
-        {products?.map((product, index) => {
-          if (!product || !product.product || !product.product.image) {
-            console.error(`Producto en la posición ${index} es inválido o no tiene la propiedad 'image'`);
-            return null; // O renderiza un placeholder, mensaje de error, etc.
+        {data.items.map((product, index) => {
+          if (!product || !product.name || !product.image) {
+            console.error(`Product at index ${index} is invalid or missing 'name' or 'image'`);
+            return null;
           }
 
           return (
@@ -26,33 +28,32 @@ function Product({ products }) {
               <div className={styles.productInfo}>
                 <div className={styles.topTitle}>
                   <img
-                    src={product.product.image}
+                    src={product.image}
                     alt={product.name}
                     className={styles.productImage}
                   />
-                  <div className={styles.productName}>{product.product.name}</div>
+                  <div className={styles.productName}>{product.name}</div>
                 </div>
                 <div className={styles.Description}>
-                  {product.product.description}
+                  {product.description}
                 </div>
               </div>
               <div className={styles.productDetails}>
                 <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>Cant:</span>
+                  <span className={styles.detailTitle}>Cantidad:</span>
                   <span className={styles.detailValue}>{product.quantity}</span>
                 </div>
                 <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>$ Unit:</span>
-                  <span className={styles.detailValue}>${product.product.priceMinor}</span>
+                  <span className={styles.detailTitle}>Precio Unitario:</span>
+                  <span className={styles.detailValue}>${product.price}</span>
                 </div>
               </div>
             </div>
           );
         })}
-        <ButtonNav/>
       </div>
     </>
   );
 }
 
-export default Product;
+export default ProductCart;

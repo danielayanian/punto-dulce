@@ -90,6 +90,8 @@
 .buttonContain {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  align-content: baseline;
 
 }
 
@@ -102,13 +104,19 @@
   transition: background-color 0.3s ease;
   text-decoration: none;
   font-weight: bold;
+  font-display: flex;
+  display: flex;
+  align-items: center;
+  align-content: baseline;
 }
 
 .buttonR{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+
   justify-content: space-around;
   align-items: center;
+  align-content: center;
 }
 .buttonL{
   border: #6B185E solid 2px;
