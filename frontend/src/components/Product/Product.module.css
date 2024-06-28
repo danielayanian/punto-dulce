@@ -35,6 +35,10 @@
   align-items: center;
   justify-content: flex-start;
 }
+.DescName{
+  display: flex;
+  flex-direction: column;
+}
 
 .productImage {
   width: 100px;

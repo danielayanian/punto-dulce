@@ -8,6 +8,7 @@ const useGetCart = () => {
     queryFn: getCart, 
   });
   return { isLoading, error, data }
+console.log(data)
 }
 
 export default useGetCart

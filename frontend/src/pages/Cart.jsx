@@ -1,19 +1,16 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import { Link } from "react-router-dom";
-import ProductCartList from "../components/Cart/ProductCartList"
-import useGetCart from "../Hooks/useGetCart.jsx";
+import React from 'react';
+import ProductCartList from '../components/Cart/ProductCartList';
+import useGetCart from '../Hooks/useGetCart';
 
-import ProductCart from '../components/Product/ProductCart';
-
-
-
-const Cart = () => {
+function Cart() {
   const { isLoading, error, data } = useGetCart();
-console.log(data);
- 
-  return <ProductCart products={data}  />;
-};
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  console.log('Cart data:', data);
+
+  return <ProductCartList data={data.items} />;
+}
 
 export default Cart;
-

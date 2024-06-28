@@ -1,60 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import PayFirstTime from '../components/Product/PayFirstTime';
 import PayRegistered from '../components/Product/PayRegistered';
-
+import PayWholesaler from '../components/Product/PayWholesaler';
 import useGetCart from '../Hooks/useGetCart';
 
 function PaymentDetails() {
-  
-  const [registeredUser, setRegisteredUser] = useState(false); // Default to false
-  // const [products, setProducts] = useState([]); // Estado para almacenar los productos
-  const [wholesaler, setWholesaler] = useState(false); // Default to false
+  const [registeredUser, setRegisteredUser] = useState(false); // Estado para verificar si el usuario está registrado
+  const [wholesaler, setWholesaler] = useState(false); // Estado para verificar si es mayorista
 
- 
+  // Utiliza el hook personalizado useGetCart para obtener datos del carrito
+  const { isLoading, error, data } = useGetCart();
 
   useEffect(() => {
-
-    const isUserRegistered = true; 
-    const isWholesaler = false; 
+    // Simulación de lógica para determinar si el usuario está registrado y si es mayorista
+    const isUserRegistered = true; // Lógica para determinar si el usuario está registrado
+    const isWholesaler = false; // Lógica para determinar si es mayorista
 
     setRegisteredUser(isUserRegistered);
     setWholesaler(isWholesaler);
 
-   
-  //   setProducts(data);
+    //   setProducts(data); // No necesitas setear products aquí si ya los estás pasando a los componentes de pago
   }, []);
 
-  const { isLoading, error, data } = useGetCart();
-  console.log(data);
-
-
-  // Función para renderizar el componente correcto según el estado de registro del usuario
+  // Función para renderizar el componente de pago adecuado según el estado del usuario
   const renderPaymentComponent = () => {
-    
-    if (wholesaler === true) {
+    if (wholesaler) {
       return <PayWholesaler products={data.items} />;
-    } else if (registeredUser=== true) {
+    } else if (registeredUser) {
       return <PayRegistered products={data.items} />;
     } else {
       return <PayFirstTime products={data.items} />;
     }
   };
 
-  if (error) return <p>Ha habido un error ..</p>;
-  if (!data) {
-    return <p>Loading...</p>;
+  // Manejo de errores y estados de carga
+  if (error) return <p>Ha habido un error al cargar el carrito.</p>;
+  if (isLoading || !data) {
+    return <p>Cargando datos del carrito...</p>;
   }
+
+  // Renderiza el componente de pago correspondiente
   return (
     <div>
-      
-      {/* Si el usuario está registrado, renderiza PayRegistered, de lo contrario, PayFirstTime y si es mayorista Wholesaler*/}
       {renderPaymentComponent()}
-       
-
     </div>
-    
   );
-
 }
 
 export default PaymentDetails;
