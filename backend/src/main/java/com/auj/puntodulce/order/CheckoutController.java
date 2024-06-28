@@ -51,8 +51,8 @@ public class CheckoutController {
             @ApiResponse(responseCode = "404", description = "Cart or user not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @GetMapping("preview")
-    public OrderPreviewResponse getPreviewOrder(HttpServletRequest request, Authentication authentication) {
+    @GetMapping("wholesale/preview")
+    public WholesaleOrderPreviewResponse getWholesalePreviewOrder(HttpServletRequest request, Authentication authentication) {
         UUID cartId = getCartIdFromCookies(request);
         if (cartId == null) {
             throw new CartNotFoundException("Cart not found");

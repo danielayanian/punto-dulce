@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
-public class WholeSaleDetailsRequest {
+public class WholeSaleDetailsPostRequest {
     @NotEmpty(message = "Full name is required")
     private String fullName;
     @NotEmpty(message = "Address is required")

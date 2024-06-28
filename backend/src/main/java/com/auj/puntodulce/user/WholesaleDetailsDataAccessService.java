@@ -6,10 +6,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class WholeSaleDetailsDataAccessService {
+public class WholesaleDetailsDataAccessService {
     private final WholesaleDetailsRepository wholesaleDetailsRepository;
 
-    public WholeSaleDetailsDataAccessService(WholesaleDetailsRepository wholesaleDetailsRepository) {
+    public WholesaleDetailsDataAccessService(WholesaleDetailsRepository wholesaleDetailsRepository) {
         this.wholesaleDetailsRepository = wholesaleDetailsRepository;
     }
 

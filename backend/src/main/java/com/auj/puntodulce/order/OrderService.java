@@ -2,6 +2,8 @@ package com.auj.puntodulce.order;
 
 import com.auj.puntodulce.cart.CartDTO;
 import com.auj.puntodulce.cart.CartService;
+import com.auj.puntodulce.exception.CustomerDetailsNotFound;
+import com.auj.puntodulce.exception.InvalidCartException;
 import com.auj.puntodulce.product.ProductDTO;
 import com.auj.puntodulce.user.*;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,9 +20,9 @@ public class OrderService {
     private final CustomerDetailsDataAccessService customerDetailsDataAccessService;
     private final CartService cartService;
     private final UserDataAccessService userDataAccessService;
-    private final WholeSaleDetailsDataAccessService wholeSaleDetailsDataAccessService;
+    private final WholesaleDetailsDataAccessService wholeSaleDetailsDataAccessService;
 
-    public OrderService(OrderDataAccessService orderDataAccessService, CustomerDetailsDataAccessService customerDetailsDataAccessService, CartService cartService, UserDataAccessService userDataAccessService, WholeSaleDetailsDataAccessService wholeSaleDetailsDataAccessService) {
+    public OrderService(OrderDataAccessService orderDataAccessService, CustomerDetailsDataAccessService customerDetailsDataAccessService, CartService cartService, UserDataAccessService userDataAccessService, WholesaleDetailsDataAccessService wholeSaleDetailsDataAccessService) {
         this.orderDataAccessService = orderDataAccessService;
         this.customerDetailsDataAccessService = customerDetailsDataAccessService;
         this.cartService = cartService;
@@ -53,13 +55,15 @@ public class OrderService {
         // Get current authenticated user if available
 
         // Create order from cart
-        WholesaleDetails wholesaleDetails = wholeSaleDetailsDataAccessService.findByUserId(userId).orElseThrow(()-> new UsernameNotFoundException("User not found"));
+        WholesaleDetails wholesaleDetails = wholeSaleDetailsDataAccessService.findByUserId(userId).orElseThrow(()-> new CustomerDetailsNotFound("Customer details not found"));
         orderDataAccessService.createOrder(cartId, wholesaleDetails);
     }
-    public OrderPreviewResponse getPreviewOrder(UUID cartId, String userId) {
+    public WholesaleOrderPreviewResponse getPreviewOrder(UUID cartId, String userId) {
         CartDTO cart = cartService.getCart(cartId);
+        if(cart.items().isEmpty()){
+            throw new InvalidCartException("Cart is empty");
+        }
         User user = userDataAccessService.selectUserById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
         List<ProductPreview> products = cart.items().stream().map(item -> {
             ProductDTO product = item.product();
             ProductPreview productPreview = new ProductPreview();
@@ -72,20 +76,26 @@ public class OrderService {
         return getOrderPreviewResponse(user, products, cart);
     }
 
-    private static OrderPreviewResponse getOrderPreviewResponse(User user, List<ProductPreview> products, CartDTO cart) {
-        CustomerDetailsPreview customerDetailsPreview = new CustomerDetailsPreview();
-        customerDetailsPreview.setId(user.getCustomerDetails().getId());
-        customerDetailsPreview.setFullName(user.getCustomerDetails().getFullName());
-        customerDetailsPreview.setPhone(user.getCustomerDetails().getPhone());
-        customerDetailsPreview.setAddress(user.getCustomerDetails().getAddress());
-        customerDetailsPreview.setNeighborhood(user.getCustomerDetails().getNeighborhood());
+    private static WholesaleOrderPreviewResponse getOrderPreviewResponse(User user, List<ProductPreview> products, CartDTO cart) {
+        WholesaleDetailsPreview wholesaleDetailsPreview = null;
+        if(user.getCustomerDetails() != null){
+            WholesaleDetails wholesaleDetails = (WholesaleDetails) user.getCustomerDetails();
+            wholesaleDetailsPreview = new WholesaleDetailsPreview();
+            wholesaleDetailsPreview.setId(wholesaleDetails.getId());
+            wholesaleDetailsPreview.setFullName(wholesaleDetails.getFullName());
+            wholesaleDetailsPreview.setAddress(wholesaleDetails.getAddress());
+            wholesaleDetailsPreview.setNeighborhood(wholesaleDetails.getNeighborhood());
+            wholesaleDetailsPreview.setPhone(wholesaleDetails.getPhone());
+            wholesaleDetailsPreview.setVatCondition(wholesaleDetails.getVatCondition());
+            wholesaleDetailsPreview.setCompanyName(wholesaleDetails.getCompanyName());
+            wholesaleDetailsPreview.setTaxId(wholesaleDetails.getTaxId());
+        }
 
-        OrderPreviewResponse response = new OrderPreviewResponse();
+        WholesaleOrderPreviewResponse response = new WholesaleOrderPreviewResponse();
         response.setProducts(products);
-        response.setTotalPriceMinor(cart.totalPriceMinor());
         response.setTotalPriceMajor(cart.totalPriceMajor());
         response.setEmail(user.getEmail());
-        response.setCustomerDetails(customerDetailsPreview);
+        response.setCustomerDetails(wholesaleDetailsPreview);
         return response;
     }
 }
