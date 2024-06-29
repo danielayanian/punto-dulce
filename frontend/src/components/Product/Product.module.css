@@ -8,6 +8,7 @@
   padding: 5px;
   box-sizing: border-box;
 }
+
 .cartMContainer {
   width: 100%;
   padding: 20px;
@@ -27,15 +28,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
 }
-.topTitle{
+
+.topTitle {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
-.DescName{
+
+.DescName {
   display: flex;
   flex-direction: column;
 }
@@ -59,6 +61,7 @@
   margin-bottom: 10px;
   font-size: smaller;
 }
+
 .detailRow {
   display: flex;
   justify-content: space-between;
@@ -87,7 +90,6 @@
 .cartDetails {
   display: flex;
   justify-content: space-between;
-
   margin-top: 20px;
 }
 
@@ -96,13 +98,12 @@
   justify-content: space-between;
   align-items: center;
   align-content: baseline;
-
 }
 
 .buttonCart {
   padding: 0.5rem;
-  background-color:transparent;
-  color:#6B185E;
+  background-color: transparent;
+  color: #6B185E;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -114,15 +115,15 @@
   align-content: baseline;
 }
 
-.buttonR{
+.buttonR {
   display: flex;
   flex-direction: row;
-
   justify-content: space-around;
   align-items: center;
   align-content: center;
 }
-.buttonL{
+
+.buttonL {
   border: #6B185E solid 2px;
   display: flex;
   flex-direction: row;
