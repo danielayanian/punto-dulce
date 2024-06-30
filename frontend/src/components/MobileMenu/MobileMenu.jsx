@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 import filter from "/img/Filter.svg";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSearch, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../AuthContext/AuthContext";
 
-const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
+const MobileMenu = ({ isOpen, toggleMenu }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("jwt"); 
-    navigate("/");
-  };
+  const { isAuthenticated, userEmail, logout } = useContext(AuthContext);
 
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+    toggleMenu();
+  };
+ 
   return (
     <>
       {isOpen && <div className={styles.overlay}></div>}
@@ -29,17 +33,26 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
             <FontAwesomeIcon icon={faCircleUser} size="xl" />
             {isAuthenticated ? (
               <div className={styles.authUser}>
-                <span>{userName ?? ""}</span>
-                <span>Mi cuenta</span>
+                {userEmail && <span>{userEmail}</span>}
+                <span>MI CUENTA</span>
               </div>
             ) : (
               <div className={styles.authButtons}>
-                <Link to="/login" className={styles.authButton} onClick={toggleMenu}>
-                  ENTRAR
+                <Link
+                  to="/register"
+                  className={styles.authButton}
+                  onClick={toggleMenu}
+                >
+                  REGISTRAR
                 </Link>
                 <span className={styles.separator}>/</span>
-                <Link to="/register" state={{ from: location.pathname }} className={styles.authButton} onClick={toggleMenu}>
-                  REGISTRAR
+                <Link
+                  to="/login"
+                  state={{ from: location.pathname }}
+                  className={styles.authButton}
+                  onClick={toggleMenu}
+                >
+                  ENTRAR
                 </Link>
               </div>
             )}
@@ -70,10 +83,12 @@ const MobileMenu = ({ isOpen, toggleMenu, isAuthenticated, userName }) => {
             </div>
           </div>
         </div>
-               <button className={styles.buttonOut} onClick={handleLogout}>
-                  <FontAwesomeIcon icon={faSignOutAlt  } size="xl"/>
-                  SALIR
-                </button>
+        {isAuthenticated && (
+          <button className={styles.buttonOut} onClick={handleLogout}>
+            <FontAwesomeIcon icon={faSignOutAlt} size="xl" />
+            SALIR
+          </button>
+        )}
       </div>
     </>
   );
