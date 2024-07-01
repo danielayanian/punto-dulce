@@ -19,7 +19,7 @@
 
 .bubble2 {
   position: absolute;
-  top: 2%;
+  top: 0;
   right: 2%;
 }
 
@@ -44,12 +44,12 @@
 }
 .bubble3{
   position: absolute;
-    top: 27%;
+    top: 28%;
     left: 2%;
 }
 .candyContent{
   position: absolute;
-    top: -2%;
+    top: -4%;
     left: -6px;
 }
 
@@ -290,7 +290,9 @@ input:-webkit-autofill:focus {
   justify-content: center;
   cursor: pointer;
   margin-bottom: 5%;
+  text-decoration: none;
 }
+
 .iconWrapper {
   display: flex;
   position: absolute;

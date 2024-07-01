@@ -15,6 +15,7 @@ import PaymentForm from './pages/PaymentDetails';
 import PurchaseCompleted from './pages/PurchaseCompleted';
 import LoginInput from "./components/LoginInput/LoginInput";
 import Admi from "./pages/Admi";
+import { AuthProvider } from "./components/AuthContext/AuthContext";
 
 
 const App = () =>{
@@ -24,6 +25,7 @@ const App = () =>{
   return (
     
     <QueryClientProvider client={client} >
+       <AuthProvider>
       <Router>
       <ScrollToTop />
         <Header />
@@ -42,6 +44,7 @@ const App = () =>{
         </Routes>
         <Footer />
       </Router>
+      </AuthProvider>
     </QueryClientProvider>
  
     

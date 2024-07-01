@@ -43,12 +43,23 @@
   border-bottom: 1px solid rgba(171, 81, 149, 0.50);
  width: 95%;
   margin-left: 2%;
+  margin-top: 2%;
 }
 
 .authLinks {
   display: flex;
   align-items: center;
   margin-left: 1rem;
+}
+.authUser{
+  display: flex;
+  flex-direction: column;
+  color: #6B185E;
+  font-size: 10px;
+  font-weight: 500;
+  text-decoration-line: underline;
+  margin-left: 2%;
+  gap: 5px;
 }
 .searchContainer {
   display: flex;
@@ -89,14 +100,11 @@
   color: #6b185e;
   font-weight: 600;
 }
-.searchContainer {
-  display: flex;
-  align-items: center;
-}
 
 .inputWrapper {
   position: relative;
   width: 80%;
+  margin-top: 2%;
 }
 
 .searchIcon {
