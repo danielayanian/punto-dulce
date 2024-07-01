@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from '../../components/LoginInput/LoginInput.module.css';
 import wspStyles from '../../components/WhatsApp/Wsp.module.css';
 import logo from "/img/logo.png";
@@ -6,21 +6,23 @@ import logo2 from "/img/caramelos.png";
 import burbuja from "/img/burbuja.png";
 import burbuja2 from "/img/burbujas.png";
 import burbuja3 from "/img/bur-car.png";
-import { validateEmail, validatePassword } from '../Utils/Validation';
+import { validateEmail, validatePassword} from '../Utils/Validation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faCircleCheck, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { urls } from '../../helpers/url';
+import AuthContext from "../AuthContext/AuthContext";
 
 const RegisterInput = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate(); 
   const location = useLocation();
+  const { login } = useContext(AuthContext); 
   
   useEffect(() => {
     const header = document.querySelector("header");
@@ -33,30 +35,30 @@ const RegisterInput = () => {
     return () => {
       if (header) header.style.display = "";
       if (footer) footer.style.display = "";
-      if (wspContainer) wspContainer.style.display = ""; // Muestra el ícono de WhatsApp al desmontar el componente
+      if (wspContainer) wspContainer.style.display = ""; 
     };
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let validationErrors = {};
-
+    
     if (!email) {
-      validationErrors.email = 'El campo email es requerido';
+      validationErrors.email = "El campo email es requerido";
     } else if (!validateEmail(email)) {
-      validationErrors.email = 'Email no es válido';
+      validationErrors.email = "Email no es válido";
     }
 
     if (!password) {
-      validationErrors.password = 'El campo contraseña es requerido';
+      validationErrors.password = "El campo contraseña es requerido";
     } else if (!validatePassword(password)) {
       validationErrors.password = "Contraseña Invalida";
     }
 
     if (!confirmPassword) {
-      validationErrors.confirmPassword = 'El campo contraseña es requerido';
+      validationErrors.confirmPassword = "El campo contraseña es requerido";
     } else if (password !== confirmPassword) {
-      validationErrors.confirmPassword = 'Las contraseñas no coinciden';
+      validationErrors.confirmPassword = "Las contraseñas no coinciden";
     }
 
     setErrors(validationErrors);
@@ -67,7 +69,7 @@ const RegisterInput = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, confirmPassword }),
+        body: JSON.stringify({email, password, confirmPassword }),
       })
         .then((response) => {
           if (response.ok && response.status === 204) {
@@ -75,7 +77,7 @@ const RegisterInput = () => {
             if (token) {
               const jwt = token.replace('Bearer ', ''); 
               localStorage.setItem('jwt', jwt);
-              
+              login(email, jwt);
               const from = location.state?.from || '/'; 
               navigate(from); 
             } else {
@@ -92,7 +94,6 @@ const RegisterInput = () => {
         });
     }
   };
-
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     if (errors.email) {
@@ -119,6 +120,7 @@ const RegisterInput = () => {
       <img src={burbuja3} alt="" className={styles.bubble3} />
       <h1 className={styles.title}>Sign up</h1>
       <form onSubmit={handleSubmit} noValidate>
+      
         <div className={styles.inputGroup}>
           <label htmlFor="email">Email</label>
           <div className={styles.passwordWrapper}>
@@ -213,7 +215,8 @@ const RegisterInput = () => {
         <button className={styles.access}>
         <FontAwesomeIcon icon={faCircleCheck} /> Registrar
         </button>
-        <span className={styles.returnLink}>Ya tienes una cuenta? Regresar!</span>
+       <Link to="/login" className={styles.returnLink} >
+        Ya tienes una cuenta? Regresar!</Link> 
       </form>
       <img src={logo2} />
     </section>

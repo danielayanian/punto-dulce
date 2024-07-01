@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./LoginInput.module.css";
 import wspStyles from '../../components/WhatsApp/Wsp.module.css';
 import logo from "/img/logo.png";
@@ -17,6 +17,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { urls } from "../../helpers/url";
+import AuthContext from "../AuthContext/AuthContext"; 
+
 
 const LoginInput = () => {
   const [email, setEmail] = useState("");
@@ -25,6 +27,7 @@ const LoginInput = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useContext(AuthContext); 
 
   useEffect(() => {
     const header = document.querySelector("header");
@@ -74,6 +77,7 @@ const LoginInput = () => {
           if (token) {
             const jwt = token.replace("Bearer ", "");
             localStorage.setItem("jwt", jwt);
+            login(email, jwt);
             const from = location.state?.from || "/";
             navigate(from);
           } else {
