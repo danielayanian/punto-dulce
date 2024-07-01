@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
 import Left from '/img/chevron-left.svg';
 import Right from '/img/chevron-right.svg';
-import ProductCartList from '../Cart/ProductCartList';
+import ProductCart from '../Product/ProductCart';
 
 function PaymentForm({ products }) {
   const [selectedPayment, setSelectedPayment] = useState('');
@@ -62,7 +62,9 @@ function PaymentForm({ products }) {
     setShowCustomerData(false);
     setShowReceiverData(true);
   };
-  console.log(products.map(product => product.name));
+  const totalMinorista = products.reduce((total, product) => {
+    return total + (product.totalPriceMinor * product.quantity);
+}, 0);
 
   return (
     
@@ -70,51 +72,17 @@ function PaymentForm({ products }) {
     <div >
       <div className={styles.buttonContain}>
         <div className={styles.topRightButton}>
-          <Link to="/cart" className={`${styles.button} ${styles.buttonR}`}>
+          <Link to="/cart" className={`${styles.buttonCart} ${styles.buttonR}`}>
             Regresar <img src={Left} alt="Left Chevron" />
           </Link>
         </div>
       </div>
       <h2 >PRODUCTO</h2>
-      {/* <div className={styles.cartContainer}>
-          {products.map((product) => (
-            <div key={product.id} className={styles.productContainer}>
-              <div className={styles.productInfo}>
-                <div className={styles.topTitle}>
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className={styles.productImage}
-                  />
-                  <div className={styles.productName}>{product.name}</div>
-                </div>
-                <div className={styles.productDescription}>
-                  {product.description}
-                </div>
-              </div>
-              <div className={styles.productDetails}>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>Cont:</span>
-                  <span className={styles.detailValue}>{product.quantity}</span>
-                </div>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>$ Unit:</span>
-                  <span className={styles.detailValue}>${product.price}</span>
-                </div>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>
-                    Precio Total Minorista:
-                  </span>
-                  <span className={styles.detailValue}>
-                    ${product.price * product.quantity}
-                  </span>
-                </div>
-              </div>
+  
+        <ProductCart data={products} />
+        <div className={styles.totalMinorista}>
+                <h3>Total Minorista:  </h3><span>${totalMinorista.toFixed(2)}</span>
             </div>
-          ))}
-        </div> */}
-        <ProductCartList data={products} />
-
       <div className={styles.paymentForm}>
         <div className={styles.paymentOptions}>
           <h3>Formas de Pago</h3>
@@ -166,6 +134,7 @@ function PaymentForm({ products }) {
             <label htmlFor="cash">Efectivo</label>
           </div>
           <div className={styles.paymentOption}>
+
             <input
               type="radio"
               id="mercadopago"
@@ -245,7 +214,7 @@ function PaymentForm({ products }) {
               </label>
             </div>
             {showCustomerData && (
-              <div className={styles.inputs}>
+              <div className={styles.inputsContainer}>
                 <input
                   type="text"
                   id="fullName"
@@ -321,7 +290,7 @@ function PaymentForm({ products }) {
             </div>
             {!showReceiverData && <p>Completar datos</p>}
             {showReceiverData && (
-              <div className={styles.inputs}>
+              <div className={styles.inputsContainer}>
                 <input
                   type="text"
                   id="receiverFullName"
@@ -387,25 +356,19 @@ function PaymentForm({ products }) {
 
       <div className="CommentBox">
         <h3>Observaciones / Comentarios</h3>
-        <textarea placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
+        <textarea className={styles.textareaForm} placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
       </div>
       <div className={styles.confirmation}>
         <h3>Confirmar datos</h3>
         <div className={styles.confirmationDetails}>
-          {/* {products.map((product,index) => (
-            <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
-              <span>{product.name}</span>
-              <span>{product.quantity}</span>
-              <span>${product.price * product.quantity}</span>
-            </div>
-          ))} */}
-        {products.map((product) => (
-  <div key={product.id}>
-    <h3>{product.name}</h3>
-    <p>{product.description}</p>
-    {/* Más detalles del producto */}
-  </div>
-))}
+        {products.map((product,index) => (
+                <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
+                  <span>{product.product.name}</span>
+                  <span>{product.quantity}</span>
+                  <span>${product.totalPriceMajor * product.quantity}</span>
+                </div>
+              ))}
+           
           <div>
             <h3>Como seguir pedido</h3>
             <p>
@@ -445,10 +408,10 @@ function PaymentForm({ products }) {
           </p>
         </div>
         <div className={styles.buttonContain}>
-          <Link to="/cart" className={`${styles.button} ${styles.buttonR}`}>
+          <Link to="/cart" className={`${styles.buttonCart} ${styles.buttonR}`}>
             Regresar <img src={Left} alt="Left arrow" />
           </Link>
-          <Link to="/purchase-completed" className={`${styles.button} ${styles.buttonL}`}>
+          <Link to="/purchase-completed" className={`${styles.buttonCart} ${styles.buttonL}`}>
             Terminar <img src={Right} alt="Right arrow" />
           </Link>
         </div>
