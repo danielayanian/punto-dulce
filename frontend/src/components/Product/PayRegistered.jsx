@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
-import Left from '/img/chevron-left.svg';
-import Right from '/img/chevron-right.svg';
+import Left from '../../../public/img/chevron-left.svg';
+import Right from '../../../public/img/chevron-right.svg';
 import EditPopUp from './EditPopUp';
+import ProductCart from '../components/Product/ProductCart'
 
 function PayRegistered({ products }) {
   // Objeto con datos del usuario
@@ -88,8 +89,9 @@ function PayRegistered({ products }) {
     setIsEditingReceiverData(false);
   };
   const totalMinorista = products.reduce((total, product) => {
-    return total + (product.price * product.quantity);
+    return total + (product.totalPriceMinor * product.quantity);
 }, 0);
+console.log(products)
 
   return (
     <>
@@ -106,47 +108,7 @@ function PayRegistered({ products }) {
           </div>
         </div>
         <h2 className={styles.title}>PRODUCTO</h2>
-        <div className={styles.cartContainer}>
-          {products.map((product) => (
-            <div key={product.id} className={styles.productContainer}>
-              <div className={styles.productInfo}>
-                <div className={styles.topTitle}>
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className={styles.imgProduct}
-                  />
-                  <div className={styles.titleProduct}>
-                    <div className={styles.productName}>{product.name}</div>{' '}
-                    <div className={styles.productDescription}>
-                      {product.description}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* <div className={styles.productDetails}>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>Cont:</span>
-                  <span className={styles.detailValue}>{product.quantity}</span>
-                </div>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>$ Unit:</span>
-                  <span className={styles.detailValue}>${product.price}</span>
-                </div>
-                <div className={styles.detailRow}> 
-                <span className={styles.detailTitle}>
-                  Precio Total Minorista:
-                </span>
-                <span className={styles.detailValue}>
-                  ${product.price * product.quantity}
-                </span>
-              </div>
-            </div> */}
-            </div>
-          ))}
-          
-        </div>
-          {/* Total minorista */}
+        <ProductCart data={products} />
           <div className={styles.totalMinorista}>
                 <h3>Total Minorista:  </h3><span>${totalMinorista.toFixed(2)}</span>
             </div>
@@ -387,9 +349,9 @@ function PayRegistered({ products }) {
             <div className={styles.confirmationDetails}>
               {products.map((product,index) => (
                 <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
-                  <span>{product.name}</span>
+                  <span>{product.product.name}</span>
                   <span>{product.quantity}</span>
-                  <span>${product.price * product.quantity}</span>
+                  <span>${product.totalPriceMinor * product.quantity}</span>
                 </div>
               ))}
               <div>

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
 import Left from '/img/chevron-left.svg';
 import Right from '/img/chevron-right.svg';
 import EditPopUp from './EditPopUp';
-import ProductCartList from '../Cart/ProductCartList';
+import ProductCart from '../Product/ProductCart';
 
 function PayWholesaler({ products }) {
   const initialUserData = {
@@ -69,6 +69,10 @@ function PayWholesaler({ products }) {
     setIsCustomerDataChecked(false);
     setIsReceiverDataChecked(true);
   };
+
+  const totalMayorista= products.reduce((total, product) => {
+    return total + (product.totalPriceMajor * product.quantity);
+}, 0);
   console.log("wholesaler" + products);
   return (
     <><div className={styles.cartContainer}>
@@ -84,44 +88,11 @@ function PayWholesaler({ products }) {
           </div>
         </div>{' '}
         <h2 className="title">PRODUCTO</h2>
-        {/* <div className={styles.cartContainer}>
-          {products.map((product) => (
-            <div key={product.id} className={styles.productContainer}>
-              <div className={styles.productInfo}>
-                <div className={styles.topTitle}>
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className={styles.productImage}
-                  />
-                  <div className={styles.productName}>{product.name}</div>
-                </div>
-                <div className={styles.productDescription}>
-                  {product.description}
-                </div>
-              </div>
-              <div className={styles.productDetails}>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>Cont:</span>
-                  <span className={styles.detailValue}>{product.quantity}</span>
-                </div>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>$ Unit:</span>
-                  <span className={styles.detailValue}>${product.price}</span>
-                </div>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>
-                    Precio Total Minorista:
-                  </span>
-                  <span className={styles.detailValue}>
-                    ${product.price * product.quantity}
-                  </span>
-                </div>
-              </div>
+   
+        <ProductCart data={products} />
+        <div className={styles.totalMinorista}>
+                <h3>Total Mayorista:  </h3><span>${totalMayorista.toFixed(2)}</span>
             </div>
-          ))}
-        </div> */}
-        <ProductCartList data={products} />
         {/* Payment form */}
         <div className={styles.paymentForm}>
           <div className={styles.paymentOptions}>
@@ -371,22 +342,22 @@ function PayWholesaler({ products }) {
           </div>
           <div className="CommentBox">
             <h3>Observaciones / Comentarios</h3>
-            <textarea placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
+            <textarea className={styles.textareaForm} placeholder="Puedes dejarnos el comentario que quieras, como también horarios y días que te encuentras en el lugar para enviártelo."></textarea>
           </div>
           <div className={styles.confirmation}>
             <h3>Confirmar datos</h3>
             <div className={styles.confirmationDetails}>
               {products.map((product,index) => (
                 <div  key={`${product.id?? 'unknown'}-${index}`} className={styles.confirmationProduct}>
-                  <span>{product.name}</span>
+                  <span>{product.product.name}</span>
                   <span>{product.quantity}</span>
-                  <span>${product.price * product.quantity}</span>
+                  <span>${product.totalPriceMajor * product.quantity}</span>
                 </div>
               ))}
               <div>
                 <h3>Como seguir pedido</h3>
                 <p>
-                  En la sección &#34;Mi cuenta&#34; puedes ver el seguimiento de la
+                  En la sección "Mi cuenta" puedes ver el seguimiento de la
                   compra
                 </p>
               </div>
