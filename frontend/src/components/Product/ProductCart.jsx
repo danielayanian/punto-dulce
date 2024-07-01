@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import styles from './Product.module.css';
 
-function Product({ products }) {
+function ProductCart({ data, purchase, purchaseType }) {
   return (
     <>
       <div className={styles.topCart}>
@@ -11,35 +9,31 @@ function Product({ products }) {
         <span>TOTAL</span>
       </div>
       <div className={styles.cartMContainer}>
-        {products?.map((product, index) => {
-          if (!product || !product.product || !product.product.image) {
-            console.error(`Producto en la posición ${index} es inválido o no tiene la propiedad 'image'`);
-            return null; // O renderiza un placeholder, mensaje de error, etc.
-          }
+        {data.map((item, index) => {
+          const { product, quantity, totalPriceMinor, totalPriceMajor } = item;
+          const { id, name, description, image } = product || {};
 
           return (
-            <div key={`${product.id ?? 'unknown'}-${index}`} className={styles.productContainer}>
+            <div key={`${id ?? 'unknown'}-${index}`} className={styles.productContainer}>
               <div className={styles.productInfo}>
                 <div className={styles.topTitle}>
-                  <img
-                    src={product.product.image}
-                    alt={product.name}
-                    className={styles.productImage}
-                  />
-                  <div className={styles.productName}>{product.product.name}</div>
-                </div>
-                <div className={styles.Description}>
-                  {product.product.description}
+                  <img src={image} alt={name} className={styles.productImage} />
+                  <div className={styles.DescName}>
+                    <div className={styles.productName}>{name}</div>
+                    <div className={styles.productDescription}>{description}</div>
+                  </div>
                 </div>
               </div>
               <div className={styles.productDetails}>
                 <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>Cant:</span>
-                  <span className={styles.detailValue}>{product.quantity}</span>
+                  <span className={styles.detailTitle}>Cantidad:</span>
+                  <span className={styles.detailValue}>{quantity}</span>
                 </div>
                 <div className={styles.detailRow}>
-                  <span className={styles.detailTitle}>$ Unit:</span>
-                  <span className={styles.detailValue}>${product.product.priceMinor}</span>
+                  <span className={styles.detailTitle}>$ Unit.</span>
+                  <span className={styles.detailValue}>
+                    ${purchase === 'minorista' ? totalPriceMinor.toFixed(2) : totalPriceMajor.toFixed(2)}
+                  </span>
                 </div>
               </div>
             </div>
@@ -50,4 +44,4 @@ function Product({ products }) {
   );
 }
 
-export default Product;
+export default ProductCart;
