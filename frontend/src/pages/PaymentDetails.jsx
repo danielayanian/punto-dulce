@@ -1,38 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PayFirstTime from '../components/Product/PayFirstTime';
-import PayRegistered from '../components/Product/PayRegistered';
 import PayWholesaler from '../components/Product/PayWholesaler';
 import useGetCart from '../Hooks/useGetCart';
+import { useLocation } from 'react-router-dom';
 
 function PaymentDetails() {
-  const [registeredUser, setRegisteredUser] = useState(false); // Estado para verificar si el usuario está registrado
-  const [wholesaler, setWholesaler] = useState(false); // Estado para verificar si es mayorista
-
   // Utiliza el hook personalizado useGetCart para obtener datos del carrito
   const { isLoading, error, data } = useGetCart();
+  const location = useLocation();
+  const { purchaseType } = location.state || { purchaseType: 'minorista' };
+  
 
-  useEffect(() => {
-    // Simulación de lógica para determinar si el usuario está registrado y si es mayorista
-    const isUserRegistered = true; // Lógica para determinar si el usuario está registrado
-    const isWholesaler = false; // Lógica para determinar si es mayorista
-
-    setRegisteredUser(isUserRegistered);
-    setWholesaler(isWholesaler);
-
-    //   setProducts(data); // No necesitas setear products aquí si ya los estás pasando a los componentes de pago
-  }, []);
-
-  // Función para renderizar el componente de pago adecuado según el estado del usuario
+  // Función para renderizar el componente de pago adecuado según el tipo de compra
   const renderPaymentComponent = () => {
-    if (wholesaler) {
-      return <PayWholesaler products={data.items} />;
-    } else if (registeredUser) {
-      return <PayRegistered products={data.items} />;
-    } else {
+    if (purchaseType === 'minorista') {
       return <PayFirstTime products={data.items} />;
-    }
-  };
-
+    } else {
+      return <PayWholesaler products={data.items} />;
+    }}
+  
   // Manejo de errores y estados de carga
   if (error) return <p>Ha habido un error al cargar el carrito.</p>;
   if (isLoading || !data) {

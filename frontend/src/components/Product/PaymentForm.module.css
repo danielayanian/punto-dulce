@@ -1,13 +1,11 @@
- .cartContainer {
+.cartContainer {
   padding: 15px;
   box-sizing: border-box;
   margin: 0;
-  color:#AB5195;
- 
-   
+  color: #ab5195;
 }
-.purpleColor{
-  color:#6b185e
+.purpleColor {
+  color: #6b185e;
 }
 
 .topRightButton {
@@ -15,7 +13,7 @@
   margin-bottom: 10px;
 }
 .titleCart {
-  border-bottom: 2px solid #AB5195;
+  border-bottom: 2px solid #ab5195;
   padding-left: 5px;
 }
 
@@ -24,7 +22,7 @@
   justify-content: space-between;
 }
 
-.buttonCart{
+.buttonCart {
   padding: 0.5rem;
   background-color: transparent;
   color: #6b185e;
@@ -78,7 +76,7 @@
   flex-direction: row;
   align-items: center;
 }
-.titleProduct{
+.titleProduct {
   display: flex;
   flex-direction: column;
 }
@@ -86,8 +84,8 @@
 .imgProduct {
   width: 124px;
   height: 124px;
-  margin:5px;
-  border:2px solid #6b185e;
+  margin: 5px;
+  border: 2px solid #6b185e;
 }
 
 .productName {
@@ -97,7 +95,7 @@
 
 .productDescription {
   margin-top: 5px;
-  color: #AB5195;
+  color: #ab5195;
 }
 
 .totalMinorista {
@@ -105,8 +103,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 5px;
-  color: #AB5195;
-  border-bottom: #AB5195 2px solid;
+  color: #ab5195;
+  border-bottom: #ab5195 2px solid;
   align-items: center;
 }
 
@@ -114,8 +112,6 @@
   display: flex;
   justify-content: space-between;
 }
-
-
 
 .detailTitle {
   font-weight: bold;
@@ -154,7 +150,7 @@
   color: black;
   margin-left: 10px;
 }
-.label{
+.label {
   margin-bottom: 0;
   line-height: 1%;
 }
@@ -163,11 +159,13 @@
   font-size: 12px;
   margin: 0px 0px 0px 10px;
 }
-.miniphrases{
+.miniphrases {
   padding: 0px 0px 5px 30px;
-font-size: small};
+  font-size: small;
+}
 
-.shortInput {  width: 70px;
+.shortInput {
+  width: 70px;
 }
 
 .expiryAndCvc {
@@ -177,17 +175,23 @@ font-size: small};
 
 .shippingForm {
   margin-top: 30px;
-
 }
-.inputsContainer{ display: flex;
+.inputsContainer {
+  display: flex;
   flex-direction: column;
-
+  width: 100%;
+  margin-top: 0.2rem;
 }
- .customeRadio{
-  color:#AB5195;
-  font-weight:bold;
- }
- 
+.inputsContainer input {
+  margin: 0.3rem 0;
+  border-radius: 16px; 
+  padding: 0.3rem;
+  width: 80%;
+}
+.customeRadio {
+  color: #ab5195;
+  font-weight: bold;
+}
 
 .customerData,
 .receiverData {
@@ -230,9 +234,8 @@ font-size: small};
   width: 90%;
   height: 100px;
   margin-top: 10px;
-  border-radius: 5%;
+  border-radius: 16px;
   margin: 5px;
-
 
   padding: 10px;
 }
@@ -263,9 +266,8 @@ font-size: small};
   margin-top: 20px;
 }
 
-
-.listShipping{
-list-style: none;
-margin:0px;
-padding: 0px;
+.listShipping {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
 }

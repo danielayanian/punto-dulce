@@ -1,5 +1,6 @@
 import "./App.css";
-import { BrowserRouter as Router, Link, Route, Routes  } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProductList from "./pages/ProductList";
@@ -16,34 +17,32 @@ import PurchaseCompleted from './pages/PurchaseCompleted';
 import LoginInput from "./components/LoginInput/LoginInput";
 import Admi from "./pages/Admi";
 
-const App = () =>{
+const App = () => {
   
-  const client = new QueryClient()
+
+  const client = new QueryClient();
 
   return (
-    
-    <QueryClientProvider client={client} >
+    <QueryClientProvider client={client}>
       <Router>
-      <ScrollToTop />
-        <Header />
-        <Wsp/>
+        <ScrollToTop />
+        <Header /> 
+        <Wsp />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product-list/:slug" element={<ProductList />} />
-          <Route path="/login" element={<LoginInput/>} />
+          <Route path="/login" element={<LoginInput />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/paymentDetails" element={<PaymentForm  />} />
+          <Route path="/cart" element={<Cart  />} />
+          <Route path="/paymentDetails" element={<PaymentForm />} />
           <Route path="/admin/*" element={<Admi />} />
           <Route path="/purchase-completed" element={<PurchaseCompleted />} />
-          <Route path="/policy" element={<Policy/>} />
+          <Route path="/policy" element={<Policy />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>
     </QueryClientProvider>
- 
-    
   );
 }
 

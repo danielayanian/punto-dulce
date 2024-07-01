@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Product.module.css';
 
-function ProductCart({ data }) {
+function ProductCart({ data, purchase, purchaseType }) {
   return (
     <>
       <div className={styles.topCart}>
@@ -10,7 +10,7 @@ function ProductCart({ data }) {
       </div>
       <div className={styles.cartMContainer}>
         {data.map((item, index) => {
-          const { product, quantity, totalPriceMinor } = item;
+          const { product, quantity, totalPriceMinor, totalPriceMajor } = item;
           const { id, name, description, image } = product || {};
 
           return (
@@ -31,7 +31,9 @@ function ProductCart({ data }) {
                 </div>
                 <div className={styles.detailRow}>
                   <span className={styles.detailTitle}>$ Unit.</span>
-                  <span className={styles.detailValue}>${totalPriceMinor}</span>
+                  <span className={styles.detailValue}>
+                    ${purchase === 'minorista' ? totalPriceMinor.toFixed(2) : totalPriceMajor.toFixed(2)}
+                  </span>
                 </div>
               </div>
             </div>
@@ -43,4 +45,3 @@ function ProductCart({ data }) {
 }
 
 export default ProductCart;
-

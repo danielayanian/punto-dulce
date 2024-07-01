@@ -5,16 +5,15 @@ import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.module.css';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import logo from '/img/logo.png';
-import LoginPopup from '../Cart/LoginPopup'; // Importa el componente LoginPopup
-import PopupCart from '../Cart/PopupCart'; // Importa el componente PopupCart
-import { getCart } from '../../helpers/fetchers'; // Ajusta la importación según sea necesario
+import LoginPopup from '../Cart/LoginPopup';
+import PopupCart from '../Cart/PopupCart';
+import { getCart } from '../../helpers/fetchers';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showPopupCart, setShowPopupCart] = useState(false);
-
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -33,7 +32,7 @@ const Header = () => {
     console.log('Cart icon clicked');
     if (isLoggedIn) {
       try {
-        const cart = await getCart(); // Implementa la función getCart para obtener los datos del carrito
+        const cart = await getCart();
         console.log('Cart data fetched:', cart);
         setShowPopupCart(true);
       } catch (error) {
@@ -60,7 +59,7 @@ const Header = () => {
           <FontAwesomeIcon icon={faCartShopping} />
         </div>
 
-        <div className={styles.cartIcon}onClick={toggleMenu}>
+        <div className={styles.cartIcon} onClick={toggleMenu}>
           <FontAwesomeIcon icon={faBars} />
         </div>
         <MobileMenu 
@@ -71,7 +70,7 @@ const Header = () => {
       </nav>
 
       {showLoginPopup && <LoginPopup onClose={() => setShowLoginPopup(false)} onSuccess={handleLoginSuccess} />}
-      {showPopupCart && <PopupCart onClose={() => setShowPopupCart(false)} />}
+      {showPopupCart && <PopupCart onClose={() => setShowPopupCart(false)} isLoggedIn={isLoggedIn} />}
     </header>
   );
 };

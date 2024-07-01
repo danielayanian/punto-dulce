@@ -4,6 +4,7 @@ import styles from './PaymentForm.module.css';
 import Left from '../../../public/img/chevron-left.svg';
 import Right from '../../../public/img/chevron-right.svg';
 import EditPopUp from './EditPopUp';
+import ProductCart from '../components/Product/ProductCart'
 
 function PayRegistered({ products }) {
   // Objeto con datos del usuario
@@ -107,30 +108,7 @@ console.log(products)
           </div>
         </div>
         <h2 className={styles.title}>PRODUCTO</h2>
-        <div className={styles.cartContainer}>
-          {products.map((product, index) => (
-            <div key={product.id ?? index} className={styles.productContainer}>
-              <div className={styles.productInfo}>
-                <div className={styles.topTitle}>
-                  <img
-                    src={product.product.image}
-                    alt={product.product.name}
-                    className={styles.imgProduct}
-                  />
-                  <div className={styles.titleProduct}>
-                    <div className={styles.productName}>{product.product.name}</div>{' '}
-                    <div className={styles.productDescription}>
-                      {product.product.description}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-            </div>
-          ))}
-          
-        </div>
-          {/* Total minorista */}
+        <ProductCart data={products} />
           <div className={styles.totalMinorista}>
                 <h3>Total Minorista:  </h3><span>${totalMinorista.toFixed(2)}</span>
             </div>
