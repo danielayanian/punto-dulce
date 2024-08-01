@@ -5,7 +5,6 @@ import useGetCart from '../Hooks/useGetCart';
 import { useLocation } from 'react-router-dom';
 
 function PaymentDetails() {
-  // Utiliza el hook personalizado useGetCart para obtener datos del carrito
   const { isLoading, error, data } = useGetCart();
   const location = useLocation();
   const { purchaseType } = location.state || { purchaseType: 'minorista' };
